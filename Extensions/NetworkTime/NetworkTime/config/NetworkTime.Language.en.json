@@ -1,0 +1,7 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "ntpServer": "NTP server"
+  }
+}

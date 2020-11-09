@@ -1,0 +1,8 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "cpuUsage": "CPU usage",
+    "sinceStartup": "Since extension initialization"
+  }
+}

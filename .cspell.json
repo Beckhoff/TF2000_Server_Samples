@@ -1,0 +1,48 @@
+{
+    "version": "0.1",
+    "language": "en",
+    "words": [
+        "beckhoff",
+        "newtonsoft",
+        "runtimes",
+        "textblock",
+        "twincat",
+        "unregister"
+    ],
+    "ignoreWords": [
+        "acceptedsockets",
+        "activesessions",
+        "activesockets",
+        "architecture",
+        "automap",
+        "dgram",
+        "dotnetclassicversions",
+        "dotnetcoreversions",
+        "dotnetversions",
+        "hmiproj",
+        "memoryusage",
+        "netcoreapp",
+        "netstandard",
+        "remoteservers",
+        "servertime",
+        "tchmi",
+        "timespan",
+        "trafficin",
+        "trafficout",
+        "usedclients",
+        "usedtargets",
+        "usergroupusers"
+    ],
+    "ignorePaths": [
+        "**/DynamicSymbols/TcHmiProjectDynamicSymbols/**",
+        "**/.engineering_servers/**",
+        "**/.vs/**",
+        "**/Packages/**",
+        "**/obj/**",
+        "**/bin/**"
+    ],
+    "ignoreRegExpList": [
+        "\"symbol\": \".+\"",
+        "\"password\": \".+\""
+    ]
+}

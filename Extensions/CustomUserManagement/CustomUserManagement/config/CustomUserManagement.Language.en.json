@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "enabled": "Enabled",
+    "users": "Users",
+    "password": "Password",
+    "salt": "Salt",
+    "descUsers": "User",
+
+    "MESSAGE_INIT": "Initializing extension CustomUserManagement succeeded.",
+    "ERROR_INIT": "Initializing extension CustomUserManagement failed. Additional information: {0}"
+  }
+}

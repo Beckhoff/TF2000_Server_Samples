@@ -1,0 +1,64 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "60312ad9-6bec-46fd-903a-fe4dadbf9d11",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.1",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ListSymbols": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "GetDefinitions": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "GetSchema": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "AddMachine": {
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "hidden": false
+    },
+    "RemoveMachine": {
+      "readValue": {
+        "function": true,
+        "type": "boolean"
+      },
+      "writeValue": {
+        "type": "string"
+      },
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "hidden": false
+    }
+  }
+}

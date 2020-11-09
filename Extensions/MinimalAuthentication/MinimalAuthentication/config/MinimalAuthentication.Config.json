@@ -1,0 +1,22 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "c384fb16-cbbf-410e-94a4-c5f627610b1d",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.1",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ListUsers": {
+      "hidden": false,
+      "readValue": {
+        "function": true,
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

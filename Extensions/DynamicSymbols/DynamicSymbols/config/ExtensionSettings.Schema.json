@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "serverSymbol": {
+      "allOf": [
+        { "$ref": "http://json-schema.org/draft-04/schema#" },
+        {
+          "properties": {
+            "function": { "type": "boolean" }
+          }
+        }
+      ]
+    }
+  },
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "guid": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "format": "version",
+      "doc": "Version of the extension library."
+    },
+    "configVersion": {
+      "type": "string",
+      "format": "version",
+      "doc": "Version of the configuration file."
+    },
+    "productVersion": {
+      "type": "string",
+      "format": "version",
+      "doc": "Version of the TwinCAT HMI with which the extension was created."
+    },
+    "dotNetTargetFramework": {
+      "type": "string",
+      "doc": "The .NET target framework. (This property is set automatically during the build - do not set it manually.)"
+    },
+    "dotNetTargetFrameworkVersion": {
+      "type": "string",
+      "doc": "Version of the .NET target framework. (This property is set automatically during the build - do not set it manually.)"
+    },
+    "dotNetPlatformTarget": {
+      "type": "string",
+      "enum": [
+        "AnyCPU",
+        "x86",
+        "x64"
+      ],
+      "default": "AnyCPU",
+      "doc": ".NET platform target. (This property is set automatically during the build - do not set it manually.)"
+    },
+    "dotNetConfiguration": {
+      "type": "string",
+      "doc": "Configuration of the .NET server extension. (This property is set automatically during the build - do not set it manually.)"
+    },
+    "signature": {
+      "type": "string",
+      "format": "base64"
+    },
+    "signatureData": {
+      "type": "string",
+      "format": "base64"
+    },
+    "signatureTcHmiSrvExt": {
+      "type": "string",
+      "format": "base64"
+    },
+    "signatureTcHmiSrvExtNet": {
+      "type": "string",
+      "format": "base64"
+    },
+    "fileExtensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fileExtension": {
+            "type": "string",
+            "doc": "Extension of the file."
+          },
+          "fileDescription": {
+            "type": "string",
+            "doc": "Language variable describing the file extension."
+          }
+        },
+        "additionalProperties": false
+      },
+      "doc": "File extensions are used by script extensions."
+    },
+    "symbols": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "readValue": {
+            "$ref": "#/definitions/serverSymbol",
+            "doc": "Output parameters of the symbol."
+          },
+          "writeValue": {
+            "$ref": "#/definitions/serverSymbol",
+            "doc": "Input parameters of the symbol."
+          },
+          "automap": {
+            "type": "boolean",
+            "default": true,
+            "doc": "true to automatically map this symbol."
+          },
+          "hidden": {
+            "type": "boolean",
+            "default": true,
+            "doc": "true to hide this symbol in symbol browser."
+          },
+          "userGroups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "access": {
+            "type": "integer",
+            "default": 3,
+            "enum": [ 0, 1, 2, 3 ],
+            "doc": "Default access of the symbol."
+          },
+          "doc": {
+            "type": "string",
+            "doc": "Documentation of the symbol."
+          },
+          "sample": { "type": "object" }
+        },
+        "additionalProperties": false
+      },
+      "doc": "List of symbols that the extension supports."
+    }
+  },
+  "required": [ "guid", "version", "configVersion" ]
+}

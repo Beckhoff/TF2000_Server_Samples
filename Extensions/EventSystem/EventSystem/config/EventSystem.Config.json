@@ -1,0 +1,30 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "5bdf7659-f9a9-46d6-b3a9-26667204a5fb",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.1",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "SendAnotherMessage": {
+      "hidden": false,
+      "readValue": {
+        "function": true
+      }
+    },
+    "SendDynamicallyLocalizedMessage": {
+      "hidden": false,
+      "readValue": {
+        "function": true
+      }
+    },
+    "RaiseAdditionalAlarm": {
+      "hidden": false,
+      "readValue": {
+        "function": true
+      }
+    }
+  }
+}

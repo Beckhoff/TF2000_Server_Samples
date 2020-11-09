@@ -1,0 +1,8 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "errorInit": "Initializing extension \"RandomValue\" failed. Additional information: {0}",
+    "errorCallCommand": "Calling command '{0}' failed! Additional information: {1}"
+  }
+}

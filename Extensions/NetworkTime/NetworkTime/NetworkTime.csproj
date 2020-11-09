@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
+    <Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
+    <Description>Implementation of a server extension that queries an NTP server.</Description>
+    <Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2020</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TcHmiExtensionTypes>{5DF3DCF0-60A1-4102-985E-1810812D0E69}</TcHmiExtensionTypes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TcHmiServerApiVersionNumberMajor>1</TcHmiServerApiVersionNumberMajor>
+  </PropertyGroup>
+
+  <Import Project="$(TWINCAT3DIR)..\Functions\TE2000-HMI-Engineering\Infrastructure\TcHmiServer\imports\TcHmiServerExtensionCSharp.proj" />
+
+  <PropertyGroup>
+    <ProjectGuid>9746d8e1-e071-4ab7-b9d1-73661bc3eaad</ProjectGuid>
+  </PropertyGroup>
+
+</Project>

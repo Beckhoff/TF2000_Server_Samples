@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "ntpServer": {
+      "type": "string",
+      "default": "ntp.beckhoff-cloud.com"
+    }
+  },
+  "required": [ "ntpServer" ],
+  "additionalProperties": false
+}

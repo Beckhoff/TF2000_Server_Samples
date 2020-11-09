@@ -1,0 +1,46 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "dea2f2b7-da00-4012-9eb8-db5642430f26",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.1",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "RandomValue": {
+      "readValue": {
+        "allOf": [
+          {
+            "$ref": "tchmi:general#/definitions/Integer"
+          },
+          {
+            "readOnly": true
+          }
+        ]
+      },
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "hidden": false
+    },
+    "MaxRandom": {
+      "readValue": {
+        "$ref": "tchmi:general#/definitions/Integer"
+      },
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "hidden": false
+    },
+    "MaxRandomFromConfig": {
+      "readValue": {
+        "$ref": "tchmi:general#/definitions/Integer"
+      },
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "hidden": false
+    }
+  }
+}

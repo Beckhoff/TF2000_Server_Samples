@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "maxRandom": {
+      "allOf": [
+        {
+          "$ref": "tchmi:general#/definitions/Integer"
+        },
+        {
+          "default": 10
+        }
+      ]
+    }
+  },
+  "required": [ "maxRandom" ],
+  "additionalProperties": false
+}

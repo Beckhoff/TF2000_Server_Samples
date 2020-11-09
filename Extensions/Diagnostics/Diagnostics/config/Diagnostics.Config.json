@@ -1,0 +1,45 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "12dbbc08-9199-433c-b668-bb073e81b3f1",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.1",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "Diagnostics": {
+      "hidden": false,
+      "readValue": {
+        "function": true,
+        "readOnly": true,
+        "transient": true,
+        "type": "object",
+        "properties": {
+          "cpuUsage": {
+            "allOf": [
+              {
+                "$ref": "tchmi:general#/definitions/FLOAT"
+              },
+              {
+                "readOnly": true,
+                "propertyOrder": 1,
+                "displayClass": "%"
+              }
+            ]
+          },
+          "sinceStartup": {
+            "propertyOrder": 2,
+            "readOnly": true,
+            "type": "string",
+            "format": "timespan"
+          }
+        },
+        "required": [
+          "cpuUsage",
+          "sinceStartup"
+        ]
+      }
+    }
+  }
+}

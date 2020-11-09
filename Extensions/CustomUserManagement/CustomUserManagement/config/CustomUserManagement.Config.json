@@ -1,0 +1,152 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "100a412a-12ce-4963-8dcc-5b8f77c953e0",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.1",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ListUsers": {
+      "readValue": {
+        "function": true,
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "ListDisabledUsers": {
+      "readValue": {
+        "function": true,
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "RenameUser": {
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "currentUserName": {
+            "type": "string",
+            "doc": "Current name of the user."
+          },
+          "newUserName": {
+            "type": "string",
+            "doc": "The new name of the user."
+          }
+        },
+        "required": [
+          "currentUserName",
+          "newUserName"
+        ]
+      },
+      "doc": "Rename a user.",
+      "sample": {
+        "doc": "Rename user `test` to `tester`.",
+        "value": {
+          "currentUserName": "test",
+          "newUserName": "tester"
+        }
+      }
+    },
+    "DisableUser": {
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "string",
+        "doc": "Name of the user."
+      },
+      "doc": "Disable a user.",
+      "sample": {
+        "doc": "Disable user `test`.",
+        "value": "test"
+      }
+    },
+    "EnableUser": {
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "string",
+        "doc": "Name of the user."
+      },
+      "doc": "Enable a user.",
+      "sample": {
+        "doc": "Enable user `test`.",
+        "value": "test"
+      }
+    },
+    "RemoveUser": {
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "string",
+        "doc": "Name of the user."
+      },
+      "doc": "Remove a user.",
+      "sample": {
+        "doc": "Remove user `test`.",
+        "value": "test"
+      }
+    },
+    "AddUser": {
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "doc": "Name of the user."
+          },
+          "password": {
+            "type": "string",
+            "doc": "Password of the user. Only a hash will be stored."
+          },
+          "enabled": {
+            "type": "boolean",
+            "doc": "Indicates if the user can be used or not."
+          }
+        },
+        "required": [
+          "userName",
+          "password"
+        ]
+      },
+      "doc": "Add or update user.",
+      "sample": {
+        "doc": "Add user `test`.",
+        "value": {
+          "userName": "test",
+          "password": "YwboLB~[65H"
+        }
+      }
+    },
+    "ChangePassword": {
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "currentPassword": {
+            "type": "string"
+          },
+          "newPassword": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

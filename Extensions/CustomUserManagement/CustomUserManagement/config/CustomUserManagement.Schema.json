@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "users": {
+      "hidden": true,
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "description": "descUsers",
+        "properties": {
+          "password": {
+            "type": "string",
+            "default": ""
+          },
+          "salt": {
+            "type": "string",
+            "format": "base64",
+            "default": ""
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "required": [ "password", "salt", "enabled" ]
+      },
+      "default": {
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "users" ]
+}

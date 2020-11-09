@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D216CBD4-72AF-4E30-A52E-1E19D1344D1D}") = "DynamicSymbols", "DynamicSymbols\DynamicSymbols.csproj", "{60312AD9-6BEC-46FD-903A-FE4DADBF9D11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60312AD9-6BEC-46FD-903A-FE4DADBF9D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60312AD9-6BEC-46FD-903A-FE4DADBF9D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60312AD9-6BEC-46FD-903A-FE4DADBF9D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60312AD9-6BEC-46FD-903A-FE4DADBF9D11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BC51D6D-FBB5-4F69-85B9-62774E4059F0}
+	EndGlobalSection
+EndGlobal

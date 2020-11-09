@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "locale": {
+      "doc": "Locale in BCP 47 representation.",
+      "format": "locale",
+      "type": "string"
+    },
+    "localizedText": {
+      "type": "object",
+      "doc": "Name of each additionalProperties entry is the name of each language variable.",
+      "additionalProperties": {
+        "doc": "Localized text. It may contain placeholders like {0}, {1}, ...",
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
