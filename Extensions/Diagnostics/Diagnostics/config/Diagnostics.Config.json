@@ -2,7 +2,7 @@
   "$schema": "ExtensionSettings.Schema.json",
   "guid": "12dbbc08-9199-433c-b668-bb073e81b3f1",
   "version": "1.0.0.0",
-  "configVersion": "1.0.0.1",
+  "configVersion": "1.0.0.13",
   "configSchemaHash": "",
   "policies": [
     "StrictPropertyValidation"
@@ -17,16 +17,9 @@
         "type": "object",
         "properties": {
           "cpuUsage": {
-            "allOf": [
-              {
-                "$ref": "tchmi:general#/definitions/FLOAT"
-              },
-              {
-                "readOnly": true,
-                "propertyOrder": 1,
-                "displayClass": "%"
-              }
-            ]
+            "type": "number",
+            "readOnly": true,
+            "propertyOrder": 1
           },
           "sinceStartup": {
             "propertyOrder": 2,

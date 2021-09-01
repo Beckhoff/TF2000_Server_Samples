@@ -3,6 +3,7 @@
   "locale": "en",
   "localizedText": {
     "cpuUsage": "CPU usage",
+    "TOOLTIP_cpuUsage": "Unit: %",
     "sinceStartup": "Since extension initialization"
   }
 }

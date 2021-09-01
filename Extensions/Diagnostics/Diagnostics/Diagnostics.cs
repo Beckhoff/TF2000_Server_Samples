@@ -11,6 +11,7 @@ using System.Net.Sockets;
 using TcHmiSrv.Core;
 using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
+using TcHmiSrv.Core.Extensions;
 using TcHmiSrv.Core.Tools.Management;
 
 namespace Diagnostics
@@ -31,13 +32,16 @@ namespace Diagnostics
             return ErrorValue.HMI_SUCCESS;
         }
 
-        private Value CollectDiagnosticsData()
+        private Value CollectDiagnosticsData(Command command)
         {
-            return new Value
+            var diagObject = new Value
             {
-                { "cpuUsage", _cpuUsage.NextValue() },
+                { "cpuUsage", Math.Truncate(_cpuUsage.NextValue()) },
                 { "sinceStartup", DateTime.Now - _startup }
             };
+
+            // ResolveBy allows subsymbols of objects to be accessed directly
+            return diagObject.ResolveBy(command.Path);
         }
 
         public void OnRequest(object sender, TcHmiSrv.Core.Listeners.RequestListenerEventArgs.OnRequestEventArgs e)
@@ -52,7 +56,7 @@ namespace Diagnostics
                         case "Diagnostics":
                             {
                             command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.SUCCESS);
-                            command.ReadValue = CollectDiagnosticsData();
+                            command.ReadValue = CollectDiagnosticsData(command);
                             }
                             break;
                     }
