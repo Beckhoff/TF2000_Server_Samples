@@ -1,0 +1,37 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "3b379132-0bb8-457d-8aed-d80bd030d567",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.0",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "StartProcess": {
+      "readValue": {
+        "function": true,
+        "type": "integer"
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "applicationName": {
+            "type": "string"
+          },
+          "commandLine": {
+            "type": "string"
+          },
+          "workingDirectory": {
+            "type": "string"
+          },
+          "showWindow": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "hidden": false
+    }
+  }
+}

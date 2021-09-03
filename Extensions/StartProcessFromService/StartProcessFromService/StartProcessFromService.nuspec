@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <!-- Required elements -->
+    <id>StartProcessFromService</id>
+    <version>1.0.0.0</version>
+    <description>Implementation of a server extension that starts a process from a service.</description>
+    <authors>Beckhoff Automation GmbH &amp; Co. KG</authors>
+
+    <!-- Optional elements -->
+    <title>StartProcessFromService</title>
+    <owners>Beckhoff Automation GmbH &amp; Co. KG</owners>
+    <projectUrl>https://www.beckhoff.com/TwinCAT-HMI/</projectUrl>
+    <licenseUrl>https://www.beckhoff.com/</licenseUrl>
+    <iconUrl>http://nuget.beckhoff.com/image/beckhoffpackage.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Beckhoff Automation GmbH &amp; Co. KG</copyright>
+    <tags>TwinCAT HMI Server</tags>
+    <dependencies>
+      <group targetFramework="netcoreapp3.1">
+        <!-- Package dependencies -->
+      </group>
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bin\Debug\**\StartProcessFromService.dll" target="runtimes\win-x64\native\engineering\"/>
+    <file src="bin\Debug\**\StartProcessFromService.*.json" target="runtimes\win-x64\native\engineering\"/>
+  </files>
+</package>

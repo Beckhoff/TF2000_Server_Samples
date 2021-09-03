@@ -16,6 +16,7 @@ Here is a list of all sample extensions:
 - [EventListening](Extensions/EventListening/)
 - [ConfigListening](Extensions/ConfigListening/)
 - [DynamicSymbols](Extensions/DynamicSymbols/)
+- [StartProcessFromService](Extensions/StartProcessFromService/README.md)
 - [ErrorHandling](Extensions/ErrorHandling/)
 - [LetsEncrypt](Extensions/LetsEncrypt/)
 
@@ -81,6 +82,8 @@ sample.
 provide a fixed list of symbols that clients can use to interact with the
 extension. This sample demonstrates how an extension can provide a dynamic list
 of symbols that changes at runtime.
+- [StartProcessFromService](Extensions/StartProcessFromService/README.md):
+Starts a process from a server extension running as a service.
 - [LetsEncrypt](Extensions/LetsEncrypt/): This server extension generates
 an ssl certificate with [Let's Encrypt](https://letsencrypt.org/).
 
