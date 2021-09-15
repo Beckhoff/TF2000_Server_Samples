@@ -6,8 +6,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Net;
-using System.Net.Sockets;
 using TcHmiSrv.Core;
 using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
