@@ -162,6 +162,22 @@ of the sample extension.
     }
     ```
 
+1. Send an additional alarm with a new alarm ID.
+
+    **Request:**
+
+    ```json
+    {
+        "requestType": "ReadWrite",
+        "commands": [
+            {
+                "symbol": "EventSystem.RaiseAdditionalAlarm",
+                "commandOptions": [ "SendErrorMessage" ]
+            }
+        ]
+    }
+    ```
+
 1. Send a message with name "DYNAMICALLY_LOCALIZED_MESSAGE".
 
     **Request:**
