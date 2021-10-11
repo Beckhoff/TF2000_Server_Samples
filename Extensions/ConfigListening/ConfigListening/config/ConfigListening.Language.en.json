@@ -1,0 +1,11 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "palindromes": "Palindromes",
+    "palindromesDescription": "Sequences that read the same backwards as forwards.",
+    "strictPalindromeValidationFailed": "At least one palindrome consists of multiple words.",
+    "anagrams": "Anagrams",
+    "anagramsDescription": "An anagram is formed by rearranging letters."
+  }
+}

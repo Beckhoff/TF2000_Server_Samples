@@ -1,0 +1,36 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "palindromes": {
+      "configDescription": "palindromesDescription",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": [
+        "kayak",
+        "Eva, can I see bees in a cave?"
+      ],
+      "propertyOrder": 1
+    },
+    "anagrams": {
+      "configDescription": "anagramsDescription",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": {
+        "tea": "eat",
+        "earth": "heart",
+        "dormitory": "dirty room",
+        "Madam Curie": "Radium came"
+      },
+      "propertyOrder": 2
+    }
+  },
+  "required": [ "palindromes", "anagrams" ],
+  "additionalProperties": false
+}

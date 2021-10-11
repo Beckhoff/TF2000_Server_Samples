@@ -13,6 +13,7 @@ Here is a list of all sample extensions:
 - [CustomUserManagement](Extensions/CustomUserManagement/README.md)
 - [EventSystem](Extensions/EventSystem/README.md)
 - [EventListening](Extensions/EventListening/README.md)
+- [ConfigListening](Extensions/ConfigListening/README.md)
 - [DynamicSymbols](Extensions/DynamicSymbols/README.md)
 - [ErrorHandling](Extensions/ErrorHandling/README.md)
 
@@ -52,6 +53,7 @@ The HMI server generates a configuration page for every server extension. If you
 ### **Miscellaneous**
 
 - [InterExtensionCommunication](Extensions/InterExtensionCommunication/README.md): This sample will give you an understanding of how multiple extensions can interact with each other, and with the HMI server.
+- [ConfigListening](Extensions/ConfigListening/README.md): If your server extension wants to listen for changes to its configuration, take a look at this sample.
 - [DynamicSymbols](Extensions/DynamicSymbols/README.md): All other samples provide a fixed list of symbols that clients can use to interact with the extension. This sample demonstrates how an extension can provide a dynamic list of symbols that changes at runtime.
 
 ## Requirements
@@ -69,4 +71,3 @@ The following components must be installed to build the samples:
 - [TE2000 TwinCAT 3 HMI Engineering](https://www.beckhoff.com/en-en/products/automation/twincat/te1xxx-twincat-3-engineering/te2000.html) version 1.12.746.0 or higher
 
 - [TF2200 TwinCAT 3 HMI Extension SDK](https://www.beckhoff.com/en-en/products/automation/twincat/tfxxxx-twincat-3-functions/tf2xxx-tc3-hmi/tf2200.html) ([standard](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_licensing/3510308491.html) or [trial](https://infosys.beckhoff.com/content/1033/tc3_licensing/3510308491.html?id=3407725140381911891) license)
-
