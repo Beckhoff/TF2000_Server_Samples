@@ -9,8 +9,8 @@ configuration (`TcHmiSrv.Config`) after they are deleted from the "CustomUserMan
 
 **First steps:**
 
-- [Working with server extensions](../../README/WorkingWithServerExtensions.md)
-- [Interacting with a server extension](../../README/InteractingWithServerExtensions.md)
+- [Working with server extensions](../../resources/WorkingWithServerExtensions.md)
+- [Interacting with a server extension](../../resources/InteractingWithServerExtensions.md)
 
 ## Remarks
 

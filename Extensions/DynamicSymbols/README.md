@@ -4,8 +4,8 @@ The "DynamicSymbols" sample server extension shows how to create and manage dyna
 
 **First steps:**
 
-- [Working with server extensions](../../README/WorkingWithServerExtensions.md)
-- [Interacting with a server extension](../../README/InteractingWithServerExtensions.md)
+- [Working with server extensions](../../resources/WorkingWithServerExtensions.md)
+- [Interacting with a server extension](../../resources/InteractingWithServerExtensions.md)
 
 Dynamic symbols are symbols that can be created and removed during the runtime of a server extension.
 In contrast, static symbols are specified in the `Config.json` of a server extension at compile time.

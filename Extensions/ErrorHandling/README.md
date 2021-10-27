@@ -10,8 +10,8 @@ The error details provided by the extension are returned in the `error` field of
 
 **First steps:**
 
-- [Working with server extensions](../../README/WorkingWithServerExtensions.md)
-- [Interacting with a server extension](../../README/InteractingWithServerExtensions.md)
+- [Working with server extensions](../../resources/WorkingWithServerExtensions.md)
+- [Interacting with a server extension](../../resources/InteractingWithServerExtensions.md)
 
 ## Example requests
 

@@ -1,22 +1,27 @@
 # Interacting with a server extension
 
-Every server extension provides a set of symbols that clients, the HMI server, as well as other
-server extensions can use to interact with the server extension.
-There are several ways to invoke these symbols in the client.
+Every server extension provides a set of symbols that clients, the HMI server,
+as well as other server extensions can use to interact with the server
+extension. There are several ways to invoke these symbols in the client.
 
 ## Via a Data Binding
 
-- Drop an HMI control from the toolbox and create a "Data Binding" to a control attribute
+- Drop an HMI control from the toolbox and create a "Data Binding" to a control
+attribute
 - Browse to the symbol that you want to invoke in the "Mapped Symbols" tab
 
   ![Build](FirstSteps-CreateDataBinding.png "Create DataBinding")
 
-- In the example shown in the screenshot, the current timestamp is periodically fetched from an NTP server by the "NetworkTime" extension and displayed in the "TcHmiTextblock"
+- In the example shown in the screenshot, the current timestamp is periodically
+fetched from an NTP server by the "NetworkTime" extension and displayed in the
+"TcHmiTextblock"
 
 ## Using the Framework API
 
-- Send a [request](https://infosys.beckhoff.com/content/1031/te2000_tc3_hmi_engineering/4674537867.html?id=7421642661702637947) to the HMI server
-- Add a [CodeBehind script](https://infosys.beckhoff.com/content/1033/te2000_tc3_hmi_engineering/3749459595.html?id=3920871439687428926) to the HMI project
+- Send a [request](https://infosys.beckhoff.com/content/1031/te2000_tc3_hmi_engineering/4674537867.html?id=7421642661702637947)
+to the HMI server
+- Add a [CodeBehind script](https://infosys.beckhoff.com/content/1033/te2000_tc3_hmi_engineering/3749459595.html?id=3920871439687428926)
+to the HMI project
 
 **Example JavaScript:** Register `onPressed` event of button to request server extension symbol
 
