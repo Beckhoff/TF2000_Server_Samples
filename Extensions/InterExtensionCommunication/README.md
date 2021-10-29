@@ -1,7 +1,8 @@
 # About the "InterExtensionCommunication" sample
 
-The "InterExtensionCommunication" sample extension is a server extension that showcases communication between
-extensions. For this, it implements multiple function symbols using the "RequestListener" interface.
+The "InterExtensionCommunication" sample extension is a server extension that
+showcases communication between extensions. For this, it implements multiple
+function symbols using the "RequestListener" interface.
 
 **First steps:**
 
@@ -10,7 +11,8 @@ extensions. For this, it implements multiple function symbols using the "Request
 
 ## Example requests
 
-1. The "ListLocalRoutes" function symbol calls "ADS.ListRoutes" and only returns the local ADS routes.
+1. The "ListLocalRoutes" function symbol calls "ADS.ListRoutes" and only
+returns the local ADS routes.
 
     **Request:**
 
@@ -51,7 +53,8 @@ extensions. For this, it implements multiple function symbols using the "Request
     }
     ```
 
-1. The "CheckClientLicenseAndListLocalRoutes" function symbol calls "ADS.ListRouts" and "ADS.CheckLicense" simultaneously and combines the results.
+1. The "CheckClientLicenseAndListLocalRoutes" function symbol calls
+"ADS.ListRoutes" and "ADS.CheckLicense" simultaneously and combines the results.
 
     **Request:**
 
@@ -98,7 +101,8 @@ extensions. For this, it implements multiple function symbols using the "Request
     }
     ```
 
-1. The "DoubleAdsTimeout" function symbols reads from and writes to the ADS extension's configuration ("ADS.Config").
+1. The "DoubleAdsTimeout" function symbols reads from and writes to the ADS
+extension's configuration ("ADS.Config").
 
     **Request:**
 
