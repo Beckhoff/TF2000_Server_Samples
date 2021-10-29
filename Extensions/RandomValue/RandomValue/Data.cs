@@ -9,8 +9,8 @@ namespace RandomValue
     // thread-safe class that contains runtime data
     public class Data
     {
-        private int maxRandom = 1000;
-        private object maxRandomLock = new object();
+        private readonly object maxRandomLock = new object();
+        private int maxRandom;
 
         public int MaxRandom
         {
@@ -29,6 +29,11 @@ namespace RandomValue
                     this.maxRandom = value;
                 }
             }
+        }
+
+        public Data(int maxRandomInit)
+        {
+            maxRandom = maxRandomInit;
         }
     }
 }

@@ -18,15 +18,19 @@ namespace RandomValue
     {
         private readonly RequestListener requestListener = new RequestListener();
 
-        private readonly Data data = new Data();
-
         private readonly Random rand = new Random();
+
+        private Data data;
 
         // initializes the TwinCAT HMI server extension
         public ErrorValue Init()
         {
             try
             {
+                // initialize data from configuration
+                // this can not be done before Init, because the properties of TcHmiApplication are initialized just before 
+                data = new Data(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "MaxRandom"));
+
                 // add event handlers
                 this.requestListener.OnRequest += this.OnRequest;
 
