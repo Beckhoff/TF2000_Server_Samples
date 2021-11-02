@@ -8,7 +8,7 @@ the extension entry in the solution explorer and selecting "Attach to Extension"
 ![Debugging](../resources/FirstSteps-AttachToExtension.png "Attach directly to the server extension")
 
 An alternative way to attach a debugger to a server extensions is described here:
-[Working with server extensions](../../resources/WorkingWithServerExtensions.md)
+[Working with server extensions](../resources/WorkingWithServerExtensions.md)
 
 This alternative is especially useful when your extension is not running in the HMI engineering.
 
