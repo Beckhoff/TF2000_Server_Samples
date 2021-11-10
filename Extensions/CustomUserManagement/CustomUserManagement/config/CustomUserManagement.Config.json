@@ -2,7 +2,7 @@
   "$schema": "ExtensionSettings.Schema.json",
   "guid": "100a412a-12ce-4963-8dcc-5b8f77c953e0",
   "version": "1.0.0.0",
-  "configVersion": "1.0.0.1",
+  "configVersion": "1.0.0.2",
   "configSchemaHash": "",
   "policies": [
     "StrictPropertyValidation"
@@ -133,6 +133,10 @@
       }
     },
     "ChangePassword": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "hidden": false,
       "readValue": {
         "function": true
       },

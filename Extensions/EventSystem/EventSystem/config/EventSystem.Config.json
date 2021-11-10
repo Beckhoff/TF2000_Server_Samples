@@ -2,25 +2,34 @@
   "$schema": "ExtensionSettings.Schema.json",
   "guid": "5bdf7659-f9a9-46d6-b3a9-26667204a5fb",
   "version": "1.0.0.0",
-  "configVersion": "1.0.0.1",
+  "configVersion": "1.0.0.2",
   "configSchemaHash": "",
   "policies": [
     "StrictPropertyValidation"
   ],
   "symbols": {
     "SendAnotherMessage": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
       "hidden": false,
       "readValue": {
         "function": true
       }
     },
     "SendDynamicallyLocalizedMessage": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
       "hidden": false,
       "readValue": {
         "function": true
       }
     },
     "RaiseAdditionalAlarm": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
       "hidden": false,
       "readValue": {
         "function": true

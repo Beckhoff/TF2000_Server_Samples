@@ -2,19 +2,25 @@
   "$schema": "ExtensionSettings.Schema.json",
   "guid": "7d47743b-fabf-417e-9eeb-784303c78bc0",
   "version": "1.0.0.0",
-  "configVersion": "1.0.0.1",
+  "configVersion": "1.0.0.2",
   "configSchemaHash": "",
   "policies": [
     "StrictPropertyValidation"
   ],
   "symbols": {
     "FailingFunction": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
       "hidden": false,
       "readValue": {
         "function": true
       }
     },
     "NotImplementedFunction": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
       "hidden": false,
       "readValue": {
         "function": true
