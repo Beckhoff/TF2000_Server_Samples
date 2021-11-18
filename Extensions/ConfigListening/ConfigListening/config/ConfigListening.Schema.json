@@ -9,6 +9,7 @@
         "type": "string",
         "minLength": 1
       },
+      "category": "categoryArrays",
       "default": [
         "kayak",
         "Eva, can I see bees in a cave?"
@@ -22,6 +23,7 @@
         "type": "string",
         "minLength": 1
       },
+      "category": "categoryObjects",
       "default": {
         "tea": "eat",
         "earth": "heart",
