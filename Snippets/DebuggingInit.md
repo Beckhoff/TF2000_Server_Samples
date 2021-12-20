@@ -27,7 +27,7 @@ public ErrorValue Init()
 {
     while (!System.Diagnostics.Debugger.IsAttached)
     {
-        Thread.Sleep(500);  // check every 500ms
+        System.Threading.Thread.Sleep(500);  // check every 500ms
     }
     System.Diagnostics.Debugger.Break();  // signal a breakpoint to the attached debugger
 
