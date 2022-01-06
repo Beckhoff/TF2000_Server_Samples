@@ -25,14 +25,17 @@ until a debugger is attached:
 ```c#
 public ErrorValue Init()
 {
-    while (!System.Diagnostics.Debugger.IsAttached)
-    {
-        System.Threading.Thread.Sleep(500);  // check every 500ms
-    }
-    System.Diagnostics.Debugger.Break();  // signal a breakpoint to the attached debugger
+    // Wait for a debugger to be attached to the current process and signal a
+    // breakpoint to the attached debugger
+    TcHmiApplication.AsyncDebugHost.WaitForDebugger(true);
 
+    // Code to debug
     // ...
 
     return ErrorValue.HMI_SUCCESS;
 }
 ```
+
+There are also other methods provided by the `TcHmiApplication.AsyncDebugHost`
+property to configure debugging and wait synchronously or asynchronously for a
+debugger to be attached to the current process.
