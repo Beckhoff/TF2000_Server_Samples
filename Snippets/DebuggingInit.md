@@ -39,3 +39,7 @@ public ErrorValue Init()
 There are also other methods provided by the `TcHmiApplication.AsyncDebugHost`
 property to configure debugging and wait synchronously or asynchronously for a
 debugger to be attached to the current process.
+
+## Requirements
+
+The `TcHmiApplication.AsyncDebugHost` property is available since version `1.12.753.2331`.
