@@ -1,0 +1,81 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "generateCertificate": {
+      "type": "boolean",
+      "default": false,
+      "propertyOrder": 1
+    },
+    "data": {
+      "propertyOrder": 2,
+      "type": "object",
+      "properties": {
+        "contacts": {
+          "propertyOrder": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "configDescription": "DESC_CONTACTS"
+        },
+        "domain": {
+          "propertyOrder": 2,
+          "type": "string",
+          "configDescription": "DESC_DOMAIN",
+          "default": "example.com"
+        },
+        "api": {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ],
+          "options": [
+            {
+              "label": "LetsEncryptV2",
+              "value": 0
+            },
+            {
+              "label": "LetsEncryptStagingV2",
+              "value": 1
+            }
+          ],
+          "default": 1
+        },
+        "certificateInformation": {
+          "type": "object",
+          "properties": {
+            "countryName": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "locality": {
+              "type": "string"
+            },
+            "organization": {
+              "type": "string"
+            },
+            "organizationUnit": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "interval": {
+      "type": "string",
+      "format": "timespan",
+      "default": "P60D",
+      "configDescription": "descInterval"
+    },
+    "intervalStaging": {
+      "type": "string",
+      "format": "timespan",
+      "default": "P1D",
+      "configDescription": "descIntervalStaging"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
+    <Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
+    <Description>Implementation of a server extension that communicates with other server extensions.</Description>
+    <Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2020</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TcHmiExtensionTypes>{165402F8-2FAD-480A-BCE3-D718A6135931}</TcHmiExtensionTypes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TcHmiServerApiVersionNumberMajor>1</TcHmiServerApiVersionNumberMajor>
+  </PropertyGroup>
+
+  <Import Project="$(TWINCAT3DIR)..\Functions\TE2000-HMI-Engineering\Infrastructure\TcHmiServer\imports\TcHmiServerExtensionCSharp.proj" />
+
+  <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);___initialBuild_of_this_extension.tmp</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ProjectGuid>0721d922-558d-48cf-ada6-8192c8ae7424</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Certes" Version="3.0.3" />
+  </ItemGroup>
+
+</Project>

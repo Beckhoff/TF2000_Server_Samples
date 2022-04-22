@@ -1,0 +1,51 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "de",
+  "localizedText": {
+    "DESC_CONTACTS": "Emails des Let's Encrypt Kontos",
+    "DESC_DOMAIN": "Öffentliche Domain des Servers",
+
+    "generateCertificate": "Zertifikat generieren",
+    "data": "Informationen für Let's Encrypt",
+    "contacts": "Kontakte",
+    "domain": "Domain",
+    "api": "Benutzte API",
+    "certificateInformation": "Zertifikatsinformationen",
+    "countryName": "Land",
+    "state": "Staat",
+    "locality": "Ort",
+    "organization": "Organisation",
+    "organizationUnit": "Abteilung",
+    "apis": "API-Beschreibungen",
+    "interval": "Interval der Zertifikatsgenerierung",
+    "intervalStaging": "Interval der Zertifikatsgenerierung (Staging API)",
+    "url": "URL",
+
+    "descInterval": "Zeitspanne zwischen Zertifikatserstellung und Generierung des neuen Zertifikats",
+    "descIntervalStaging": "Zeitspanne zwischen Zertifikatserstellung und Generierung des neuen Zertifikats (Staging API)",
+
+    "nextCertificateGeneration": "Zeitpunkt der nächsten Zertifikatsgenerierung",
+    "currentCertificate": "Aktuelles Zertifikat",
+    "valid": "Gültig",
+    "validFrom": "Gültig ab",
+    "validTo": "Gültig bis",
+
+    "WRONG_PORT_CONFIGURATION": "Zertifikatserstellung angehalten: Endpunkte https://0.0.0.0:443 und http://0.0.0.0:80 müssen konfiguriert sein",
+    "NO_CHALLENGE_FILE_ACCESS": "Nutzergruppe '__SystemGuests' benötigt Zugriff auf '/.well-known/acme-challenge'",
+    "RESTART_REQUIRED": "Server-Neustart erforderlich, damit aktuelles Zertifikat gesetzt wird",
+
+    "ERROR_GET_CERTIFICATE_EMPTY_DOMAIN": "Anfragen des aktuellen Zertifikates fehlgeschlagen: Domain darf nicht leer sein",
+    "ERROR_GET_CERTIFICATE": "Anfragen des aktuellen Zertifikates fehlgeschlagen: GET {0} fehlgeschlagen mit Fehler [{1}]",
+    "ERROR_GET_CERTIFICATE_SERVERID": "Aktuelle Server-ID kann nicht angefragt werden",
+    "ERROR_READ_CERTIFICATE": "Lesen des aktuellen Zertifikates fehlgeschlagen ({0}): {1}",
+    "ERROR_INIT": "Initialisierung fehlgeschlagen: {0}",
+    "ERROR_CREATE_CERTIFICATE": "Zertifikat konnte nicht erstellt werden: {0}",
+    "ERROR_REVOKE_CERTIFICATE": "Das aktuelle Zertifikat kann nicht wiederrufen werden, weil der Schlüssel nicht bekannt ist.",
+    "ERROR_GENERATE_ACCOUNT": "Account-Erstellung fehlgeschlagen: {0}",
+
+    "INFO_GENERATE_CERTIFICATE": "Erstellen eines neuen Zertifikates...",
+    "INFO_CHALLENGE_ERROR": "Challenge fehlgeschlagen: {0}",
+    "INFO_CHALLENGE_STATUS": "Challenge-Status: {0}",
+    "INFO_CERTIFICATE_SUCCEEDED": "Zertifikatserstellung war erfolgreich"
+  }
+}

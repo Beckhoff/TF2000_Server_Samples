@@ -17,6 +17,7 @@ Here is a list of all sample extensions:
 - [ConfigListening](Extensions/ConfigListening/README.md)
 - [DynamicSymbols](Extensions/DynamicSymbols/README.md)
 - [ErrorHandling](Extensions/ErrorHandling/README.md)
+- [LetsEncrypt](Extensions/LetsEncrypt/README.md)
 
 ## Documentation for the .NET extension API
 
@@ -80,6 +81,8 @@ sample.
 provide a fixed list of symbols that clients can use to interact with the
 extension. This sample demonstrates how an extension can provide a dynamic list
 of symbols that changes at runtime.
+- [LetsEncrypt](Extensions/LetsEncrypt/README.md): This server extension generates
+an ssl certificate with [Let's Encrypt](https://letsencrypt.org/).
 
 ## Code Snippets
 

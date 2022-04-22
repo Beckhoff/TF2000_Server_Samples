@@ -1,0 +1,51 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "DESC_CONTACTS": "Emails that belong to the Let's Encrypt account",
+    "DESC_DOMAIN": "Public domain of server",
+
+    "generateCertificate": "Generate certificate",
+    "data": "Let's Encrypt data",
+    "contacts": "Contacts",
+    "domain": "Domain",
+    "api": "Used API",
+    "certificateInformation": "Certificate information",
+    "countryName": "Country",
+    "state": "State",
+    "locality": "Locality",
+    "organization": "Organization",
+    "organizationUnit": "Organization unit",
+    "apis": "API descriptions",
+    "interval": "Certificate generation interval",
+    "intervalStaging": "Certificate generation interval (Staging API)",
+    "url": "URL",
+
+    "descInterval": "Timespan between certificate validity and new certificate generation",
+    "descIntervalStaging": "Timespan between certificate validity and new certificate generation (Staging API)",
+
+    "nextCertificateGeneration": "Timestamp of next certificate generation",
+    "currentCertificate": "Current certificate",
+    "valid": "Valid",
+    "validFrom": "Valid from",
+    "validTo": "Valid to",
+
+    "WRONG_PORT_CONFIGURATION": "Certificate generation stopped: Endpoints https://0.0.0.0:443 and http://0.0.0.0:80 must be configured",
+    "NO_CHALLENGE_FILE_ACCESS": "Usergroup '__SystemGuests' needs access to '/.well-known/acme-challenge'",
+    "RESTART_REQUIRED": "Restart required to set current server certificate",
+
+    "ERROR_GET_CERTIFICATE_EMPTY_DOMAIN": "Getting the current certificate failed: Domain must not be empty",
+    "ERROR_GET_CERTIFICATE": "Getting the current certificate failed: GET {0} failed with error [{1}]",
+    "ERROR_GET_CERTIFICATE_SERVERID": "Error getting the current server-ID",
+    "ERROR_READ_CERTIFICATE": "Error reading the current certificate ({0}): {1}",
+    "ERROR_INIT": "Error while initialization: {0}",
+    "ERROR_CREATE_CERTIFICATE": "A new certificate could not be created: {0}",
+    "ERROR_REVOKE_CERTIFICATE": "The current certificate can't be revoked, because the key is unknown",
+    "ERROR_GENERATE_ACCOUNT": "Generating an account failed: {0}",
+
+    "INFO_GENERATE_CERTIFICATE": "Generating new certificate...",
+    "INFO_CHALLENGE_ERROR": "Challenge error: {0}",
+    "INFO_CHALLENGE_STATUS": "Challenge status: {0}",
+    "INFO_CERTIFICATE_SUCCEEDED": "Generating certificate succeeded"
+  }
+}

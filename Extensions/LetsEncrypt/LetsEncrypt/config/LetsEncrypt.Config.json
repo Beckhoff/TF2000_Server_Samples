@@ -1,0 +1,53 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "0721d922-558d-48cf-ada6-8192c8ae7424",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.19",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "Diagnostics": {
+      "readValue": {
+        "readOnly": true,
+        "function": true,
+        "type": "object",
+        "properties": {
+          "currentCertificate": {
+            "type": "object",
+            "properties": {
+              "valid": {
+                "type": "boolean"
+              },
+              "validTo": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "validFrom": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "valid"
+            ]
+          },
+          "nextCertificateGeneration": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "format": "date-time"
+              }
+            ]
+          }
+        },
+        "required": [
+          "validCertificate"
+        ]
+      }
+    }
+  }
+}
