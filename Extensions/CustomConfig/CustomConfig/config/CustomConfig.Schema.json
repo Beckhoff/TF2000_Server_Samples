@@ -1,0 +1,13 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "max": {
+      "type": "integer"
+    },
+    "min": {
+      "type": "integer"
+    }
+  },
+  "required": [ "max", "min" ]
+}

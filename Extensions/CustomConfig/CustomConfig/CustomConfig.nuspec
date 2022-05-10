@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>CustomConfig</id>
+    <version>1.0.0.0</version>
+    <description>Implementation of a server extension that contains a custom server configuration page.</description>
+      
+    <title>CustomConfig</title>
+    <authors>Beckhoff Automation GmbH &amp; Co. KG</authors>
+    <owners>Beckhoff Automation GmbH &amp; Co. KG</owners>
+    <projectUrl>https://www.beckhoff.com/TwinCAT-HMI/</projectUrl>
+    <licenseUrl>https://www.beckhoff.com/</licenseUrl>
+    <iconUrl>http://nuget.beckhoff.com/image/beckhoffpackage.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Beckhoff Automation GmbH &amp; Co. KG</copyright>
+    <tags>TwinCAT HMI Server</tags>
+    <dependencies>
+      <group targetFramework="netstandard2.0">
+        <!-- Package dependencies -->
+      </group>
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bin\Debug\**\CustomConfig.dll" target="runtimes\any\native\"/>
+    <file src="bin\Debug\**\CustomConfig.*.json" target="runtimes\any\native\"/>
+    <file src="ConfigResources\**" target="runtimes\any\native\ConfigResources\"/>
+  </files>
+</package>

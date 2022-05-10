@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "a495b564-265c-4a1d-98ba-13dabe8f3fee",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.2",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "GetRandom": {
+      "readValue": {
+        "function": true,
+        "type": "integer"
+      }
+    }
+  }
+}
