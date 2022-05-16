@@ -29,7 +29,7 @@ namespace RandomValue
             {
                 // initialize data from configuration
                 // this can not be done before Init, because the properties of TcHmiApplication are initialized just before 
-                data = new Data(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "MaxRandom"));
+                data = new Data(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "maxRandom"));
 
                 // add event handlers
                 this.requestListener.OnRequest += this.OnRequest;
