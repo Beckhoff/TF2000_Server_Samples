@@ -3,7 +3,7 @@
   <metadata>
     <!-- Required elements -->
     <id>LetsEncrypt</id>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <description>Implementation of a server extension that generates an TLS certificate with Let's Encrypt</description>
     <authors>Beckhoff Automation GmbH &amp; Co. KG</authors>
 
@@ -24,6 +24,9 @@
   </metadata>
 
   <files>
+    <file src="bin\Debug\Newtonsoft.Json.dll" target="runtimes\any\native\"/>
+    <file src="bin\Debug\BouncyCastle.Crypto.dll" target="runtimes\any\native\"/>
+    <file src="bin\Debug\Certes.dll" target="runtimes\any\native\"/>
     <file src="bin\Debug\**\LetsEncrypt.dll" target="runtimes\any\native\"/>
     <file src="bin\Debug\**\LetsEncrypt.*.json" target="runtimes\any\native\"/>
   </files>

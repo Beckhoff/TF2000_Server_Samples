@@ -59,13 +59,11 @@ namespace LetsEncrypt
         private object _shutdownLock = new object();
 
         private RequestListener _requestListener = new RequestListener();
-        private ShutdownListener _shutdownListener = new ShutdownListener();
         private ConfigListener _configListener = new ConfigListener();
 
         private X509Certificate2 _currentCertificate = null;
         private IKey _currentKey = null;
 
-        private bool _portCheck = false;
         private bool _initFinisched = false;
 
         private AcmeContext _acmeContext;
@@ -170,12 +168,10 @@ namespace LetsEncrypt
             {
                 // add event handlers
                 _requestListener.OnRequest += OnRequest;
-                _shutdownListener.OnShutdown += OnShutdown;
                 _configListener.OnChange += OnChange;
                 _configListener.BeforeChange += BeforeChange;
 
                 // register listeners
-                TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _shutdownListener);
                 TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener, ConfigListenerSettings.Default);
 
                 int api = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, CFG_DATA + TcHmiApplication.PathElementSeparator + CFG_API);
@@ -269,16 +265,20 @@ namespace LetsEncrypt
         {
             _certGenerationTimer.Stop();
 
-            CheckServerConfiguration();
+            if (!CheckServerConfiguration())
+            {
+                StopCertificateGeneration();
+                return;
+            }
 
-            if (_portCheck && _currentCertificate == null)
+            if (_currentCertificate == null)
                 ReadCurrentCertificate();
 
             double restTime = GetCurrentRestInterval();
             DateTime now = DateTime.Now;
             ErrorValue err = ErrorValue.HMI_SUCCESS;
 
-            if (_portCheck && (_currentCertificate == null || restTime <= 0))
+            if (_currentCertificate == null || restTime <= 0)
             {
                 try
                 {
@@ -484,14 +484,14 @@ namespace LetsEncrypt
         private void OnChange(object sender, TcHmiSrv.Core.Listeners.ConfigListenerEventArgs.OnChangeEventArgs e)
         {
             bool generateCert = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, CFG_GENERATE_CERTIFICATE);
-
-            if (e.Path == CFG_DATA || e.Path == CFG_INTERVAL)
+            bool refreshCertificate = e.Path == CFG_DATA;
+            if (refreshCertificate || e.Path == CFG_INTERVAL)
             {
                 _certGenerationTimer.Stop();
                 int api = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, CFG_DATA + TcHmiApplication.PathElementSeparator + CFG_API);
                 SetCurrentContext(api);
 
-                if (e.Path == CFG_DATA)
+                if (refreshCertificate)
                 {
                     if (_initFinisched && generateCert)
                     {
@@ -573,26 +573,7 @@ namespace LetsEncrypt
             }
         }
 
-        private void OnShutdown(object sender, TcHmiSrv.Core.Listeners.ShutdownListenerEventArgs.OnShutdownEventArgs e)
-        {
-            // If the extension does not shutdown after 10 seconds (blocking threads) OnShutdown will be called again
-            lock (_shutdownLock)
-            {
-                Context context = e.Context;
-
-                try
-                {
-                    // Unregister listeners
-                    TcHmiApplication.AsyncHost.UnregisterListener(context, _shutdownListener);
-                    TcHmiApplication.AsyncHost.UnregisterListener(context, _configListener);
-                }
-                catch (Exception)
-                {
-                }
-            }
-        }
-
-        private void CheckServerConfiguration()
+        private bool CheckServerConfiguration()
         {
             var serverContext = TcHmiApplication.Context;
             serverContext.Domain = "TcHmiSrv";
@@ -605,13 +586,12 @@ namespace LetsEncrypt
 
             ErrorValue err = TcHmiApplication.AsyncHost.Execute(ref serverContext, ref group);
 
-            _portCheck = false;
             if (err != ErrorValue.HMI_SUCCESS)
-                return;
+                return false;
             
             Command endpointsCmd = group[0];
             if (!endpointsCmd.ReadValue.IsVector)
-                return;
+                return false;
 
             bool port443Found = false;
             bool port80Found = false;
@@ -623,12 +603,9 @@ namespace LetsEncrypt
                 port80Found |= (endpoint == "http://0.0.0.0:80");
             }
 
-            _portCheck = port443Found && port80Found;
-
-            if (!_portCheck)
-                StopCertificateGeneration();
-
-            ConfigurationHint(HINT_WRONG_PORT_CONFIGURATION, HINT_ID_WRONG_PORT_CONFIGURATION, _portCheck);
+            bool portCheck = port443Found && port80Found;
+            ConfigurationHint(HINT_WRONG_PORT_CONFIGURATION, HINT_ID_WRONG_PORT_CONFIGURATION, portCheck);
+            return portCheck;
         }
 
         private void StopCertificateGeneration()
