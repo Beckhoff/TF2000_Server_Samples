@@ -1,0 +1,5 @@
+Type:Press
+IsWorking:False
+HasError:False
+MaxPressure:100
+CompressionTime:00:00:10

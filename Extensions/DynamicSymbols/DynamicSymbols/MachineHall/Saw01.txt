@@ -1,0 +1,5 @@
+Type:Saw
+IsWorking:False
+HasError:False
+MaxRotationsPerMinute:3000
+NumberOfPieces:2

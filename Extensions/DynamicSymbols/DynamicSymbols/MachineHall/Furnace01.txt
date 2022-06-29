@@ -1,0 +1,4 @@
+Type:Furnace
+IsWorking:False
+HasError:False
+MaxTemperature:100
