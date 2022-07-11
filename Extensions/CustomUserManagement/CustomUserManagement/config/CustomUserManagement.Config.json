@@ -35,11 +35,11 @@
         "properties": {
           "currentUserName": {
             "type": "string",
-            "doc": "Current name of the user."
+            "description": "Current name of the user."
           },
           "newUserName": {
             "type": "string",
-            "doc": "The new name of the user."
+            "description": "The new name of the user."
           }
         },
         "required": [
@@ -47,9 +47,9 @@
           "newUserName"
         ]
       },
-      "doc": "Rename a user.",
+      "description": "Rename a user.",
       "sample": {
-        "doc": "Rename user `test` to `tester`.",
+        "description": "Rename user `test` to `tester`.",
         "value": {
           "currentUserName": "test",
           "newUserName": "tester"
@@ -62,11 +62,11 @@
       },
       "writeValue": {
         "type": "string",
-        "doc": "Name of the user."
+        "description": "Name of the user."
       },
-      "doc": "Disable a user.",
+      "description": "Disable a user.",
       "sample": {
-        "doc": "Disable user `test`.",
+        "description": "Disable user `test`.",
         "value": "test"
       }
     },
@@ -76,11 +76,11 @@
       },
       "writeValue": {
         "type": "string",
-        "doc": "Name of the user."
+        "description": "Name of the user."
       },
-      "doc": "Enable a user.",
+      "description": "Enable a user.",
       "sample": {
-        "doc": "Enable user `test`.",
+        "description": "Enable user `test`.",
         "value": "test"
       }
     },
@@ -90,11 +90,11 @@
       },
       "writeValue": {
         "type": "string",
-        "doc": "Name of the user."
+        "description": "Name of the user."
       },
-      "doc": "Remove a user.",
+      "description": "Remove a user.",
       "sample": {
-        "doc": "Remove user `test`.",
+        "description": "Remove user `test`.",
         "value": "test"
       }
     },
@@ -107,15 +107,15 @@
         "properties": {
           "userName": {
             "type": "string",
-            "doc": "Name of the user."
+            "description": "Name of the user."
           },
           "password": {
             "type": "string",
-            "doc": "Password of the user. Only a hash will be stored."
+            "description": "Password of the user. Only a hash will be stored."
           },
           "enabled": {
             "type": "boolean",
-            "doc": "Indicates if the user can be used or not."
+            "description": "Indicates if the user can be used or not."
           }
         },
         "required": [
@@ -123,9 +123,9 @@
           "password"
         ]
       },
-      "doc": "Add or update user.",
+      "description": "Add or update user.",
       "sample": {
-        "doc": "Add user `test`.",
+        "description": "Add user `test`.",
         "value": {
           "userName": "test",
           "password": "YwboLB~[65H"
