@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LetsEncrypt", "LetsEncrypt\LetsEncrypt.csproj", "{0721D922-558D-48CF-ADA6-8192C8AE7424}"
+Project("{A90228D2-6755-4495-93FD-44453CDE2C1E}") = "LetsEncrypt", "LetsEncrypt\LetsEncrypt.csproj", "{0721D922-558D-48CF-ADA6-8192C8AE7424}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

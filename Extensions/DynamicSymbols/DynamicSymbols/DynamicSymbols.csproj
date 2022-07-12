@@ -9,7 +9,7 @@
     <Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
     <Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
     <Description>Implementation of a server extension that uses dynamic symbols.</Description>
-    <Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2020</Copyright>
+    <Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2022</Copyright>
   </PropertyGroup>
 
   <PropertyGroup>
