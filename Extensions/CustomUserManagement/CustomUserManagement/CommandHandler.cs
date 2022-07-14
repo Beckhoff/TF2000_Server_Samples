@@ -174,7 +174,7 @@ namespace CustomUserManagement
             }
             else
             {
-                Context adminContext = TcHmiApplication.Context.DeepCopy();
+                Context adminContext = TcHmiApplication.Context;
 
                 // rename entry in usermanagement extension
                 if (TcHmiApplication.AsyncHost.RenameConfigValue(adminContext, oldPath, newPath) != ErrorValue.HMI_SUCCESS)
