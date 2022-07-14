@@ -54,7 +54,7 @@ namespace MinimalAuthentication
 
             return TcHmiApplication.AsyncHost.SetConfigValue(
                 serverContext,
-                string.Join("::", "USERGROUPUSERS", TcHmiApplication.Context.Domain),
+                TcHmiApplication.JoinPath("USERGROUPUSERS", TcHmiApplication.Context.Domain),
                 users
             );
         }

@@ -94,7 +94,7 @@ namespace InterExtensionCommunication
 
                                 command.ReadValue = new Value();
 
-                                var readCmd = new Command("ADS.Config::TIMEOUT");
+                                var readCmd = new Command(TcHmiApplication.JoinPath("ADS.Config", "TIMEOUT"));
                                 ErrorValue readResult = TcHmiApplication.AsyncHost.Execute(ref adminContext, ref readCmd);
                                 if (readResult != ErrorValue.HMI_SUCCESS || readCmd.Result != ErrorValue.HMI_SUCCESS)
                                 {

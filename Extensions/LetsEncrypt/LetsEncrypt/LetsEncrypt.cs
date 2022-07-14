@@ -401,11 +401,11 @@ namespace LetsEncrypt
 
             CommandGroup cmdGroup = new CommandGroup("TcHmiSrv", new List<Command>()
             {
-                new Command("TcHmiSrv.Config::CERTIFICATE")
+                new Command(TcHmiApplication.JoinPath("TcHmiSrv.Config", "CERTIFICATE"))
                 {
                     WriteValue = new Value(Encoding.ASCII.GetBytes(certChain.Certificate.ToPem()))
                 },
-                new Command("TcHmiSrv.Config::KEY")
+                new Command(TcHmiApplication.JoinPath("TcHmiSrv.Config", "KEY"))
                 {
                     WriteValue = new Value(Encoding.ASCII.GetBytes(certKey.ToPem()))
                 }
@@ -581,7 +581,7 @@ namespace LetsEncrypt
             // ports 80 and 443 must be configured for Let's Encrypt
 
             var group = new CommandGroup("TcHmiSrv", new List<Command>() { 
-                new Command("TcHmiSrv.Config::ENDPOINTS")
+                new Command(TcHmiApplication.JoinPath("TcHmiSrv.Config", "ENDPOINTS"))
             });
 
             ErrorValue err = TcHmiApplication.AsyncHost.Execute(ref serverContext, ref group);

@@ -41,7 +41,7 @@ namespace ConfigListening
             var filterAnagrams = new ConfigListenerSettingsFilter(
                 ConfigChangeType.BeforeChange |
                 ConfigChangeType.BeforeRename,
-                new string[] { "anagrams::*" }
+                new string[] { TcHmiApplication.JoinPath("anagrams", "*") }
             );
             settings.Filters.Add(filterPalindromes);
             settings.Filters.Add(filterAnagrams);
@@ -80,7 +80,7 @@ namespace ConfigListening
             }
             else
             {
-                var start = "anagrams::";
+                var start = string.Concat("anagrams", TcHmiApplication.PathElementSeparator);
                 if (e.Path.StartsWith(start))
                 {
                     var text = e.Path.Substring(start.Length);
@@ -109,7 +109,7 @@ namespace ConfigListening
             //       3. BeforeChange (Path="anagrams")
             //       4. BeforeChange (Path="")
 
-            var start = "anagrams::";
+            var start = string.Concat("anagrams", TcHmiApplication.PathElementSeparator);
             if (e.NewPath.StartsWith(start))
             {
                 var anagram = (string)TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, e.OldPath);

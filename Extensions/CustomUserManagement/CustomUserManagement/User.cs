@@ -1,5 +1,6 @@
 ﻿using System;
 using TcHmiSrv.Core;
+using TcHmiSrv.Core.General;
 
 namespace CustomUserManagement
 {
@@ -47,7 +48,7 @@ namespace CustomUserManagement
         public static string UsernameFromSession(string sessionUser)
         {
             // extdomain::username or username ---> username
-            var parts = sessionUser.Split(new string[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
+            var parts = TcHmiApplication.SplitPath(sessionUser, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length > 1)
             {
                 return parts[1];

@@ -35,14 +35,14 @@ namespace CustomUserManagement
             Context internalContext = context;
             internalContext.Session.EndpointInfo = EndpointInfo.Internal;
 
-            var path = string.Join("::", StringConstants.CFG_USERS, username);
+            var path = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, username);
             ErrorValue serverError = TcHmiApplication.AsyncHost.SetConfigValue(internalContext, path, user.ConfigValue);
             if (serverError == ErrorValue.HMI_SUCCESS)
             {
                 Context serverContext = context;
                 serverContext.Domain = StringConstants.SERVER_DOMAIN;
 
-                path = string.Join("::", StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain, username);
+                path = TcHmiApplication.JoinPath(StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain, username);
                 if (TcHmiApplication.AsyncHost.GetConfigValue(serverContext, path).Type == TcHmiSrv.Core.ValueType.Null)
                 {
                     // new user, add to the default group
@@ -74,11 +74,11 @@ namespace CustomUserManagement
             Debug.Assert(context.Domain == TcHmiApplication.Context.Domain);  // make sure that nobody passes a server context
 
             string username = command.WriteValue;
-            string path = string.Join("::", StringConstants.CFG_USERS, username);
+            string path = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, username);
 
             if (TcHmiApplication.AsyncHost.GetConfigValue(context, path).Type != TcHmiSrv.Core.ValueType.Null)
             {
-                ErrorValue err = TcHmiApplication.AsyncHost.SetConfigValue(context, string.Join("::", path, StringConstants.CFG_USER_ENABLED), string.Equals(command.Mapping, StringConstants.ENABLE_USER_COMMAND));
+                ErrorValue err = TcHmiApplication.AsyncHost.SetConfigValue(context, TcHmiApplication.JoinPath(path, StringConstants.CFG_USER_ENABLED), string.Equals(command.Mapping, StringConstants.ENABLE_USER_COMMAND));
                 if (err != ErrorValue.HMI_SUCCESS)
                 {
                     command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.FAILED);
@@ -95,7 +95,7 @@ namespace CustomUserManagement
             Debug.Assert(context.Domain == TcHmiApplication.Context.Domain);  // make sure that nobody passes a server context
 
             string username = command.WriteValue;
-            string userPath = string.Join("::", StringConstants.CFG_USERS, username);
+            string userPath = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, username);
 
             Value user = TcHmiApplication.AsyncHost.GetConfigValue(context, userPath);
             if (user.Type == TcHmiSrv.Core.ValueType.Null)
@@ -113,7 +113,7 @@ namespace CustomUserManagement
                 Context serverContext = context.ShallowCopy();  // perform a shallow copy so that we can change the domain of the 'serverContext' without affecting 'context'
                 serverContext.Domain = StringConstants.SERVER_DOMAIN;
 
-                TcHmiApplication.AsyncHost.DeleteConfigValue(serverContext, string.Join("::", StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain, username));
+                TcHmiApplication.AsyncHost.DeleteConfigValue(serverContext, TcHmiApplication.JoinPath(StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain, username));
             }
         }
 
@@ -125,7 +125,7 @@ namespace CustomUserManagement
             string newPassword = command.WriteValue[StringConstants.NEW_PASSWORD];
 
 
-            var userPath = string.Join("::", StringConstants.CFG_USERS, User.UsernameFromSession(context.Session.User));
+            var userPath = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, User.UsernameFromSession(context.Session.User));
             Value userConfigValue = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, userPath);
             if (userConfigValue.Type == TcHmiSrv.Core.ValueType.Null)
             {
@@ -159,8 +159,8 @@ namespace CustomUserManagement
             string oldName = command.WriteValue[StringConstants.OLD_USERNAME];
             string newName = command.WriteValue[StringConstants.NEW_USERNAME];
 
-            string oldPath = string.Join("::", StringConstants.CFG_USERS, oldName);
-            string newPath = string.Join("::", StringConstants.CFG_USERS, newName);
+            string oldPath = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, oldName);
+            string newPath = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, newName);
 
             Value current = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, oldPath);
             Value target = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, newPath);
@@ -186,7 +186,7 @@ namespace CustomUserManagement
                     adminContext.Domain = StringConstants.SERVER_DOMAIN;
 
                     // rename entry in USERGROUPUSERS
-                    string basePath = string.Join("::", "USERGROUPUSERS", TcHmiApplication.Context.Domain, "");
+                    string basePath = TcHmiApplication.JoinPath("USERGROUPUSERS", TcHmiApplication.Context.Domain, "");
                     if (TcHmiApplication.AsyncHost.RenameConfigValue(adminContext, basePath + oldName, basePath + newName) != ErrorValue.HMI_SUCCESS)
                     {
                         command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.FAILED);

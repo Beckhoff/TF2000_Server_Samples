@@ -43,7 +43,7 @@ namespace CustomUserManagement
                 TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener, ConfigListenerSettings.Default);
 
                 // make sure that the USERGROUPUSERS entry for this extension exists in TcHmiSrv.Config
-                if (TcHmiApplication.AsyncHost.GetConfigValue(serverContext, string.Join("::", StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain)).Type == TcHmiSrv.Core.ValueType.Null)
+                if (TcHmiApplication.AsyncHost.GetConfigValue(serverContext, TcHmiApplication.JoinPath(StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain)).Type == TcHmiSrv.Core.ValueType.Null)
                 {
                     var map = new Value
                     {
@@ -73,7 +73,7 @@ namespace CustomUserManagement
                 string username = e.Value[StringConstants.USERNAME];
                 string plain_password = e.Value[StringConstants.PASSWORD];
 
-                var userPath = string.Join("::", StringConstants.CFG_USERS, username);
+                var userPath = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, username);
                 Value userConfigValue = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, userPath);
                 if (userConfigValue.Type == ValueType.Null)
                 {
@@ -209,7 +209,7 @@ namespace CustomUserManagement
 
         private void OnDelete(object sender, OnDeleteEventArgs e)
         {
-            string[] parts = e.Path.Split(new string[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = TcHmiApplication.SplitPath(e.Path, StringSplitOptions.RemoveEmptyEntries);
 
             if ((parts.Length > 1) && (parts[0] == StringConstants.CFG_USERS))
             {
@@ -219,7 +219,7 @@ namespace CustomUserManagement
                 Context serverContext = e.Context;
                 serverContext.Domain = StringConstants.SERVER_DOMAIN;
 
-                ErrorValue result = TcHmiApplication.AsyncHost.DeleteConfigValue(serverContext, string.Join("::", StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain, username));
+                ErrorValue result = TcHmiApplication.AsyncHost.DeleteConfigValue(serverContext, TcHmiApplication.JoinPath(StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain, username));
                 if (result != ErrorValue.HMI_SUCCESS)
                 {
                     throw new TcHmiException(result);
