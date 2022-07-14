@@ -1,9 +1,13 @@
-﻿using System;
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable InconsistentNaming
 
+using System;
+
+// ReSharper disable once CheckNamespace
 namespace WindowsProcesses.NativeTypes
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/windows/win32/procthread/process-creation-flags
+    ///     https://docs.microsoft.com/en-us/windows/win32/procthread/process-creation-flags
     /// </summary>
     [Flags]
     internal enum PROCESS_CREATION_FLAGS : uint

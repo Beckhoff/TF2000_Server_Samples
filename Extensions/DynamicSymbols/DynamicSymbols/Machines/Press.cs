@@ -3,15 +3,15 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+using System.Threading;
+
 namespace DynamicSymbols.Machines
 {
-    using System;
-    using System.Threading;
-
     internal class Press : Machine
     {
-        private double maxPressure = 100;
-        private TimeSpan compressionTime = new TimeSpan(0, 0, 10);
+        private TimeSpan _compressionTime = new TimeSpan(0, 0, 10);
+        private double _maxPressure = 100;
 
         public override string Description
         {
@@ -21,20 +21,23 @@ namespace DynamicSymbols.Machines
             }
         }
 
-        public double CurrentPressure { get; private set; } = 0;
+        public double CurrentPressure { get; private set; }
 
         public double MaxPressure
         {
             get
             {
-                return maxPressure;
+                return _maxPressure;
             }
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value), value, string.Concat("Maximum pressure must not be less than 0 bar."));
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        string.Concat("Maximum pressure must not be less than 0 bar."));
+                }
 
-                maxPressure = value;
+                _maxPressure = value;
             }
         }
 
@@ -42,27 +45,33 @@ namespace DynamicSymbols.Machines
         {
             get
             {
-                return compressionTime;
+                return _compressionTime;
             }
             set
             {
                 if (value < TimeSpan.Zero)
-                    throw new ArgumentOutOfRangeException(nameof(value), value, string.Concat("Compression time must not be less than zero."));
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        string.Concat("Compression time must not be less than zero."));
+                }
 
-                compressionTime = value;
+                _compressionTime = value;
             }
         }
 
         private void Compress()
         {
-            while ((CurrentPressure < MaxPressure) && (!HasError))
+            while (CurrentPressure < MaxPressure && !HasError)
             {
                 CurrentPressure++;
                 Thread.Sleep(100);
             }
 
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (CurrentPressure == MaxPressure)
+            {
                 Thread.Sleep(CompressionTime);
+            }
 
             CurrentPressure = 0;
             CompleteWork();

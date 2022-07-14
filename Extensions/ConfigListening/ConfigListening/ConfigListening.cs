@@ -14,10 +14,11 @@ using TcHmiSrv.Core.Tools.Settings;
 
 namespace ConfigListening
 {
+    // ReSharper disable once UnusedType.Global
     public class ConfigListening : IServerExtension
     {
+        private const int ConfigHintId = 1;
         private readonly ConfigListener _configListener = new ConfigListener();
-        private const int _configHintId = 1;
 
         public ErrorValue Init()
         {
@@ -36,12 +37,12 @@ namespace ConfigListening
                 ConfigChangeType.OnChange |
                 ConfigChangeType.BeforeChange |
                 ConfigChangeType.OnDelete,
-                new string[] { "palindromes[*" }
+                new[] { "palindromes[*" }
             );
             var filterAnagrams = new ConfigListenerSettingsFilter(
                 ConfigChangeType.BeforeChange |
                 ConfigChangeType.BeforeRename,
-                new string[] { TcHmiApplication.JoinPath("anagrams", "*") }
+                new[] { TcHmiApplication.JoinPath("anagrams", "*") }
             );
             settings.Filters.Add(filterPalindromes);
             settings.Filters.Add(filterAnagrams);
@@ -75,18 +76,22 @@ namespace ConfigListening
                 // reject invalid palindromes
                 if (PalindromeValidator.Validate(e.Value) == PalindromeType.None)
                 {
-                    throw new TcHmiException("Change attempt rejected. '" + e.Value + "' is not palindrome.", ErrorValue.HMI_E_INVALID_FIELD);
+                    throw new TcHmiException("Change attempt rejected. '" + e.Value + "' is not palindrome.",
+                        ErrorValue.HMI_E_INVALID_FIELD);
                 }
             }
             else
             {
                 var start = string.Concat("anagrams", TcHmiApplication.PathElementSeparator);
+
                 if (e.Path.StartsWith(start))
                 {
                     var text = e.Path.Substring(start.Length);
                     if (!AnagramValidator.Validate(text, e.Value))
                     {
-                        throw new TcHmiException("Change attempt rejected. '" + e.Value + "' is not an anagram of '" + text + "'.", ErrorValue.HMI_E_INVALID_FIELD);
+                        throw new TcHmiException(
+                            "Change attempt rejected. '" + e.Value + "' is not an anagram of '" + text + "'.",
+                            ErrorValue.HMI_E_INVALID_FIELD);
                     }
                 }
             }
@@ -110,13 +115,17 @@ namespace ConfigListening
             //       4. BeforeChange (Path="")
 
             var start = string.Concat("anagrams", TcHmiApplication.PathElementSeparator);
+
             if (e.NewPath.StartsWith(start))
             {
                 var anagram = (string)TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, e.OldPath);
                 var newText = e.NewPath.Substring(start.Length);
+
                 if (!AnagramValidator.Validate(newText, anagram))
                 {
-                    throw new TcHmiException("Rename attempt rejected. '" + newText + "' is not an anagram of '" + anagram + "'.", ErrorValue.HMI_E_INVALID_FIELD);
+                    throw new TcHmiException(
+                        "Rename attempt rejected. '" + newText + "' is not an anagram of '" + anagram + "'.",
+                        ErrorValue.HMI_E_INVALID_FIELD);
                 }
             }
         }
@@ -140,7 +149,8 @@ namespace ConfigListening
             // this extension raises a configuration hint if at least one of the configured palindromes
             // consists of more than one word. the hint is, for example, displayed on the extension's configuration page.
 
-            bool allAreCharacterUnitPalindromes = true;
+            var allAreCharacterUnitPalindromes = true;
+
             foreach (Value s in TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "palindromes"))
             {
                 if (PalindromeValidator.Validate(s) != PalindromeType.CharacterUnit)
@@ -153,15 +163,18 @@ namespace ConfigListening
             var serverContext = TcHmiApplication.Context;
             serverContext.Domain = "TcHmiSrv";
 
-            var ev = new Event(serverContext, "CONFIGURATION_HINT");
-            ev.TimeReceived = DateTime.UtcNow;
-            var payload = new Alarm(TcHmiApplication.Context, "strictPalindromeValidationFailed");
-            payload.Severity = Severity.Warning;
-            payload.Id = _configHintId;
-            payload.ConfirmationState = allAreCharacterUnitPalindromes ? AlarmConfirmationState.Reset : AlarmConfirmationState.Wait;
+            var ev = new Event(serverContext, "CONFIGURATION_HINT") { TimeReceived = DateTime.UtcNow };
+            var payload = new Alarm(TcHmiApplication.Context, "strictPalindromeValidationFailed")
+            {
+                Severity = Severity.Warning,
+                Id = ConfigHintId,
+                ConfirmationState = allAreCharacterUnitPalindromes
+                    ? AlarmConfirmationState.Reset
+                    : AlarmConfirmationState.Wait
+            };
             ev.Payload = payload;
 
-            TcHmiApplication.AsyncHost.Send(serverContext, ref ev);
+            _ = TcHmiApplication.AsyncHost.Send(serverContext, ref ev);
         }
     }
 }

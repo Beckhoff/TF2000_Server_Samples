@@ -5,18 +5,23 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Net;
-using System.Net.Sockets;
 using TcHmiSrv.Core;
-using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
+using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
 
 namespace ErrorHandling
 {
+    // ReSharper disable once UnusedType.Global
     public class ErrorHandling : IServerExtension, IErrorProvider
     {
         private readonly RequestListener _requestListener = new RequestListener();
+
+        public string ErrorString(uint errorCode)
+        {
+            var name = Enum.GetName(typeof(ExtensionSpecificError), errorCode);
+            return string.IsNullOrEmpty(name) ? "UNKNOWN" : name;
+        }
 
         public ErrorValue Init()
         {
@@ -26,23 +31,17 @@ namespace ErrorHandling
             return ErrorValue.HMI_SUCCESS;
         }
 
-        public string ErrorString(uint errorCode)
-        {
-            string name = Enum.GetName(typeof(ExtensionSpecificError), errorCode);
-            return string.IsNullOrEmpty(name) ? "UNKNOWN" : name;
-        }
-
-        public void OnRequest(object sender, TcHmiSrv.Core.Listeners.RequestListenerEventArgs.OnRequestEventArgs e)
+        private void OnRequest(object sender, OnRequestEventArgs e)
         {
             // handle all commands one by one
-            foreach (Command command in e.Commands)
+            foreach (var command in e.Commands)
             {
                 try
                 {
                     switch (command.Mapping)
                     {
                         case "FailingFunction":
-                            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.FUNCTION_FAILED);
+                            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.FunctionFailed);
                             command.ResultString = "This function always fails.";
                             break;
                         default:
@@ -52,8 +51,10 @@ namespace ErrorHandling
                 catch (Exception ex)
                 {
                     // ignore exceptions and continue processing the other commands in the group
-                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.INTERNAL_ERROR);
-                    command.ResultString = "An exception was thrown while the command was processed by the extension: '" + ex.Message + "'.";
+                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.InternalError);
+                    command.ResultString =
+                        "An exception was thrown while the command was processed by the extension: '" + ex.Message +
+                        "'.";
                 }
             }
         }

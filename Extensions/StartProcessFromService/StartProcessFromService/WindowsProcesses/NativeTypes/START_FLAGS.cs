@@ -1,9 +1,13 @@
-﻿using System;
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable InconsistentNaming
 
+using System;
+
+// ReSharper disable once CheckNamespace
 namespace WindowsProcesses.NativeTypes
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa#members
+    ///     https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa#members
     /// </summary>
     [Flags]
     internal enum START_FLAGS : uint

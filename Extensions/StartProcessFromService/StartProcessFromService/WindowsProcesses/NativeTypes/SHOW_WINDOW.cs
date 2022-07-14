@@ -1,7 +1,12 @@
-﻿namespace WindowsProcesses.NativeTypes
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable InconsistentNaming
+
+// ReSharper disable once CheckNamespace
+
+namespace WindowsProcesses.NativeTypes
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
+    ///     https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
     /// </summary>
     internal enum SHOW_WINDOW : short
     {
@@ -16,6 +21,6 @@
         SW_SHOWNA,
         SW_RESTORE,
         SW_SHOWDEFAULT,
-        SW_FORCEMINIMIZE,
+        SW_FORCEMINIMIZE
     }
 }

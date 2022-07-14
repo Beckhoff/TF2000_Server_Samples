@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <!-- Required elements -->
@@ -24,10 +25,10 @@
   </metadata>
 
   <files>
-    <file src="bin\Debug\Newtonsoft.Json.dll" target="runtimes\any\native\"/>
-    <file src="bin\Debug\BouncyCastle.Crypto.dll" target="runtimes\any\native\"/>
-    <file src="bin\Debug\Certes.dll" target="runtimes\any\native\"/>
-    <file src="bin\Debug\**\LetsEncrypt.dll" target="runtimes\any\native\"/>
-    <file src="bin\Debug\**\LetsEncrypt.*.json" target="runtimes\any\native\"/>
+    <file src="bin\Debug\Newtonsoft.Json.dll" target="runtimes\any\native\" />
+    <file src="bin\Debug\BouncyCastle.Crypto.dll" target="runtimes\any\native\" />
+    <file src="bin\Debug\Certes.dll" target="runtimes\any\native\" />
+    <file src="bin\Debug\**\LetsEncrypt.dll" target="runtimes\any\native\" />
+    <file src="bin\Debug\**\LetsEncrypt.*.json" target="runtimes\any\native\" />
   </files>
 </package>

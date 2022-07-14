@@ -1,5 +1,5 @@
+﻿using ConfigListening;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ConfigListening;
 
 namespace ConfigListeningUnitTests
 {
@@ -24,7 +24,8 @@ namespace ConfigListeningUnitTests
             Assert.AreEqual(PalindromeType.CharacterUnit, PalindromeValidator.Validate("xx"));
             Assert.AreEqual(PalindromeType.CharacterUnit, PalindromeValidator.Validate("radar"));
             Assert.AreEqual(PalindromeType.CharacterUnit, PalindromeValidator.Validate("kayak"));
-            Assert.AreEqual(PalindromeType.CharacterUnit, PalindromeValidator.Validate("ReViver"), "the validator should not be case-sensitive");
+            Assert.AreEqual(PalindromeType.CharacterUnit, PalindromeValidator.Validate("ReViver"),
+                "the validator should not be case-sensitive");
         }
 
         [TestMethod]
@@ -32,9 +33,11 @@ namespace ConfigListeningUnitTests
         {
             Assert.AreEqual(PalindromeType.SentenceOrPhrase, PalindromeValidator.Validate("my gym"));
             Assert.AreEqual(PalindromeType.SentenceOrPhrase, PalindromeValidator.Validate("no lemon, no melon"));
-            Assert.AreEqual(PalindromeType.SentenceOrPhrase, PalindromeValidator.Validate("Murder for a jar of red rum"));
+            Assert.AreEqual(PalindromeType.SentenceOrPhrase,
+                PalindromeValidator.Validate("Murder for a jar of red rum"));
             Assert.AreEqual(PalindromeType.SentenceOrPhrase, PalindromeValidator.Validate("Mr. Owl ate my metal worm"));
-            Assert.AreEqual(PalindromeType.SentenceOrPhrase, PalindromeValidator.Validate("Eva, can I see bees in a cave?"));
+            Assert.AreEqual(PalindromeType.SentenceOrPhrase,
+                PalindromeValidator.Validate("Eva, can I see bees in a cave?"));
         }
     }
 }

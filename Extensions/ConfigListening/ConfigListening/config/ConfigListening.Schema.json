@@ -33,6 +33,6 @@
       "propertyOrder": 2
     }
   },
-  "required": [ "palindromes", "anagrams" ],
+  "required": ["palindromes", "anagrams"],
   "additionalProperties": false
 }

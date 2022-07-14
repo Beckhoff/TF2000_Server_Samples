@@ -4,30 +4,33 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using DynamicSymbols.Machines;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using DynamicSymbols.Machines;
 using TcHmiSrv.Core;
 using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
+using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
+using TcHmiSrv.Core.Listeners.ShutdownListenerEventArgs;
 using TcHmiSrv.Core.Tools.DynamicSymbols;
 using TcHmiSrv.Core.Tools.Management;
+using TcHmiSrv.Core.Tools.TypeAttribute;
 using ValueType = TcHmiSrv.Core.ValueType;
 
 // Declare the default type of the server extension
-[assembly: TcHmiSrv.Core.Tools.TypeAttribute.ServerExtensionType(typeof(DynamicSymbols.DynamicSymbols))]
+[assembly: ServerExtensionType(typeof(DynamicSymbols.DynamicSymbols))]
 
 namespace DynamicSymbols
 {
     // Represents the default type of the TwinCAT HMI server extension.
     public class DynamicSymbols : IServerExtension
     {
-        private readonly RequestListener requestListener = new RequestListener();
-        private readonly ShutdownListener shutdownListener = new ShutdownListener();
+        private readonly RequestListener _requestListener = new RequestListener();
+        private readonly ShutdownListener _shutdownListener = new ShutdownListener();
+        private string _machineHall;
 
-        private DynamicSymbolsProvider provider = null;
-        private string machineHall = null;
+        private DynamicSymbolsProvider _provider;
 
         // Initializes the TwinCAT HMI server extension.
         public ErrorValue Init()
@@ -35,18 +38,18 @@ namespace DynamicSymbols
             try
             {
                 // Add event handlers
-                this.requestListener.OnRequest += this.OnRequest;
-                this.shutdownListener.OnShutdown += this.OnShutdown;
+                _requestListener.OnRequest += OnRequest;
+                _shutdownListener.OnShutdown += OnShutdown;
 
-                this.machineHall = Path.Combine(TcHmiApplication.Path, "MachineHall");
+                _machineHall = Path.Combine(TcHmiApplication.Path, "MachineHall");
 
                 // Check if the machines have already been configured
-                if (Directory.Exists(this.machineHall))
+                if (Directory.Exists(_machineHall))
                 {
                     var machines = new Dictionary<string, Symbol>();
 
                     // Load configured machines
-                    foreach (var file in Directory.EnumerateFiles(this.machineHall, "*.txt"))
+                    foreach (var file in Directory.EnumerateFiles(_machineHall, "*.txt"))
                     {
                         var name = Path.GetFileNameWithoutExtension(file);
                         var lines = File.ReadAllLines(file);
@@ -64,39 +67,37 @@ namespace DynamicSymbols
                         switch (type)
                         {
                             case "Furnace":
-                                {
-                                    var furnace = new Furnace
-                                    {
-                                        MaxTemperature = int.Parse(contents["MaxTemperature"])
-                                    };
-                                    machine = furnace;
-                                    break;
-                                }
+                            {
+                                var furnace = new Furnace { MaxTemperature = int.Parse(contents["MaxTemperature"]) };
+                                machine = furnace;
+                                break;
+                            }
 
                             case "Press":
+                            {
+                                var press = new Press
                                 {
-                                    var press = new Press
-                                    {
-                                        MaxPressure = double.Parse(contents["MaxPressure"]),
-                                        CompressionTime = TimeSpan.Parse(contents["CompressionTime"])
-                                    };
-                                    machine = press;
-                                    break;
-                                }
+                                    MaxPressure = double.Parse(contents["MaxPressure"]),
+                                    CompressionTime = TimeSpan.Parse(contents["CompressionTime"])
+                                };
+                                machine = press;
+                                break;
+                            }
 
                             case "Saw":
+                            {
+                                var saw = new Saw
                                 {
-                                    var saw = new Saw
-                                    {
-                                        MaxRotationsPerMinute = uint.Parse(contents["MaxRotationsPerMinute"]),
-                                        NumberOfPieces = uint.Parse(contents["NumberOfPieces"])
-                                    };
-                                    machine = saw;
-                                    break;
-                                }
+                                    MaxRotationsPerMinute = uint.Parse(contents["MaxRotationsPerMinute"]),
+                                    NumberOfPieces = uint.Parse(contents["NumberOfPieces"])
+                                };
+                                machine = saw;
+                                break;
+                            }
 
                             default:
-                                throw new TcHmiException(string.Concat("Unknown machine type: ", type), ErrorValue.HMI_E_EXTENSION);
+                                throw new TcHmiException(string.Concat("Unknown machine type: ", type),
+                                    ErrorValue.HMI_E_EXTENSION);
                         }
 
                         machine.HasError = bool.Parse(contents["HasError"]);
@@ -105,41 +106,41 @@ namespace DynamicSymbols
                     }
 
                     // Create a new 'DynamicSymbolsProvider' from the existing machine configurations
-                    this.provider = new DynamicSymbolsProvider(machines);
+                    _provider = new DynamicSymbolsProvider(machines);
 
                     // Remove machine configurations (updated machine configurations will be saved when shutting down the server extension)
-                    Directory.Delete(this.machineHall, true);
+                    Directory.Delete(_machineHall, true);
                 }
                 else
                     // Create a new empty 'DynamicSymbolsProvider'
-                    this.provider = new DynamicSymbolsProvider();
+                {
+                    _provider = new DynamicSymbolsProvider();
+                }
 
-                TcHmiAsyncLogger.Send(Severity.Info, "MESSAGE_INIT");
+                _ = TcHmiAsyncLogger.Send(Severity.Info, "MESSAGE_INIT");
                 return ErrorValue.HMI_SUCCESS;
             }
             catch (Exception ex)
             {
-                TcHmiAsyncLogger.Send(Severity.Error, "ERROR_INIT", ex.ToString());
+                _ = TcHmiAsyncLogger.Send(Severity.Error, "ERROR_INIT", ex.ToString());
                 return ErrorValue.HMI_E_EXTENSION_LOAD;
             }
         }
 
         // Called when a client requests a symbol from the domain of the TwinCAT HMI server extension.
-        private void OnRequest(object sender, TcHmiSrv.Core.Listeners.RequestListenerEventArgs.OnRequestEventArgs e)
+        private void OnRequest(object sender, OnRequestEventArgs e)
         {
-            ErrorValue ret = ErrorValue.HMI_SUCCESS;
-            Context context = e.Context;
-            CommandGroup commands = e.Commands;
+            var ret = ErrorValue.HMI_SUCCESS;
+            var context = e.Context;
+            var commands = e.Commands;
 
             try
             {
-                string mapping = string.Empty;
-
                 // Handle commands 'ListSymbols', 'GetDefinitions', 'GetSchema', read and write operations to the dynamic symbols by the 'DynamicSymbolsProvider'
                 // Don't forget to add symbols 'ListSymbols', 'GetDefinitions', 'GetSchema' to your *.Config.json!
-                foreach (Command command in this.provider.HandleCommands(commands))
+                foreach (var command in _provider.HandleCommands(commands))
                 {
-                    mapping = command.Mapping;
+                    var mapping = command.Mapping;
 
                     try
                     {
@@ -147,35 +148,50 @@ namespace DynamicSymbols
                         switch (mapping)
                         {
                             case "AddMachine":
+                            {
+                                var writeValue = command.WriteValue;
+
+                                if (writeValue is null)
                                 {
-                                    var writeValue = command.WriteValue;
-
-                                    if (writeValue is null)
-                                        throw new TcHmiException("Write value cannot be null.", ErrorValue.HMI_E_INVALID_PARAMETER);
-
-                                    if (!writeValue.IsMapOrStruct)
-                                        throw new TcHmiException(string.Concat("Unexpected type for write value: ", writeValue.Type), ErrorValue.HMI_E_TYPE_MISMATCH);
-
-                                    // Add a new machine to the dynamic symbols provider
-                                    this.provider.Add(writeValue["name"], new MachineSymbol(CreateMachine(writeValue["type"])));
-                                    break;
+                                    throw new TcHmiException("Write value cannot be null.",
+                                        ErrorValue.HMI_E_INVALID_PARAMETER);
                                 }
+
+                                if (!writeValue.IsMapOrStruct)
+                                {
+                                    throw new TcHmiException(
+                                        string.Concat("Unexpected type for write value: ", writeValue.Type),
+                                        ErrorValue.HMI_E_TYPE_MISMATCH);
+                                }
+
+                                // Add a new machine to the dynamic symbols provider
+                                _provider.Add(writeValue["name"],
+                                    new MachineSymbol(CreateMachine(writeValue["type"])));
+                                break;
+                            }
 
                             case "RemoveMachine":
+                            {
+                                var writeValue = command.WriteValue;
+
+                                if (writeValue is null)
                                 {
-                                    var writeValue = command.WriteValue;
-
-                                    if (writeValue is null)
-                                        throw new TcHmiException("Write value cannot be null.", ErrorValue.HMI_E_INVALID_PARAMETER);
-
-                                    var type = writeValue.Type;
-
-                                    if (type != ValueType.String)
-                                        throw new TcHmiException(string.Concat("Unexpected type for write value: ", writeValue.Type), ErrorValue.HMI_E_TYPE_MISMATCH);
-
-                                    command.ReadValue = this.provider.Remove(writeValue);
-                                    break;
+                                    throw new TcHmiException("Write value cannot be null.",
+                                        ErrorValue.HMI_E_INVALID_PARAMETER);
                                 }
+
+                                var type = writeValue.Type;
+
+                                if (type != ValueType.String)
+                                {
+                                    throw new TcHmiException(
+                                        string.Concat("Unexpected type for write value: ", writeValue.Type),
+                                        ErrorValue.HMI_E_TYPE_MISMATCH);
+                                }
+
+                                command.ReadValue = _provider.Remove(writeValue);
+                                break;
+                            }
 
                             default:
                                 ret = ErrorValue.HMI_E_EXTENSION;
@@ -187,24 +203,28 @@ namespace DynamicSymbols
                     }
                     catch (Exception ex)
                     {
-                        command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.FAILURE);
-                        command.ResultString = TcHmiAsyncLogger.Localize(context, "ERROR_CALL_COMMAND", new string[] { mapping, ex.ToString() });
+                        command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Failure);
+                        command.ResultString =
+                            TcHmiAsyncLogger.Localize(context, "ERROR_CALL_COMMAND", mapping, ex.ToString());
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new TcHmiException(ex.ToString(), (ret == ErrorValue.HMI_SUCCESS) ? ErrorValue.HMI_E_EXTENSION : ret);
+                throw new TcHmiException(ex.ToString(),
+                    ret == ErrorValue.HMI_SUCCESS ? ErrorValue.HMI_E_EXTENSION : ret);
             }
         }
 
-        private void OnShutdown(object sender, TcHmiSrv.Core.Listeners.ShutdownListenerEventArgs.OnShutdownEventArgs e)
+        private void OnShutdown(object sender, OnShutdownEventArgs e)
         {
             // Save updated machine configurations
-            foreach (var symbol in this.provider)
+            foreach (var symbol in _provider)
             {
-                if (!Directory.Exists(this.machineHall))
-                    Directory.CreateDirectory(this.machineHall);
+                if (!Directory.Exists(_machineHall))
+                {
+                    _ = Directory.CreateDirectory(_machineHall);
+                }
 
                 var machineSymbol = (MachineSymbol)symbol.Value;
                 var machine = machineSymbol.Machine;
@@ -213,7 +233,7 @@ namespace DynamicSymbols
                 {
                     string.Concat("Type:", machineType.Name),
                     string.Concat("IsWorking:", machine.IsWorking),
-                    string.Concat("HasError:", machine.HasError),
+                    string.Concat("HasError:", machine.HasError)
                 };
 
                 if (machine is Furnace furnace)
@@ -231,29 +251,24 @@ namespace DynamicSymbols
                     contents.Add(string.Concat("NumberOfPieces:", saw.NumberOfPieces));
                 }
 
-                File.WriteAllLines(Path.Combine(this.machineHall, string.Concat(symbol.Key, ".txt")), contents);
-            };
+                File.WriteAllLines(Path.Combine(_machineHall, string.Concat(symbol.Key, ".txt")), contents);
+            }
         }
 
         private static Machine CreateMachine(string type)
         {
             if (string.IsNullOrEmpty(type))
-                throw new ArgumentNullException(nameof(type));
-
-            switch (type.ToLower())
             {
-                case "furnace":
-                    return new Furnace();
-
-                case "press":
-                    return new Press();
-
-                case "saw":
-                    return new Saw();
-
-                default:
-                    throw new ArgumentException(string.Concat("Unknown machine type: ", type), nameof(type));
+                throw new ArgumentNullException(nameof(type));
             }
+
+            return type.ToLower() switch
+            {
+                "furnace" => new Furnace(),
+                "press" => new Press(),
+                "saw" => new Saw(),
+                _ => throw new ArgumentException(string.Concat("Unknown machine type: ", type), nameof(type))
+            };
         }
     }
 }

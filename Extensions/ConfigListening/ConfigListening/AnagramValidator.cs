@@ -6,7 +6,7 @@ namespace ConfigListening
     {
         private static bool IsRelevant(char c)
         {
-            return (!char.IsPunctuation(c)) || char.IsWhiteSpace(c);
+            return !char.IsPunctuation(c) || char.IsWhiteSpace(c);
         }
 
         private static char SelectKey(char c)
@@ -18,7 +18,7 @@ namespace ConfigListening
         {
             var a = text.ToLower().ToCharArray().Where(IsRelevant).OrderBy(SelectKey);
             var b = anagramOfText.ToLower().ToCharArray().Where(IsRelevant).OrderBy(SelectKey);
-            return Enumerable.SequenceEqual(a, b);
+            return a.SequenceEqual(b);
         }
     }
 }

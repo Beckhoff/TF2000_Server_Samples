@@ -8,8 +8,9 @@ namespace ErrorHandling
 {
     public enum ExtensionSpecificError
     {
-        SUCCESS = 0,
-        INTERNAL_ERROR,
-        FUNCTION_FAILED
+        // ReSharper disable once UnusedMember.Global
+        Success = 0,
+        InternalError,
+        FunctionFailed
     }
 }

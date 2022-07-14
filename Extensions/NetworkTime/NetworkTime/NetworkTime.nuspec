@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <!-- Required elements -->
@@ -24,7 +25,7 @@
   </metadata>
 
   <files>
-    <file src="bin\Debug\**\NetworkTime.dll" target="runtimes\win-x64\native\engineering\"/>
-    <file src="bin\Debug\**\NetworkTime.*.json" target="runtimes\win-x64\native\engineering\"/>
+    <file src="bin\Debug\**\NetworkTime.dll" target="runtimes\win-x64\native\engineering\" />
+    <file src="bin\Debug\**\NetworkTime.*.json" target="runtimes\win-x64\native\engineering\" />
   </files>
 </package>

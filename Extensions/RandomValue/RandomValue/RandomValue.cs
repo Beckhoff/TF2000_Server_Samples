@@ -8,19 +8,20 @@ using System;
 using TcHmiSrv.Core;
 using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
+using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
 using ValueType = TcHmiSrv.Core.ValueType;
 
 namespace RandomValue
 {
     // represents the default type of the TwinCAT HMI server extension
+    // ReSharper disable once UnusedType.Global
     public class RandomValue : IServerExtension
     {
-        private readonly RequestListener requestListener = new RequestListener();
+        private readonly Random _rand = new Random();
+        private readonly RequestListener _requestListener = new RequestListener();
 
-        private readonly Random rand = new Random();
-
-        private Data data;
+        private Data _data;
 
         // initializes the TwinCAT HMI server extension
         public ErrorValue Init()
@@ -29,25 +30,25 @@ namespace RandomValue
             {
                 // initialize data from configuration
                 // this can not be done before Init, because the properties of TcHmiApplication are initialized just before 
-                data = new Data(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "maxRandom"));
+                _data = new Data(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "maxRandom"));
 
                 // add event handlers
-                this.requestListener.OnRequest += this.OnRequest;
+                _requestListener.OnRequest += OnRequest;
 
                 return ErrorValue.HMI_SUCCESS;
             }
             catch (Exception ex)
             {
-                TcHmiAsyncLogger.Send(Severity.Error, "errorInit", ex.ToString());
+                _ = TcHmiAsyncLogger.Send(Severity.Error, "errorInit", ex.ToString());
                 return ErrorValue.HMI_E_EXTENSION_LOAD;
             }
         }
 
         // called when a client requests a symbol from the domain of the TwinCAT HMI server extension
-        private void OnRequest(object sender, TcHmiSrv.Core.Listeners.RequestListenerEventArgs.OnRequestEventArgs e)
+        private void OnRequest(object sender, OnRequestEventArgs e)
         {
             // handle all commands one by one
-            foreach (Command command in e.Commands)
+            foreach (var command in e.Commands)
             {
                 try
                 {
@@ -68,8 +69,9 @@ namespace RandomValue
                 catch (Exception ex)
                 {
                     // ignore exceptions and continue processing the other commands in the group
-                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.INTERNAL_ERROR);
-                    command.ResultString = TcHmiAsyncLogger.Localize(e.Context, "errorCallCommand", new string[] { command.Mapping, ex.ToString() });
+                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.InternalError);
+                    command.ResultString =
+                        TcHmiAsyncLogger.Localize(e.Context, "errorCallCommand", command.Mapping, ex.ToString());
                 }
             }
         }
@@ -77,8 +79,8 @@ namespace RandomValue
         // generates a random value and writes it to the read value of the specified command
         private void NextRandomValue(Command command)
         {
-            command.ReadValue = this.rand.Next(this.data.MaxRandom) + 1;
-            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.SUCCESS);
+            command.ReadValue = _rand.Next(_data.MaxRandom) + 1;
+            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
         }
 
         // gets or sets the maximum random value
@@ -86,18 +88,18 @@ namespace RandomValue
         {
             if (command.WriteValue != null && command.WriteValue.Type == ValueType.Int32)
             {
-                this.data.MaxRandom = command.WriteValue;
+                _data.MaxRandom = command.WriteValue;
             }
 
-            command.ReadValue = this.data.MaxRandom;
-            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.SUCCESS);
+            command.ReadValue = _data.MaxRandom;
+            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
         }
 
         // gets the maximum random value from the configuration of the TwinCAT HMI server extension
         private void MaxRandomFromConfig(Command command)
         {
             command.ReadValue = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "maxRandom");
-            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.SUCCESS);
+            command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
         }
     }
 }

@@ -9,7 +9,8 @@ namespace DynamicSymbols
     // Contains extension specific error values.
     public enum ExtensionSpecificError
     {
-        SUCCESS = 0,
-        FAILURE
+        // ReSharper disable once UnusedMember.Global
+        Success = 0,
+        Failure
     }
 }

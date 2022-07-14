@@ -4,6 +4,7 @@
   "localizedText": {
     "FIRST_MESSAGE": "First message. Sent upon initialization of this sample extension.",
     "ANOTHER_MESSAGE": "Another message. Sent because the 'SendAnotherMessage' function symbol was called.",
-    "ALARM_TO_CONFIRM": "An alarm. If not already confirmed, it can be confirmed by calling the 'ConfirmAlarm' function symbol."
+    "ALARM_TO_CONFIRM":
+      "An alarm. If not already confirmed, it can be confirmed by calling the 'ConfirmAlarm' function symbol."
   }
 }

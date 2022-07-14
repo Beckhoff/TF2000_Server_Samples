@@ -10,10 +10,12 @@ using System.Net.Sockets;
 using TcHmiSrv.Core;
 using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
+using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
 
 namespace NetworkTime
 {
+    // ReSharper disable once UnusedType.Global
     public class NetworkTime : IServerExtension
     {
         private readonly RequestListener _requestListener = new RequestListener();
@@ -33,22 +35,23 @@ namespace NetworkTime
             // is usually only accessable to administrators.
             string ntpServer = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "ntpServer");
 
-            DateTime? now = GetNetworkTime(ntpServer);
+            var now = GetNetworkTime(ntpServer);
+
             if (now.HasValue)
             {
                 command.ReadValue = new Value(now.Value);
-                command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.SUCCESS);
+                command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
             }
             else
             {
-                command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.NTP_SERVER_NOT_AVAILABLE);
+                command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.NtpServerNotAvailable);
             }
         }
 
-        public void OnRequest(object sender, TcHmiSrv.Core.Listeners.RequestListenerEventArgs.OnRequestEventArgs e)
+        private void OnRequest(object sender, OnRequestEventArgs e)
         {
             // handle all commands one by one
-            foreach (Command command in e.Commands)
+            foreach (var command in e.Commands)
             {
                 try
                 {
@@ -62,7 +65,7 @@ namespace NetworkTime
                 catch
                 {
                     // ignore exceptions and continue processing the other commands in the group
-                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.INTERNAL_ERROR);
+                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.InternalError);
                 }
             }
         }
@@ -74,33 +77,33 @@ namespace NetworkTime
 
             try
             {
-                using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
-                {
-                    socket.Connect(new IPEndPoint(Dns.GetHostEntry(ntpServer).AddressList[0], 123));
-                    socket.ReceiveTimeout = 5000;
-                    socket.Send(message);
-                    socket.Receive(message);
-                }
+                using var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                socket.Connect(new IPEndPoint(Dns.GetHostEntry(ntpServer).AddressList[0], 123));
+                socket.ReceiveTimeout = 5000;
+                _ = socket.Send(message);
+                _ = socket.Receive(message);
             }
             catch
             {
                 return null; // NTP server not available
             }
 
-            const byte transitTimestampOffset = 40;
-            uint intPart = BitConverter.ToUInt32(message, transitTimestampOffset);
-            uint fractionPart = BitConverter.ToUInt32(message, transitTimestampOffset + 4);
+            const byte TransitTimestampOffset = 40;
+            var intPart = BitConverter.ToUInt32(message, TransitTimestampOffset);
+            var fractionPart = BitConverter.ToUInt32(message, TransitTimestampOffset + 4);
 
-            var milliseconds = ((ulong)SwapEndianness(intPart) * 1000) + (((ulong)SwapEndianness(fractionPart) * 1000) / 0x100000000L);
-            return (new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddMilliseconds((long)milliseconds).ToLocalTime();
+            var milliseconds = ((ulong)SwapEndianness(intPart) * 1000) +
+                               ((ulong)SwapEndianness(fractionPart) * 1000 / 0x100000000L);
+            return new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds((long)milliseconds)
+                .ToLocalTime();
         }
 
         private static uint SwapEndianness(uint x)
         {
-            return (uint)(((x & 0x000000ff) << 24) +
-                           ((x & 0x0000ff00) << 8) +
-                           ((x & 0x00ff0000) >> 8) +
-                           ((x & 0xff000000) >> 24));
+            return ((x & 0x000000ff) << 24) +
+                   ((x & 0x0000ff00) << 8) +
+                   ((x & 0x00ff0000) >> 8) +
+                   ((x & 0xff000000) >> 24);
         }
     }
 }

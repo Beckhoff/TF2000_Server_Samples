@@ -4,23 +4,23 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Threading;
+
 namespace DynamicSymbols.Machines
 {
-    using System.Threading;
-
     internal abstract class Machine
     {
-        private readonly object stateLock = new object();
+        private readonly object _stateLock = new object();
 
         public abstract string Description { get; }
 
-        public MachineState State { get; protected set; } = MachineState.Idle;
+        public MachineState State { get; private set; } = MachineState.Idle;
 
         public bool IsWorking
         {
             get
             {
-                lock (stateLock)
+                lock (_stateLock)
                 {
                     return State == MachineState.Working;
                 }
@@ -29,12 +29,14 @@ namespace DynamicSymbols.Machines
             {
                 if (value)
                 {
-                    lock (stateLock)
+                    lock (_stateLock)
                     {
                         if (State == MachineState.Idle)
                         {
                             if (ThreadPool.QueueUserWorkItem(DoWork))
+                            {
                                 State = MachineState.Working;
+                            }
                         }
                     }
                 }
@@ -45,7 +47,7 @@ namespace DynamicSymbols.Machines
         {
             get
             {
-                lock (stateLock)
+                lock (_stateLock)
                 {
                     return State == MachineState.Error;
                 }
@@ -54,17 +56,19 @@ namespace DynamicSymbols.Machines
             {
                 if (value)
                 {
-                    lock (stateLock)
+                    lock (_stateLock)
                     {
                         State = MachineState.Error;
                     }
                 }
                 else
                 {
-                    lock (stateLock)
+                    lock (_stateLock)
                     {
                         if (State == MachineState.Error)
+                        {
                             State = MachineState.Idle;
+                        }
                     }
                 }
             }
@@ -74,10 +78,12 @@ namespace DynamicSymbols.Machines
 
         protected void CompleteWork()
         {
-            lock (stateLock)
+            lock (_stateLock)
             {
                 if (State == MachineState.Working)
+                {
                     State = MachineState.Idle;
+                }
             }
         }
     }

@@ -7,6 +7,6 @@
       "default": "ntp.beckhoff-cloud.com"
     }
   },
-  "required": [ "ntpServer" ],
+  "required": ["ntpServer"],
   "additionalProperties": false
 }

@@ -2,55 +2,50 @@
 {
     internal static class StringConstants
     {
-        public const string SERVER_DOMAIN = "TcHmiSrv";
+        public const string ServerDomain = "TcHmiSrv";
 
         // server domain: names of config variables
-        public const string USERGROUPUSERS = "USERGROUPUSERS";
-        public const string USERGROUPUSERS_GROUPS = "USERGROUPUSERS_GROUPS";
-        public const string AUTO_LOGOFF = "AUTO_LOGOFF";
+        public const string UserGroupUsers = "USERGROUPUSERS";
+        public const string UserGroupUsersGroups = "USERGROUPUSERS_GROUPS";
 
         // server domain: names of function symbols
-        public const string GET_CURRENT_USER = "GetCurrentUser";
+        public const string GetCurrentUser = "GetCurrentUser";
 
         // server domain: parameter names
-        public const string CLIENT_IP = "clientIp";
+        public const string ClientIp = "clientIp";
 
         // names of config variables
-        public const string CFG_USERS = "users";
-        public const string CFG_USER_PASSWORD = "password";
-        public const string CFG_USER_SALT = "salt";
-        public const string CFG_USER_ENABLED = "enabled";
+        public const string CfgUsers = "users";
+        public const string CfgUserPassword = "password";
+        public const string CfgUserSalt = "salt";
+        public const string CfgUserEnabled = "enabled";
 
         // names of function symbols
-        public const string REMOVE_USER_COMMAND = "RemoveUser";
-        public const string ADD_USER_COMMAND = "AddUser";
-        public const string CHANGE_PASSWORD_COMMAND = "ChangePassword";
-        public const string LIST_USERS_COMMAND = "ListUsers";
-        public const string LIST_DISABLED_USERS_COMMAND = "ListDisabledUsers";
-        public const string ENABLE_USER_COMMAND = "EnableUser";
-        public const string DISABLE_USER_COMMAND = "DisableUser";
-        public const string RENAME_USER_COMMAND = "RenameUser";
+        public const string RemoveUserCommand = "RemoveUser";
+        public const string AddUserCommand = "AddUser";
+        public const string ChangePasswordCommand = "ChangePassword";
+        public const string ListUsersCommand = "ListUsers";
+        public const string ListDisabledUsersCommand = "ListDisabledUsers";
+        public const string EnableUserCommand = "EnableUser";
+        public const string DisableUserCommand = "DisableUser";
+        public const string RenameUserCommand = "RenameUser";
 
         // parameter names of function symbols
-        public const string USERNAME = "userName";
-        public const string PASSWORD = "password";
-        public const string OLD_PASSWORD = "oldPassword";
-        public const string NEW_PASSWORD = "newPassword";
-        public const string ENABLED = "enabled";
-        public const string OLD_USERNAME = "currentUserName";
-        public const string NEW_USERNAME = "newUserName";
+        public const string Username = "userName";
+        public const string Password = "password";
+        public const string OldPassword = "oldPassword";
+        public const string NewPassword = "newPassword";
+        public const string Enabled = "enabled";
+        public const string OldUsername = "currentUserName";
+        public const string NewUsername = "newUserName";
 
         // log messages
-        public const string MSG_ADDUSER_SUCCESS = "MSG_ADDUSER_SUCCESS";
-        public const string MSG_INIT = "MESSAGE_INIT";
-        public const string MSG_ERROR_INIT = "ERROR_INIT";
+        public const string MsgAdduserSuccess = "MSG_ADDUSER_SUCCESS";
+        public const string MsgInit = "MESSAGE_INIT";
+        public const string MsgErrorInit = "ERROR_INIT";
 
         // extension or server domain: other special string values
-        public const string ADMIN_USERNAME = "__SystemAdministrator";
-        public const string GUEST_USERNAME = "__SystemGuest";
-        public const string ADMIN_GROUP = "__SystemAdministrators";
-        public const string GUEST_GROUP = "__SystemGuests";
-        public const string DEFAULT_GROUP = "__SystemUsers";
-        public const string DEFAULT_LOCALE = "client";
+        public const string AdminUsername = "__SystemAdministrator";
+        public const string DefaultGroup = "__SystemUsers";
     }
 }

@@ -1,7 +1,12 @@
-﻿namespace WindowsProcesses.NativeTypes
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable InconsistentNaming
+
+// ReSharper disable once CheckNamespace
+
+namespace WindowsProcesses.NativeTypes
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/windows/win32/api/wtsapi32/ne-wtsapi32-wts_connectstate_class
+    ///     https://docs.microsoft.com/en-us/windows/win32/api/wtsapi32/ne-wtsapi32-wts_connectstate_class
     /// </summary>
     internal enum WTS_CONNECTSTATE_CLASS
     {

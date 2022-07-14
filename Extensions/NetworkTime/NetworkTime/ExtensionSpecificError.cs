@@ -8,8 +8,8 @@ namespace NetworkTime
 {
     public enum ExtensionSpecificError
     {
-        SUCCESS = 0,
-        INTERNAL_ERROR,
-        NTP_SERVER_NOT_AVAILABLE
+        Success = 0,
+        InternalError,
+        NtpServerNotAvailable
     }
 }

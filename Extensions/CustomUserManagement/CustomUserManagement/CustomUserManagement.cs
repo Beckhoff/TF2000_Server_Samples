@@ -13,26 +13,27 @@ using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
 using TcHmiSrv.Core.Listeners.AuthListenerEventArgs;
 using TcHmiSrv.Core.Listeners.ConfigListenerEventArgs;
+using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
 using TcHmiSrv.Core.Tools.Settings;
 using ValueType = TcHmiSrv.Core.ValueType;
 
 namespace CustomUserManagement
 {
+    // ReSharper disable once UnusedType.Global
     public class CustomUserManagement : IServerExtension
     {
-        private readonly ReaderWriterLockSlim _rwl = new ReaderWriterLockSlim();
-
         private readonly AuthListener _authListener = new AuthListener();
-        private readonly RequestListener _requestListener = new RequestListener();
         private readonly ConfigListener _configListener = new ConfigListener();
+        private readonly RequestListener _requestListener = new RequestListener();
+        private readonly ReaderWriterLockSlim _rwl = new ReaderWriterLockSlim();
 
         public ErrorValue Init()
         {
             try
             {
-                Context serverContext = TcHmiApplication.Context;
-                serverContext.Domain = StringConstants.SERVER_DOMAIN;
+                var serverContext = TcHmiApplication.Context;
+                serverContext.Domain = StringConstants.ServerDomain;
 
                 // add event handlers
                 _authListener.OnLogin += OnLogin;
@@ -40,28 +41,25 @@ namespace CustomUserManagement
                 _configListener.OnDelete += OnDelete;
 
                 // tell the config listener that we're interested in everything
-                TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener, ConfigListenerSettings.Default);
+                TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener,
+                    ConfigListenerSettings.Default);
 
                 // make sure that the USERGROUPUSERS entry for this extension exists in TcHmiSrv.Config
-                if (TcHmiApplication.AsyncHost.GetConfigValue(serverContext, TcHmiApplication.JoinPath(StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain)).Type == TcHmiSrv.Core.ValueType.Null)
+                if (TcHmiApplication.AsyncHost.GetConfigValue(serverContext,
+                            TcHmiApplication.JoinPath(StringConstants.UserGroupUsers, TcHmiApplication.Context.Domain))
+                        .Type == ValueType.Null)
                 {
-                    var map = new Value
-                    {
-                        Type = ValueType.Map
-                    };
-                    var tmp = new Value
-                    {
-                        { TcHmiApplication.Context.Domain, map }
-                    };
-                    TcHmiApplication.AsyncHost.SetConfigValue(serverContext, StringConstants.USERGROUPUSERS, tmp);
+                    var map = new Value { Type = ValueType.Map };
+                    var tmp = new Value { { TcHmiApplication.Context.Domain, map } };
+                    _ = TcHmiApplication.AsyncHost.SetConfigValue(serverContext, StringConstants.UserGroupUsers, tmp);
                 }
 
-                TcHmiAsyncLogger.Send(Severity.Info, StringConstants.MSG_INIT);
+                _ = TcHmiAsyncLogger.Send(Severity.Info, StringConstants.MsgInit);
                 return ErrorValue.HMI_SUCCESS;
             }
             catch (Exception ex)
             {
-                TcHmiAsyncLogger.Send(Severity.Error, StringConstants.MSG_ERROR_INIT, ex.Message);
+                _ = TcHmiAsyncLogger.Send(Severity.Error, StringConstants.MsgErrorInit, ex.Message);
                 return ErrorValue.HMI_E_EXTENSION_LOAD;
             }
         }
@@ -70,40 +68,41 @@ namespace CustomUserManagement
         {
             SafeReadAction(() =>
             {
-                string username = e.Value[StringConstants.USERNAME];
-                string plain_password = e.Value[StringConstants.PASSWORD];
+                string username = e.Value[StringConstants.Username];
+                string plainPassword = e.Value[StringConstants.Password];
 
-                var userPath = TcHmiApplication.JoinPath(StringConstants.CFG_USERS, username);
-                Value userConfigValue = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, userPath);
+                var userPath = TcHmiApplication.JoinPath(StringConstants.CfgUsers, username);
+                var userConfigValue = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, userPath);
+
                 if (userConfigValue.Type == ValueType.Null)
                 {
                     throw new TcHmiException(ErrorValue.HMI_E_AUTH_USER_NOT_FOUND);
                 }
 
-                ErrorValue result = (new User(userConfigValue)).CheckCredentials(username, plain_password);
+                var result = new User(userConfigValue).CheckCredentials(plainPassword);
+
                 if (result != ErrorValue.HMI_SUCCESS)
                 {
                     throw new TcHmiException(result);
                 }
 
-                if (username != StringConstants.ADMIN_USERNAME)
+                if (username != StringConstants.AdminUsername)
                 {
-                    Command command = new Command(StringConstants.GET_CURRENT_USER);
+                    var command = new Command(StringConstants.GetCurrentUser);
 
                     // example of inter-extension communication.
                     // make a request to the server domain
-                    Context context = e.Context;
-                    context.Domain = StringConstants.SERVER_DOMAIN;
-                    TcHmiApplication.AsyncHost.Execute(ref context, ref command);
+                    var context = e.Context;
+                    context.Domain = StringConstants.ServerDomain;
+                    _ = TcHmiApplication.AsyncHost.Execute(ref context, ref command);
 
-                    Value currentUser = command.ReadValue;
-                    if ((currentUser != null) && currentUser.TryGetValue(StringConstants.CLIENT_IP, out var clientIp))
+                    var currentUser = command.ReadValue;
+
+                    if (currentUser != null && currentUser.TryGetValue(StringConstants.ClientIp, out var clientIp) &&
+                        clientIp == "127.0.0.1")
                     {
-                        if (clientIp == "127.0.0.1")
-                        {
-                            // handle special rights for local access of the user
-                            // e.g. add a special group (that must exist in the Server)
-                        }
+                        // handle special rights for local access of the user
+                        // e.g. add a special group (that must exist in the Server)
                     }
                 }
             });
@@ -111,115 +110,123 @@ namespace CustomUserManagement
 
         private Value ListUsers(Context context, bool disabledOnly)
         {
-            Debug.Assert(context.Domain == TcHmiApplication.Context.Domain);  // make sure that nobody passes a server context
+            Debug.Assert(context.Domain ==
+                         TcHmiApplication.Context.Domain); // make sure that nobody passes a server context
 
-            Value names = new Value
+            var names = new Value
             {
-                Type = ValueType.Vector  // we need to set the type explicitly. otherwise it wouldn't be an array if there are no users to list
+                Type = ValueType
+                    .Vector // we need to set the type explicitly. otherwise it wouldn't be an array if there are no users to list
             };
 
-            Value users = TcHmiApplication.AsyncHost.GetConfigValue(context, StringConstants.CFG_USERS);
+            var users = TcHmiApplication.AsyncHost.GetConfigValue(context, StringConstants.CfgUsers);
+
             if (users.Type == ValueType.Null)
             {
-                return null;  // probably not sufficient access rights
+                return null; // probably not sufficient access rights
             }
 
             foreach (KeyValuePair<string, Value> user in users)
             {
-                if (disabledOnly)
+                if (disabledOnly && user.Value.TryGetValue(StringConstants.CfgUserEnabled, out var enabled) && enabled)
                 {
-                    user.Value.TryGetValue(StringConstants.CFG_USER_ENABLED, out Value enabled);
-                    if ((bool)enabled)
-                    {
-                        // skip enabled users
-                        continue;
-                    }
+                    // skip enabled users
+                    continue;
                 }
+
                 names.Add(user.Key);
             }
+
             return names;
         }
 
-        public void OnRequest(object sender, TcHmiSrv.Core.Listeners.RequestListenerEventArgs.OnRequestEventArgs e)
+        private void OnRequest(object sender, OnRequestEventArgs e)
         {
             // handle all commands one by one
-            foreach (Command command in e.Commands)
+            foreach (var command in e.Commands)
             {
                 try
                 {
                     switch (command.Mapping)
                     {
-                        case StringConstants.LIST_USERS_COMMAND:
+                        case StringConstants.ListUsersCommand:
                             SafeReadAction(() =>
                             {
                                 var tmp = ListUsers(e.Context, false);
+
                                 if (tmp == null)
                                 {
-                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.FAILED);
-                                    command.ReadValue = new Value();  // when executed as a subscription, the old read-value might still be there
+                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Failed);
+                                    command.ReadValue =
+                                        new Value(); // when executed as a subscription, the old read-value might still be there
                                 }
                                 else
                                 {
-                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.SUCCESS);
+                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
                                     command.ReadValue = tmp;
                                 }
                             });
                             break;
-                        case StringConstants.LIST_DISABLED_USERS_COMMAND:
+                        case StringConstants.ListDisabledUsersCommand:
                             SafeReadAction(() =>
                             {
                                 var tmp = ListUsers(e.Context, true);
+
                                 if (tmp == null)
                                 {
-                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.FAILED);
-                                    command.ReadValue = new Value();  // when executed as a subscription, the old read-value might still be there
+                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Failed);
+                                    command.ReadValue =
+                                        new Value(); // when executed as a subscription, the old read-value might still be there
                                 }
                                 else
                                 {
-                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.SUCCESS);
+                                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
                                     command.ReadValue = tmp;
                                 }
                             });
                             break;
-                        case StringConstants.REMOVE_USER_COMMAND:
+                        case StringConstants.RemoveUserCommand:
                             SafeWriteAction(() => CommandHandler.RemoveUser(e.Context, command));
                             break;
-                        case StringConstants.DISABLE_USER_COMMAND:
-                        case StringConstants.ENABLE_USER_COMMAND:
+                        case StringConstants.DisableUserCommand:
+                        case StringConstants.EnableUserCommand:
                             SafeWriteAction(() => CommandHandler.EnableDisableUser(e.Context, command));
                             break;
-                        case StringConstants.CHANGE_PASSWORD_COMMAND:
+                        case StringConstants.ChangePasswordCommand:
                             SafeWriteAction(() => CommandHandler.ChangePassword(e.Context, command));
                             break;
-                        case StringConstants.ADD_USER_COMMAND:
+                        case StringConstants.AddUserCommand:
                             SafeWriteAction(() => CommandHandler.AddUser(e.Context, command));
                             break;
-                        case StringConstants.RENAME_USER_COMMAND:
-                            SafeWriteAction(() => CommandHandler.RenameUser(e.Context, command));
+                        case StringConstants.RenameUserCommand:
+                            SafeWriteAction(() => CommandHandler.RenameUser(command));
                             break;
                     }
                 }
                 catch
                 {
                     // ignore exceptions and continue processing the other commands in the group
-                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.INTERNAL_ERROR);
+                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.InternalError);
                 }
             }
         }
 
         private void OnDelete(object sender, OnDeleteEventArgs e)
         {
-            string[] parts = TcHmiApplication.SplitPath(e.Path, StringSplitOptions.RemoveEmptyEntries);
+            var parts = TcHmiApplication.SplitPath(e.Path, StringSplitOptions.RemoveEmptyEntries);
 
-            if ((parts.Length > 1) && (parts[0] == StringConstants.CFG_USERS))
+            if (parts.Length > 1 && parts[0] == StringConstants.CfgUsers)
             {
-                string username = parts[1];
+                var username = parts[1];
 
                 // remove user from usergroup configuration
-                Context serverContext = e.Context;
-                serverContext.Domain = StringConstants.SERVER_DOMAIN;
+                var serverContext = e.Context;
+                serverContext.Domain = StringConstants.ServerDomain;
 
-                ErrorValue result = TcHmiApplication.AsyncHost.DeleteConfigValue(serverContext, TcHmiApplication.JoinPath(StringConstants.USERGROUPUSERS, TcHmiApplication.Context.Domain, username));
+                var result = TcHmiApplication.AsyncHost.DeleteConfigValue(serverContext,
+                    TcHmiApplication.JoinPath(StringConstants.UserGroupUsers, TcHmiApplication.Context.Domain,
+                        username));
+
                 if (result != ErrorValue.HMI_SUCCESS)
                 {
                     throw new TcHmiException(result);
@@ -227,9 +234,10 @@ namespace CustomUserManagement
             }
         }
 
-        public void SafeReadAction(Action action)
+        private void SafeReadAction(Action action)
         {
             _rwl.EnterReadLock();
+
             try
             {
                 action();
@@ -239,9 +247,11 @@ namespace CustomUserManagement
                 _rwl.ExitReadLock();
             }
         }
-        public void SafeWriteAction(Action action)
+
+        private void SafeWriteAction(Action action)
         {
             _rwl.EnterWriteLock();
+
             try
             {
                 action();

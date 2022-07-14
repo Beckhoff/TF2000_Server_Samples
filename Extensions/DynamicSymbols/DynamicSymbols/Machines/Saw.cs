@@ -4,10 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Threading;
+
 namespace DynamicSymbols.Machines
 {
-    using System.Threading;
-
     internal class Saw : Machine
     {
         public override string Description
@@ -18,27 +18,29 @@ namespace DynamicSymbols.Machines
             }
         }
 
-        public uint CurrentRotationsPerMinute { get; private set; } = 0;
+        public uint CurrentRotationsPerMinute { get; private set; }
 
         public uint MaxRotationsPerMinute { get; set; } = 3000;
 
         public uint NumberOfPieces { get; set; } = 2;
 
-        public void SawUp()
+        private void SawUp()
         {
             var maxRotationsPerMinute = MaxRotationsPerMinute;
             var numberOfPieces = NumberOfPieces;
 
             for (uint i = 1; i < numberOfPieces; i++)
             {
-                while ((CurrentRotationsPerMinute < maxRotationsPerMinute) && (!HasError))
+                while (CurrentRotationsPerMinute < maxRotationsPerMinute && !HasError)
                 {
                     CurrentRotationsPerMinute++;
                     Thread.Sleep(1);
                 }
 
                 if (CurrentRotationsPerMinute == maxRotationsPerMinute)
+                {
                     Thread.Sleep(5000);
+                }
 
                 while (CurrentRotationsPerMinute > 0)
                 {

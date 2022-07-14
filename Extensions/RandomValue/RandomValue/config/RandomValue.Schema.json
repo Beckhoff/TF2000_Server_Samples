@@ -13,6 +13,6 @@
       ]
     }
   },
-  "required": [ "maxRandom" ],
+  "required": ["maxRandom"],
   "additionalProperties": false
 }

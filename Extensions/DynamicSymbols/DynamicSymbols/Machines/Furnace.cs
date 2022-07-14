@@ -4,17 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+using System.Threading;
+
 namespace DynamicSymbols.Machines
 {
-    using System;
-    using System.Threading;
-
     internal class Furnace : Machine
     {
-        private readonly object heaterLock = new object();
-
-        private const int minTemperature = 20;
-        private int maxTemperature = 100;
+        private const int MinTemperature = 20;
+        private readonly object _heaterLock = new object();
+        private int _maxTemperature = 100;
 
         public override string Description
         {
@@ -24,35 +23,40 @@ namespace DynamicSymbols.Machines
             }
         }
 
-        public int CurrentTemperature { get; private set; } = minTemperature;
+        public int CurrentTemperature { get; private set; } = MinTemperature;
 
         public int MaxTemperature
         {
             get
             {
-                return maxTemperature;
+                return _maxTemperature;
             }
             set
             {
-                if (value < minTemperature)
-                    throw new ArgumentOutOfRangeException(nameof(value), value, string.Concat("Maximum temperature must not be less than ", minTemperature, "°C."));
+                if (value < MinTemperature)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        string.Concat("Maximum temperature must not be less than ", MinTemperature, "°C."));
+                }
 
-                maxTemperature = value;
+                _maxTemperature = value;
             }
         }
 
         private void HeatUp()
         {
-            lock (heaterLock)
+            lock (_heaterLock)
             {
-                while ((CurrentTemperature < MaxTemperature) && (!HasError))
+                while (CurrentTemperature < MaxTemperature && !HasError)
                 {
                     CurrentTemperature++;
                     Thread.Sleep(100);
                 }
 
                 if (CurrentTemperature == MaxTemperature)
+                {
                     Thread.Sleep(10000);
+                }
             }
 
             CompleteWork();
@@ -61,12 +65,14 @@ namespace DynamicSymbols.Machines
 
         private void CoolDown()
         {
-            lock (heaterLock)
+            lock (_heaterLock)
             {
-                while (CurrentTemperature > minTemperature)
+                while (CurrentTemperature > MinTemperature)
                 {
                     if (IsWorking)
+                    {
                         break;
+                    }
 
                     CurrentTemperature--;
                     Thread.Sleep(100);

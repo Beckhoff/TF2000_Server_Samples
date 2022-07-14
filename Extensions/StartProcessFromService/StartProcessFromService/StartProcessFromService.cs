@@ -8,15 +8,17 @@ using System;
 using TcHmiSrv.Core;
 using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
+using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
 using WindowsProcesses;
 
 namespace StartProcessFromService
 {
     // represents the default type of the TwinCAT HMI server extension
+    // ReSharper disable once UnusedType.Global
     public class StartProcessFromService : IServerExtension
     {
-        private readonly RequestListener requestListener = new RequestListener();
+        private readonly RequestListener _requestListener = new RequestListener();
 
         // initializes the TwinCAT HMI server extension
         public ErrorValue Init()
@@ -24,22 +26,22 @@ namespace StartProcessFromService
             try
             {
                 // add event handlers
-                this.requestListener.OnRequest += this.OnRequest;
+                _requestListener.OnRequest += OnRequest;
 
                 return ErrorValue.HMI_SUCCESS;
             }
             catch (Exception ex)
             {
-                TcHmiAsyncLogger.Send(Severity.Error, "errorInit", ex.ToString());
+                _ = TcHmiAsyncLogger.Send(Severity.Error, "errorInit", ex.ToString());
                 return ErrorValue.HMI_E_EXTENSION_LOAD;
             }
         }
 
         // called when a client requests a symbol from the domain of the TwinCAT HMI server extension
-        private void OnRequest(object sender, TcHmiSrv.Core.Listeners.RequestListenerEventArgs.OnRequestEventArgs e)
+        private void OnRequest(object sender, OnRequestEventArgs e)
         {
             // handle all commands one by one
-            foreach (Command command in e.Commands)
+            foreach (var command in e.Commands)
             {
                 try
                 {
@@ -54,7 +56,7 @@ namespace StartProcessFromService
                 catch
                 {
                     // ignore exceptions and continue processing the other commands in the group
-                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.INTERNAL_ERROR);
+                    command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.InternalError);
                 }
             }
         }
@@ -68,7 +70,7 @@ namespace StartProcessFromService
         {
             var writeValue = command.WriteValue;
 
-            if ((writeValue != null) && writeValue.IsMapOrStruct)
+            if (writeValue != null && writeValue.IsMapOrStruct)
             {
                 string applicationName = RetrieveOptionalValue(writeValue, "applicationName");
                 string commandLine = RetrieveOptionalValue(writeValue, "commandLine");

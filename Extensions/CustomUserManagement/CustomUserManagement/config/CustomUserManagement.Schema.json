@@ -24,12 +24,12 @@
           }
         },
         "additionalProperties": false,
-        "required": [ "password", "salt", "enabled" ]
+        "required": ["password", "salt", "enabled"]
       },
       "default": {
       }
     }
   },
   "additionalProperties": false,
-  "required": [ "users" ]
+  "required": ["users"]
 }

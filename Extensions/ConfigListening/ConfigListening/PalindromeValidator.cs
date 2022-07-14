@@ -15,9 +15,10 @@ namespace ConfigListening
         public static PalindromeType Validate(string candidate)
         {
             // transform to lower-case and put all relevant characters onto a stack
-            var stack = new Stack<char> { };
-            bool multipleWords = false;
-            foreach (char c in candidate.ToLower())
+            var stack = new Stack<char>();
+            var multipleWords = false;
+
+            foreach (var c in candidate.ToLower())
             {
                 if (char.IsWhiteSpace(c))
                 {
@@ -32,7 +33,8 @@ namespace ConfigListening
             if (stack.Count > 0)
             {
                 // split into two stacks. this reverses the second half.
-                var stack2 = new Stack<char> { };
+                var stack2 = new Stack<char>();
+
                 foreach (var _ in Enumerable.Range(0, stack.Count / 2))
                 {
                     stack2.Push(stack.Pop());
@@ -41,14 +43,15 @@ namespace ConfigListening
                 // correct for palindromes with an odd number of characters
                 if (stack.Count == stack2.Count + 1)
                 {
-                    stack.Pop();
+                    _ = stack.Pop();
                 }
 
-                if (Enumerable.SequenceEqual(stack, stack2))
+                if (stack.SequenceEqual(stack2))
                 {
                     return multipleWords ? PalindromeType.SentenceOrPhrase : PalindromeType.CharacterUnit;
                 }
             }
+
             return PalindromeType.None;
         }
     }

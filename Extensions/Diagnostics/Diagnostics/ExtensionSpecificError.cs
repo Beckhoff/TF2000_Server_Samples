@@ -8,7 +8,7 @@ namespace Diagnostics
 {
     public enum ExtensionSpecificError
     {
-        SUCCESS = 0,
-        INTERNAL_ERROR,
+        Success = 0,
+        InternalError
     }
 }

@@ -8,8 +8,8 @@ namespace InterExtensionCommunication
 {
     public enum ExtensionSpecificError
     {
-        SUCCESS = 0,
-        INTERNAL_ERROR,
-        FAILURE,
+        Success = 0,
+        InternalError,
+        Failure
     }
 }

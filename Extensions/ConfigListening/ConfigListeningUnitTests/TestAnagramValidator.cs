@@ -1,5 +1,5 @@
+﻿using ConfigListening;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ConfigListening;
 
 namespace ConfigListeningUnitTests
 {

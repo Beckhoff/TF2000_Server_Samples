@@ -8,7 +8,8 @@ namespace EventSystem
 {
     public enum ExtensionSpecificError
     {
-        SUCCESS = 0,
-        INTERNAL_ERROR,
+        // ReSharper disable once UnusedMember.Global
+        Success = 0,
+        InternalError
     }
 }
