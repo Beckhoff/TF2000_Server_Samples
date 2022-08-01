@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{73F76929-BE7A-4434-8925-0ED65B0126AB}") = "StartProcessFromService", "StartProcessFromService\StartProcessFromService.csproj", "{3b379132-0bb8-457d-8aed-d80bd030d567}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartProcessFromService", "StartProcessFromService\StartProcessFromService.csproj", "{3b379132-0bb8-457d-8aed-d80bd030d567}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

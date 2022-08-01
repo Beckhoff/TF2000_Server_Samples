@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D216CBD4-72AF-4E30-A52E-1E19D1344D1D}") = "DynamicSymbols", "DynamicSymbols\DynamicSymbols.csproj", "{60312AD9-6BEC-46FD-903A-FE4DADBF9D11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicSymbols", "DynamicSymbols\DynamicSymbols.csproj", "{60312AD9-6BEC-46FD-903A-FE4DADBF9D11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

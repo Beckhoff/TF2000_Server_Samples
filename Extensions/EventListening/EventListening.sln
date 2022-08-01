@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{01D91679-A282-4DA1-8B4F-4BECDDAFFC0D}") = "EventListening", "EventListening\EventListening.csproj", "{F3F7365F-ACE4-4E43-9D3D-FDB2114E7C56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventListening", "EventListening\EventListening.csproj", "{F3F7365F-ACE4-4E43-9D3D-FDB2114E7C56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
