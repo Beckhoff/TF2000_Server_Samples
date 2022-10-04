@@ -21,6 +21,11 @@ Here is a list of all sample extensions:
 - [LetsEncrypt](Extensions/LetsEncrypt/)
 - [CustomConfig](Extensions/CustomConfig/)
 
+For more TwinCAT HMI samples check out the related repositories:
+
+- [Client Samples](https://github.com/Beckhoff/TE2000_Client_Samples)
+- [Engineering Samples](https://github.com/Beckhoff/TE2000_Engineering_Samples)
+
 ## Documentation for the .NET extension API
 
 The documentation for the API can be found in the
