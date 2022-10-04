@@ -132,7 +132,7 @@ namespace ConfigListening
 
         private void OnDelete(object sender, OnDeleteEventArgs e)
         {
-            // called after data was deleted from the configration.
+            // called after data was deleted from the configuration.
             // to prevent deletion, you can use the 'BeforeDelete' handler.
             // examples:
             //   - if the first palindrome was deleted, this handler is called for "", "palindromes", and "palindromes[0]"

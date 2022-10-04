@@ -24,7 +24,7 @@ The default configuration looks like this:
 
 1. Virtual directories
 
-    To enable downloading a file of the server system, all filesystems, which should be served, must
+    To enable downloading a file of the server system, all file systems, which should be served, must
     be added as virtual directory. All virtual directories can be found on the configuration page under
     `TcHmiSrv > Virtual directories`.
 
@@ -42,7 +42,7 @@ The default configuration looks like this:
     <a href="http://127.0.0.1:1010/VirtualDirectory/Path/Filename" download>Download link</a>
     ````
 
-    Limitation: The download button is not available inside of the liveview of the engineering.
+    Limitation: The download button is not available inside of the live-view of the engineering.
 
 ## Example requests
 

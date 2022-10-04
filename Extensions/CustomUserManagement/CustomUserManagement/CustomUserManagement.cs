@@ -219,7 +219,7 @@ namespace CustomUserManagement
             {
                 var username = parts[1];
 
-                // remove user from usergroup configuration
+                // remove user from user group configuration
                 var serverContext = e.Context;
                 serverContext.Domain = StringConstants.ServerDomain;
 

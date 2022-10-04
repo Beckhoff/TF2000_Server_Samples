@@ -3,9 +3,12 @@
     "language": "en",
     "words": [
         "beckhoff",
+        "browsable",
+        "endianness",
         "newtonsoft",
         "runtimes",
         "textblock",
+        "timespan",
         "twincat",
         "unregister"
     ],
@@ -14,25 +17,33 @@
         "acceptedsockets",
         "activesessions",
         "activesockets",
+        "adduser",
         "architecture",
         "automap",
+        "cref",
         "dgram",
         "dotnetclassicversions",
         "dotnetcoreversions",
         "dotnetversions",
+        "extdomain",
+        "hkey",
         "hmiproj",
         "memoryusage",
         "netcoreapp",
         "netstandard",
+        "paramref",
         "remoteservers",
         "servertime",
+        "startupinfo",
         "tchmi",
-        "timespan",
         "trafficin",
         "trafficout",
         "usedclients",
         "usedtargets",
-        "usergroupusers"
+        "usergroupusers",
+        "virtualdirectories",
+        "winsta",
+        "wtsapi"
     ],
     "ignorePaths": [
         "**/DynamicSymbols/TcHmiProjectDynamicSymbols/**",
@@ -40,10 +51,16 @@
         "**/.vs/**",
         "**/Packages/**",
         "**/obj/**",
-        "**/bin/**"
+        "**/bin/**",
+        "**/*.de.*",
+        "**/*.sh"
     ],
     "ignoreRegExpList": [
         "\"symbol\": \".+\"",
-        "\"password\": \".+\""
+        "\"password\": \".+\"",
+        "DllImport\\(\\\".+",
+        "STARTF_.+",
+        "SW_.+",
+        "WTS_.+"
     ]
 }

@@ -40,7 +40,7 @@
         public const string NewUsername = "newUserName";
 
         // log messages
-        public const string MsgAdduserSuccess = "MSG_ADDUSER_SUCCESS";
+        public const string MsgAddUserSuccess = "MSG_ADDUSER_SUCCESS";
         public const string MsgInit = "MESSAGE_INIT";
         public const string MsgErrorInit = "ERROR_INIT";
 

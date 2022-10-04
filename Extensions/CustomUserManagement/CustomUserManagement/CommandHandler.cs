@@ -51,9 +51,9 @@ namespace CustomUserManagement
                 {
                     // new user, add to the default group
                     var groups = new Value { StringConstants.DefaultGroup };
-                    var usergroupUser = new Value { { StringConstants.UserGroupUsersGroups, groups } };
+                    var userGroupUser = new Value { { StringConstants.UserGroupUsersGroups, groups } };
 
-                    serverError = TcHmiApplication.AsyncHost.SetConfigValue(serverContext, path, usergroupUser);
+                    serverError = TcHmiApplication.AsyncHost.SetConfigValue(serverContext, path, userGroupUser);
                 }
             }
 
@@ -64,7 +64,7 @@ namespace CustomUserManagement
                 return;
             }
 
-            _ = TcHmiAsyncLogger.Send(Severity.Verbose, StringConstants.MsgAdduserSuccess, username);
+            _ = TcHmiAsyncLogger.Send(Severity.Verbose, StringConstants.MsgAddUserSuccess, username);
         }
 
         public static void EnableDisableUser(Context context, Command command)
@@ -193,7 +193,7 @@ namespace CustomUserManagement
             {
                 var adminContext = TcHmiApplication.Context;
 
-                // rename entry in usermanagement extension
+                // rename entry in user management extension
                 if (TcHmiApplication.AsyncHost.RenameConfigValue(adminContext, oldPath, newPath) !=
                     ErrorValue.HMI_SUCCESS)
                 {

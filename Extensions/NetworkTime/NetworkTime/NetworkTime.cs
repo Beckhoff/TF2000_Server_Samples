@@ -32,7 +32,7 @@ namespace NetworkTime
         {
             // read configured time server from the extension's configuration.
             // we don't use the client context because the extension configuration
-            // is usually only accessable to administrators.
+            // is usually only accessible to administrators.
             string ntpServer = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "ntpServer");
 
             var now = GetNetworkTime(ntpServer);

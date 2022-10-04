@@ -31,12 +31,12 @@
     "validTo": "Valid to",
 
     "WRONG_PORT_CONFIGURATION": "Certificate generation stopped: Endpoints https://0.0.0.0:443 and http://0.0.0.0:80 must be configured",
-    "NO_CHALLENGE_FILE_ACCESS": "Usergroup '__SystemGuests' needs access to '/.well-known/acme-challenge'",
+    "NO_CHALLENGE_FILE_ACCESS": "User group '__SystemGuests' needs access to '/.well-known/acme-challenge'",
     "RESTART_REQUIRED": "Restart required to set current server certificate",
 
     "ERROR_GET_CERTIFICATE_EMPTY_DOMAIN": "Getting the current certificate failed: Domain must not be empty",
     "ERROR_GET_CERTIFICATE": "Getting the current certificate failed: GET {0} failed with error [{1}]",
-    "ERROR_GET_CERTIFICATE_SERVERID": "Error getting the current server-ID",
+    "ERROR_GET_CERTIFICATE_SERVER_ID": "Error getting the current server-ID",
     "ERROR_READ_CERTIFICATE": "Error reading the current certificate ({0}): {1}",
     "ERROR_INIT": "Error while initialization: {0}",
     "ERROR_CREATE_CERTIFICATE": "A new certificate could not be created: {0}",

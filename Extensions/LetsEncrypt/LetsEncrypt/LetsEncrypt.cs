@@ -36,7 +36,7 @@ namespace LetsEncrypt
         private const int LetsEncryptStagingV2 = 1;
 
         // path of challenge file
-        private const string ChalFilePath = "www/.well-known/acme-challenge/";
+        private const string ChallengeFilePath = "www/.well-known/acme-challenge/";
 
         // config properties
         private const string CfgGenerateCertificate = "generateCertificate";
@@ -74,7 +74,7 @@ namespace LetsEncrypt
         private X509Certificate2 _currentCertificate;
         private IKey _currentKey;
 
-        private bool _initFinisched;
+        private bool _initFinished;
 
         private string _intervalPath;
         private DateTime? _nextCertGeneration;
@@ -178,7 +178,7 @@ namespace LetsEncrypt
 
             if (string.IsNullOrEmpty(serverId))
             {
-                _ = TcHmiAsyncLogger.Send(Severity.Info, "ERROR_GET_CERTIFICATE_SERVERID");
+                _ = TcHmiAsyncLogger.Send(Severity.Info, "ERROR_GET_CERTIFICATE_SERVER_ID");
                 return;
             }
 
@@ -353,7 +353,7 @@ namespace LetsEncrypt
         /// <summary>
         ///     Generate new certificate with Let's Encrypt api.
         /// </summary>
-        /// <returns>ErrprValue</returns>
+        /// <returns>ErrorValue</returns>
         private void GenerateCertificate()
         {
             _ = TcHmiAsyncLogger.Send(Severity.Info, "INFO_GENERATE_CERTIFICATE");
@@ -382,14 +382,14 @@ namespace LetsEncrypt
             }
             // handle acme http challenge
 
-            if (Directory.Exists(ChalFilePath))
+            if (Directory.Exists(ChallengeFilePath))
             {
-                Directory.Delete(ChalFilePath, true);
+                Directory.Delete(ChallengeFilePath, true);
             }
 
             var challenge = authorization.Http().GetAwaiter().GetResult();
-            _ = Directory.CreateDirectory(ChalFilePath);
-            File.WriteAllText(ChalFilePath + challenge.Token, challenge.KeyAuthz);
+            _ = Directory.CreateDirectory(ChallengeFilePath);
+            File.WriteAllText(ChallengeFilePath + challenge.Token, challenge.KeyAuthz);
 
             var challengeValidator = challenge.Validate().GetAwaiter().GetResult();
             var maxAttempts = 5;
@@ -537,7 +537,7 @@ namespace LetsEncrypt
 
                 if (refreshCertificate)
                 {
-                    if (_initFinisched && generateCert)
+                    if (_initFinished && generateCert)
                     {
                         try
                         {
@@ -552,7 +552,7 @@ namespace LetsEncrypt
                     }
                     else
                     {
-                        _initFinisched = true;
+                        _initFinished = true;
                     }
                 }
 
