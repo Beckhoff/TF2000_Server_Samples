@@ -19,6 +19,7 @@ Here is a list of all sample extensions:
 - [StartProcessFromService](Extensions/StartProcessFromService/README.md)
 - [ErrorHandling](Extensions/ErrorHandling/)
 - [LetsEncrypt](Extensions/LetsEncrypt/)
+- [CustomConfig](Extensions/CustomConfig/)
 
 ## Documentation for the .NET extension API
 
@@ -78,6 +79,9 @@ interact with each other, and with the HMI server.
 - [ConfigListening](Extensions/ConfigListening/): If your server
 extension wants to listen for changes to its configuration, take a look at this
 sample.
+- [CustomConfig](Extensions/CustomConfig/): The HMI server generates a
+configuration page for every extension. This sample showcases how this default
+page can be replaced with a custom HTML page.
 - [DynamicSymbols](Extensions/DynamicSymbols/): All other samples
 provide a fixed list of symbols that clients can use to interact with the
 extension. This sample demonstrates how an extension can provide a dynamic list

@@ -2,8 +2,8 @@
 
 The `CustomConfig`-Extension contains a subfolder `ConfigResources` with a CSS-,
 JavaScript- and HTML-file. To show their content on the server configuration page, they must be
-copied to the output directory (Visual Studio: Right click &#8594; Properties &#8594; Copy
-to Output Directory).
+copied to the output directory (Visual Studio: _Right click_ &#8594; _Properties_ &#8594; _Copy
+to Output Directory_).
 
 If you open an HMI project with this extension, there will be a `Custom config`
 tab on the server configuration page which includes a button and a textarea. If you click on the
@@ -42,7 +42,7 @@ The default configuration looks like this:
     <a href="http://127.0.0.1:1010/VirtualDirectory/Path/Filename" download>Download link</a>
     ````
 
-    Limitation: The download button is not available inside of the live-view of the engineering.
+    **Limitation:** The download button is not available in the live-view of the HMI engineering.
 
 ## Example requests
 
