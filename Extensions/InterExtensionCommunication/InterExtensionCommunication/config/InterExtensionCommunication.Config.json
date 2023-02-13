@@ -1,8 +1,8 @@
-﻿{
+{
   "$schema": "ExtensionSettings.Schema.json",
   "guid": "091cc1f1-8ccf-4424-a835-5ff40ce02726",
   "version": "1.0.0.0",
-  "configVersion": "1.0.0.3",
+  "configVersion": "1.0.0.4",
   "configSchemaHash": "",
   "policies": [
     "StrictPropertyValidation"
@@ -48,6 +48,15 @@
     },
     "DoubleAdsTimeout": {
       "hidden": false,
+      "readValue": {
+        "function": true
+      }
+    },
+    "AddSymbolForAdsTimeout": {
+      "hidden": false,
+      "userGroups": [
+        "__SystemUsers"
+      ],
       "readValue": {
         "function": true
       }

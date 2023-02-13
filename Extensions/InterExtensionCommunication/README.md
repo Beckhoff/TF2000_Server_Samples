@@ -101,7 +101,7 @@ returns the local ADS routes.
     }
     ```
 
-1. The "DoubleAdsTimeout" function symbols reads from and writes to the ADS
+1. The "DoubleAdsTimeout" function symbol reads from and writes to the ADS
 extension's configuration ("ADS.Config").
 
     **Request:**
@@ -112,6 +112,25 @@ extension's configuration ("ADS.Config").
         "commands": [
             {
                 "symbol": "InterExtensionCommunication.DoubleAdsTimeout",
+                "commandOptions": [ "SendErrorMessage" ]
+            }
+        ]
+    }
+    ```
+
+1. The "AddSymbolForAdsTimeout" function symbol creates a new mapped symbol
+   "InterExtensionCommunication.AdsTimeout" that allows all members of the
+   "__SystemUsers" group to read and write the ADS timeout in the
+   ADS extension configuration ("ADS.Config::TIMEOUT").
+
+    **Request:**
+
+    ```json
+    {
+        "requestType": "ReadWrite",
+        "commands": [
+            {
+                "symbol": "InterExtensionCommunication.AddSymbolForAdsTimeout",
                 "commandOptions": [ "SendErrorMessage" ]
             }
         ]

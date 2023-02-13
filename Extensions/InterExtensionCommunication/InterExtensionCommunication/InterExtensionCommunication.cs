@@ -128,6 +128,42 @@ namespace InterExtensionCommunication
 
                             break;
                         }
+                        case "AddSymbolForAdsTimeout":
+                        {
+                            // extensions can create mapped symbols by calling the "AddSymbol" function symbol.
+                            // the following command adds a new symbol called
+                            // "InterExtensionCommunication.AdsTimeout" that allows all members of the
+                            // "__SystemUsers" group to read and write the ADS timeout in the
+                            // ADS extension configuration.
+                            // to create a mapped symbol for a PLC variable, you just have to change the
+                            // "MAPPING" parameter to something like "PLC1::MAIN::nCounter".
+
+                            var addSymbolCommand = new Command("AddSymbol")
+                            {
+                                WriteValue = new Value
+                                {
+                                    { "NAME", TcHmiApplication.Context.Domain + ".AdsTimeout" },
+                                    { "DOMAIN", "ADS" },
+                                    { "MAPPING", "Config::TIMEOUT" },
+                                    { "AUTOMAP", true },
+                                    { "ACCESS", 3 },
+                                    { "USERGROUPS", new Value { "__SystemUsers" } }
+                                }
+                            };
+                            var addSymbolResult =
+                                TcHmiApplication.AsyncHost.Execute(ref adminContext, ref addSymbolCommand);
+                            if (addSymbolResult != ErrorValue.HMI_SUCCESS ||
+                                addSymbolCommand.Result != ErrorValue.HMI_SUCCESS)
+                            {
+                                command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Failure);
+                            }
+                            else
+                            {
+                                command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
+                            }
+
+                            break;
+                        }
                     }
                 }
                 catch

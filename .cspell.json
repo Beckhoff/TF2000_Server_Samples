@@ -10,7 +10,8 @@
         "textblock",
         "timespan",
         "twincat",
-        "unregister"
+        "unregister",
+        "usergroups"
     ],
     "ignoreWords": [
         "aabc",
