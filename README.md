@@ -15,11 +15,12 @@ Here is a list of all sample extensions:
 - [EventSystem](Extensions/EventSystem/)
 - [EventListening](Extensions/EventListening/)
 - [ConfigListening](Extensions/ConfigListening/)
+- [ComplexConfig](Extensions/ComplexConfig/)
+- [CustomConfig](Extensions/CustomConfig/)
 - [DynamicSymbols](Extensions/DynamicSymbols/)
 - [StartProcessFromService](Extensions/StartProcessFromService/README.md)
 - [ErrorHandling](Extensions/ErrorHandling/)
 - [LetsEncrypt](Extensions/LetsEncrypt/)
-- [CustomConfig](Extensions/CustomConfig/)
 
 For more TwinCAT HMI samples check out the related repositories:
 
@@ -84,6 +85,9 @@ interact with each other, and with the HMI server.
 - [ConfigListening](Extensions/ConfigListening/): If your server
 extension wants to listen for changes to its configuration, take a look at this
 sample.
+- [ComplexConfig](Extensions/ComplexConfig/): A server extension with a complex
+configuration schema that showcases how an extension can read and edit its own
+extension configuration.
 - [CustomConfig](Extensions/CustomConfig/): The HMI server generates a
 configuration page for every extension. This sample showcases how this default
 page can be replaced with a custom HTML page.
@@ -121,7 +125,7 @@ for details)
 version 3.1.4024.0 or higher
 
 - [TE2000 TwinCAT 3 HMI Engineering](https://www.beckhoff.com/en-en/products/automation/twincat/te1xxx-twincat-3-engineering/te2000.html)
-version 1.12.746.0 or higher
+version 1.12.761.1755 or higher
 
 - [TF2200 TwinCAT 3 HMI Extension SDK](https://www.beckhoff.com/en-en/products/automation/twincat/tfxxxx-twincat-3-functions/tf2xxx-tc3-hmi/tf2200.html)
 ([standard](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_licensing/3510308491.html) or

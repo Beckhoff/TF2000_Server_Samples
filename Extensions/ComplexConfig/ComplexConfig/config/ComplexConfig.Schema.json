@@ -1,0 +1,138 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "stringNotEmpty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "weekday": {
+      "type": "string",
+      "enum": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ]
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/note"
+      }
+    },
+    "note": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "$ref": "#/definitions/stringNotEmpty"
+        },
+        "children": {
+          "$ref": "#/definitions/notes"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    },
+    "itemName": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/stringNotEmpty"
+        },
+        {
+          "maxLength": 80
+        }
+      ]
+    },
+    "listItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/itemName"
+        },
+        "notes": {
+          "$ref": "#/definitions/notes"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/listItem"
+      }
+    }
+  },
+  "properties": {
+    "projects": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "done": {
+            "$ref": "#/definitions/list"
+          },
+          "todo": {
+            "$ref": "#/definitions/list"
+          },
+          "reports": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "multiline"
+            }
+          }
+        },
+        "required": [
+          "done",
+          "todo",
+          "reports"
+        ]
+      }
+    },
+    "weekStartsAt": {
+      "$ref": "#/definitions/weekday"
+    }
+  },
+  "default": {
+    "projects": {
+      "Garden": {
+        "done": [],
+        "todo": [
+          {
+            "name": "Mow the lawn"
+          },
+          {
+            "name": "Plant trees",
+            "notes": [
+              {
+                "text": "Species",
+                "children": [
+                  {
+                    "text": "Oak"
+                  },
+                  {
+                    "text": "Maple"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "reports": []
+      }
+    },
+    "weekStartsAt": "Monday"
+  },
+  "required": [
+    "projects",
+    "weekStartsAt"
+  ],
+  "additionalProperties": false
+}

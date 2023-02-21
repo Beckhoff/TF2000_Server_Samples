@@ -1,0 +1,49 @@
+{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "f08b9297-926c-43d6-b0c9-d4372a4aad9d",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.0",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "MarkAsDone": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "$ref": "#/definitions/stringNotEmpty"
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "CreateReport": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
