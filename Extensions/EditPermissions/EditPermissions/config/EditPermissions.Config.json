@@ -1,0 +1,33 @@
+{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "b0e747bc-e870-4af6-aa92-22594467a23e",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.0",
+  "configSchemaHash": "",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ConfigureOperator": {
+      "hidden": false,
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true
+      }
+    },
+    "ToggleOperatorAccess": {
+      "hidden": false,
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "string"
+      }
+    }
+  }
+}

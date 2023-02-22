@@ -1,8 +1,8 @@
 # Server Extension Samples
 
-This repository contains server extensions that showcase many features of the
-server extension API, as well as various aspects of the extension-server
-interaction.
+This repository contains server extensions that showcase many features
+of the server extension API, as well as various aspects of the
+interaction between extensions and the server.
 
 Here is a list of all sample extensions:
 
@@ -12,6 +12,7 @@ Here is a list of all sample extensions:
 - [InterExtensionCommunication](Extensions/InterExtensionCommunication/)
 - [MinimalAuthentication](Extensions/MinimalAuthentication/)
 - [CustomUserManagement](Extensions/CustomUserManagement/)
+- [EditPermissions](Extensions/EditPermissions/)
 - [EventSystem](Extensions/EventSystem/)
 - [EventListening](Extensions/EventListening/)
 - [ConfigListening](Extensions/ConfigListening/)
@@ -45,7 +46,7 @@ Our suggestion is to start with the
 [NetworkTime](Extensions/NetworkTime/) or the
 [RandomValue](Extensions/RandomValue/) sample.
 Both are relatively short but contain many of the most commonly used features:
-Registering listeners, handling symbol requests, storing settings in the
+Registering listeners, handling symbol requests, and storing settings in the
 extension configuration.
 
 Every extension can define its own set of error codes. The
@@ -67,6 +68,8 @@ extension is the best starting point.
 - [CustomUserManagement](Extensions/CustomUserManagement/): A more
 realistic implementation of a user management extension that supports adding,
 removing, renaming, as well as enabling and disabling users.
+- [EditPermissions](Extensions/EditPermissions/): An extension that edits
+symbol permissions and user groups at runtime.
 
 ### **Event system**
 
@@ -113,7 +116,7 @@ The following components must be installed to build the samples:
 
 - [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet) or higher
 
-- [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2019)
+- [Visual Studio 2019](https://visualstudio.microsoft.com/vs/older-downloads/#visual-studio-2019-and-other-products)
 version 16.4 or higher (see
 [Install .NET on Windows](https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=net50#install-with-visual-studio)
 for details)
@@ -121,10 +124,10 @@ for details)
   Please also make sure that the required workloads for .NET development are
   installed.
 
-- [TE1000 TwinCAT 3 Engineering](https://www.beckhoff.com/en-en/products/automation/twincat/te1xxx-twincat-3-engineering/te1000.html)
+- [TE1000 TwinCAT 3 Engineering](https://www.beckhoff.com/en-en/products/automation/twincat/texxxx-twincat-3-engineering/te1000.html)
 version 3.1.4024.0 or higher
 
-- [TE2000 TwinCAT 3 HMI Engineering](https://www.beckhoff.com/en-en/products/automation/twincat/te1xxx-twincat-3-engineering/te2000.html)
+- [TE2000 TwinCAT 3 HMI Engineering](https://www.beckhoff.com/en-en/products/automation/twincat/texxxx-twincat-3-engineering/te2000.html)
 version 1.12.761.1755 or higher
 
 - [TF2200 TwinCAT 3 HMI Extension SDK](https://www.beckhoff.com/en-en/products/automation/twincat/tfxxxx-twincat-3-functions/tf2xxx-tc3-hmi/tf2200.html)
