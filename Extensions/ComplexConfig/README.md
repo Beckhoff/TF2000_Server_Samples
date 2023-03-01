@@ -174,16 +174,11 @@ all server extensions.
                 "readValue": {
                     "done": [],
                     "reports": [
-                        "# Done in the week of Monday, February 20, 2023\r\n1. Plant trees\r\n  - Species\r\n    - Oak\r\n    - Maple\r\n      - test\r\n"
+                        "# Done in the week of Monday, February 20, 2023\r\n1. Plant trees\r\n  - Species\r\n    - Oak\r\n    - Maple\r\n"
                     ],
                     "todo": [
                         {
-                            "name": "Mow the lawn",
-                            "notes": [
-                                {
-                                    "text": "test"
-                                }
-                            ]
+                            "name": "Mow the lawn"
                         }
                     ]
                 }
