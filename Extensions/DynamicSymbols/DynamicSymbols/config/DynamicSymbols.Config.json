@@ -1,8 +1,8 @@
-﻿{
+{
   "$schema": "ExtensionSettings.Schema.json",
   "guid": "60312ad9-6bec-46fd-903a-fe4dadbf9d11",
   "version": "1.0.0.0",
-  "configVersion": "1.0.0.1",
+  "configVersion": "1.0.0.2",
   "policies": [
     "StrictPropertyValidation"
   ],
@@ -20,6 +20,9 @@
     "GetSchema": {
       "readValue": {
         "function": true
+      },
+      "writeValue": {
+        "type": "string"
       }
     },
     "AddMachine": {
