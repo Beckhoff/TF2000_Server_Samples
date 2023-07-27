@@ -12,11 +12,6 @@
         "function": true
       }
     },
-    "GetDefinitions": {
-      "readValue": {
-        "function": true
-      }
-    },
     "GetSchema": {
       "readValue": {
         "function": true
