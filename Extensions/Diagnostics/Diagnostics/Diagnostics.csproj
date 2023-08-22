@@ -9,7 +9,7 @@
 		<Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
 		<Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
 		<Description>Implementation of a server extension that provides live information using a diagnostics symbol that is shown on the configuration page of the server extension.</Description>
-		<Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2022</Copyright>
+		<Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2023</Copyright>
 	</PropertyGroup>
 
 	<PropertyGroup>
