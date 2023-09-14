@@ -136,8 +136,8 @@ namespace DynamicSymbols
 
             try
             {
-                // Handle commands 'ListSymbols', 'GetDefinitions', 'GetSchema', read and write operations to the dynamic symbols by the 'DynamicSymbolsProvider'
-                // Don't forget to add symbols 'ListSymbols', 'GetDefinitions', 'GetSchema' to your *.Config.json!
+                // Handle commands 'ListSymbols', 'GetSchema', read and write operations to the dynamic symbols by the 'DynamicSymbolsProvider'
+                // Don't forget to add symbols 'ListSymbols' and 'GetSchema' to your *.Config.json!
                 foreach (var command in _provider.HandleCommands(commands))
                 {
                     var mapping = command.Mapping;
