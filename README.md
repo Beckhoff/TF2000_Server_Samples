@@ -31,14 +31,7 @@ For more TwinCAT HMI samples check out the related repositories:
 ## Documentation for the .NET extension API
 
 The documentation for the API can be found in the
-[Beckhoff Information System](https://infosys.beckhoff.com/index.php?content=../content/1031/te2000_tc3_hmi_engineering/10591698827.html&id=7157243092038441902).
-
-If the TE2000-HMI-Engineering is installed on your system, the documentation is
-also available at this path:
-
-```txt
-C:\TwinCAT\Functions\TE2000-HMI-Engineering\Infrastructure\TcHmiServer\docs\TcHmiSrvExtNet.Core.Documentation.chm
-```
+[Beckhoff Information System](https://infosys.beckhoff.com/index.php?content=../content/1031/te2000_tc3_hmi_engineering/3864419211.html).
 
 ## Getting started
 

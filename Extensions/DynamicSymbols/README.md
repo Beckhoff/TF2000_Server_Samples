@@ -9,7 +9,9 @@ The "DynamicSymbols" sample server extension shows how to create and manage dyna
 
 Dynamic symbols are symbols that can be created and removed during the runtime of a server extension.
 In contrast, static symbols are specified in the `Config.json` of a server extension at compile time.
-For general information about providing dynamic symbols in server extensions, see the documentation of the `TcHmiSrv.Core.Tools.DynamicSymbols` namespace at `C:\TwinCAT\Functions\TE2000-HMI-Engineering\Infrastructure\TcHmiServer\docs\TcHmiSrvExtNet.Core.Documentation.chm`.
+For general information about providing dynamic symbols in server extensions, see the documentation
+of the `TcHmiSrv.Core.Tools.DynamicSymbols` namespace in the
+[Beckhoff Information System](https://infosys.beckhoff.com/index.php?content=../content/1031/te2000_tc3_hmi_engineering/3864419211.html).
 
 The dynamic symbols in this sample server extension represent machines of type `Furnace`, `Press`, and `Saw`.
 
