@@ -1,0 +1,23 @@
+{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "f28c0183-5886-410c-94ef-ff1e5af9e629",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.0",
+  "policies": [
+    "StrictPropertyValidation",
+    "StrictConfigListenerFilter"
+  ],
+  "symbols": {
+    "GetProtectedSymbol": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "writeValue": {
+        "type": "string"
+      },
+      "readValue": {
+        "type": "string"
+      }
+    }
+  }
+}

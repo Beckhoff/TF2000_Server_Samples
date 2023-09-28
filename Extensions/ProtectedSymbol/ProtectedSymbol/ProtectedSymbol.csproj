@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<AssemblyName>ProtectedSymbol</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
+		<Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
+		<Description>Implementation of a server extension to encrypt symbols with the DPAPI</Description>
+		<Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2023</Copyright>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TcHmiExtensionTypes>{5DF3DCF0-60A1-4102-985E-1810812D0E69}</TcHmiExtensionTypes>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TcHmiServerApiVersionNumberMajor>2</TcHmiServerApiVersionNumberMajor>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TcHmiInstallDir>$(registry:HKEY_CURRENT_USER\Software\Beckhoff\TwinCAT3\3.1@InstallDir)</TcHmiInstallDir>
+		<TcHmiInstallDir Condition="'$(TcHmiInstallDir)'==''">$(registry:HKEY_LOCAL_MACHINE\Software\Beckhoff\TwinCAT3\3.1@InstallDir)</TcHmiInstallDir>
+		<TcHmiInstallDir Condition="'$(TcHmiInstallDir)'==''">$(registry:HKEY_LOCAL_MACHINE\Software\Wow6432Node\Beckhoff\TwinCAT3\3.1@InstallDir)</TcHmiInstallDir>
+		<TcHmiEgineeringDir>$(TcHmiInstallDir)..\Functions\TE2000-HMI-Engineering</TcHmiEgineeringDir>
+		<TcHmiMsBuildPath Condition="'$(TcHmiMsBuildPath)' == ''">$(TcHmiEgineeringDir)\MSBuild\</TcHmiMsBuildPath>
+	</PropertyGroup>
+
+	<Import Project="$(TWINCAT3DIR)..\Functions\TE2000-HMI-Engineering\Infrastructure\TcHmiServer\imports\TcHmiServerExtensionCSharp.proj" />
+
+	<PropertyGroup>
+		<DefaultItemExcludes>$(DefaultItemExcludes);___initialBuild_of_this_extension.tmp</DefaultItemExcludes>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ProjectGuid>f28c0183-5886-410c-94ef-ff1e5af9e629</ProjectGuid>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Reference Include="System.Security" />
+	</ItemGroup>
+
+</Project>

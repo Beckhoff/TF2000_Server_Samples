@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33927.289
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtectedSymbol", "ProtectedSymbol\ProtectedSymbol.csproj", "{F28C0183-5886-410C-94EF-FF1E5AF9E629}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F28C0183-5886-410C-94EF-FF1E5AF9E629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28C0183-5886-410C-94EF-FF1E5AF9E629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28C0183-5886-410C-94EF-FF1E5AF9E629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28C0183-5886-410C-94EF-FF1E5AF9E629}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B3F8693-D62C-4A3B-8196-9F8B71BD27AE}
+	EndGlobalSection
+EndGlobal

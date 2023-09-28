@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <!-- Required elements -->
+    <id>ProtectedSymbol</id>
+    <version>1.0.0.0</version>
+    <description>Implementation of a server extension to encrypt symbols with the DPAPI</description>
+    <authors>Beckhoff Automation GmbH &amp; Co. KG</authors>
+
+    <!-- Optional elements -->
+    <title>NetworkTime</title>
+    <owners>Beckhoff Automation GmbH &amp; Co. KG</owners>
+    <projectUrl>https://www.beckhoff.com/TwinCAT-HMI/</projectUrl>
+    <licenseUrl>https://www.beckhoff.com/</licenseUrl>
+    <iconUrl>http://nuget.beckhoff.com/image/beckhoffpackage.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Beckhoff Automation GmbH &amp; Co. KG</copyright>
+    <tags>TwinCAT HMI Server</tags>
+    <dependencies>
+      <group targetFramework="netstandard2.0">
+        <!-- Package dependencies -->
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <!--
+    target := win-x64, win-x86, etc.
+    -->
+    <file src="LICENSE.txt" target="" />
+    <file src="bin\Debug\**\ProtectedSymbol.dll" target="runtimes\any\native\"/>
+    <file src="bin\Debug\**\ProtectedSymbol.*.json" target="runtimes\any\native\"/>
+    <file src="images\logo.png" target="images\" />
+  </files>
+</package>

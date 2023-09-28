@@ -29,6 +29,7 @@ Here is a list of all sample extensions:
 - [StartProcessFromService](Extensions/StartProcessFromService/README.md)
 - [ErrorHandling](Extensions/ErrorHandling/)
 - [LetsEncrypt](Extensions/LetsEncrypt/)
+- [ProtectedSymbol](Extensions/ProtectedSymbol/)
 
 For more TwinCAT HMI samples check out the related repositories:
 
@@ -104,6 +105,7 @@ of symbols that changes at runtime.
 Starts a process from a server extension running as a service.
 - [LetsEncrypt](Extensions/LetsEncrypt/): This server extension generates
 an ssl certificate with [Let's Encrypt](https://letsencrypt.org/).
+- [ProtectedSymbol](Extensions/ProtectedSymbol/): Protect and encrypt symbols with the windows [DPAPI](https://learn.microsoft.com/de-de/dotnet/standard/security/how-to-use-data-protection).
 
 ## Code Snippets
 
