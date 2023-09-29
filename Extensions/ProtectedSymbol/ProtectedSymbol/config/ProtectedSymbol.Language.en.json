@@ -3,6 +3,12 @@
   "locale": "en",
   "localizedText": {
     "protectedSymbol": "Protected symbol",
-    "protectedSymbolDescription": "This symbol is encrypted with Windows user data."
+    "protectedSymbolDescription": "This symbol is encrypted with Windows user data.",
+    "nestedSymbol": "Nested symbol",
+    "nestedSymbolDescription": "This symbol has an unprotected and a protected child symbol.",
+    "unprotectedChild": "Unprotected child",
+    "unprotectedChildDescription": "This symbol is not encrypted.",
+    "protectedChild": "Protected child",
+    "protectedChildDescription": "This symbol is encrypted with Windows user data."
   }
 }

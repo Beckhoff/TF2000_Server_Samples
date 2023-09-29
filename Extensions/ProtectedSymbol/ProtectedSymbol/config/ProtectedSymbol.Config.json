@@ -16,7 +16,8 @@
         "type": "string"
       },
       "readValue": {
-        "type": "string"
+        "type": "string",
+        "function": true
       }
     }
   }

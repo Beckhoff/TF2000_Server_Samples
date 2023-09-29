@@ -5,6 +5,27 @@
     "protectedSymbol": {
       "type": "string",
       "description": "protectedSymbolDescription"
+    },
+    "nestedSymbol": {
+      "type": "object",
+      "description": "nestedSymbolDescription",
+      "properties": {
+        "unprotectedChild": {
+          "type": "string",
+          "default": "",
+          "description": "unprotectedChildDescription"
+        },
+        "protectedChild": {
+          "type": "string",
+          "default": "",
+          "description": "protectedChildDescription"
+        }
+      },
+      "required": [
+        "unprotectedChild",
+        "protectedChild"
+      ],
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

@@ -4,7 +4,7 @@
     <!-- Required elements -->
     <id>ProtectedSymbol</id>
     <version>1.0.0.0</version>
-    <description>Implementation of a server extension to encrypt symbols with the DPAPI</description>
+    <description>Implementation of a server extension that can encrypt and decrypt a symbol using the "Data Protection API" (DPAPI).</description>
     <authors>Beckhoff Automation GmbH &amp; Co. KG</authors>
 
     <!-- Optional elements -->

@@ -7,7 +7,10 @@
 using System;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Collections.Generic;
+using Integrative.Encryption;
 using TcHmiSrv.Core;
+using TcHmiSrv.Core.Extensions;
 using TcHmiSrv.Core.General;
 using TcHmiSrv.Core.Listeners;
 using TcHmiSrv.Core.Tools.Management;
@@ -21,13 +24,13 @@ namespace ProtectedSymbol
         private readonly ExportListener exportListener = new ExportListener();
         private readonly ConfigListener configListener = new ConfigListener();
 
-        // A random entropy to pass the the protection function. This is used so only this application can unprotect the data.
+        // A random entropy to pass to the the protection function. This is used so only this application can unprotect the data.
         private static readonly byte[] s_entropy = {
             40, 149, 96, 43, 138, 32, 77, 69, 9, 174, 237, 132, 96, 180, 54, 96
         };
 
         // A list of symbols that should be protected
-        private static readonly string[] protectedSymbols = { "protectedSymbol" };
+        private static readonly string[] protectedSymbols = { "protectedSymbol", "nestedSymbol::protectedChild" };
 
         // Called after the TwinCAT HMI server loaded the server extension. Here, the listeners are registered.
         public ErrorValue Init()
@@ -46,7 +49,7 @@ namespace ProtectedSymbol
             byte[] buffer = System.Text.Encoding.UTF8.GetBytes(s); 
 
             // Encrypt the byte array using the credentials of the current windows user
-            buffer = ProtectedData.Protect(buffer, s_entropy, DataProtectionScope.CurrentUser);
+            buffer = CrossProtect.Protect(buffer, s_entropy, DataProtectionScope.CurrentUser);
             s = Convert.ToBase64String(buffer);
 
             // Write the encrypted string back to the value
@@ -60,7 +63,7 @@ namespace ProtectedSymbol
             byte[] buffer = Convert.FromBase64String(s);
 
             // decrypt the byte array using the credentials of the current windows user
-            buffer = ProtectedData.Unprotect(buffer, s_entropy, DataProtectionScope.CurrentUser);
+            buffer = CrossProtect.Unprotect(buffer, s_entropy, DataProtectionScope.CurrentUser);
             s = System.Text.Encoding.UTF8.GetString(buffer);
 
             // Write the decrypted string back to the value
@@ -109,8 +112,11 @@ namespace ProtectedSymbol
         {
             foreach (string protectedSymbol in protectedSymbols)
             {
-                // if a protected symbol is about to be exported, decrypt it first
-                if (e.Value.TryGetValue(protectedSymbol, out Value subValue))
+                // Split the symbol path into its parts
+                Queue<string> path = new Queue<string>(protectedSymbol.Split("::"));
+
+                // If the protected symbol is about to be exported, decrypt it first
+                if (e.Value.TryResolveBy(path, out Value subValue))
                 {
                     UnprotectString(subValue);
                 }
@@ -121,8 +127,11 @@ namespace ProtectedSymbol
         {
             foreach (string protectedSymbol in protectedSymbols)
             {
-                // if a protected symbol is about to be imported, encrypt it first
-                if (e.Value.TryGetValue(protectedSymbol, out Value subValue))
+                // Split the symbol path into its parts
+                Queue<string> path = new Queue<string>(protectedSymbol.Split("::"));
+
+                // If the protected symbol is about to be imported, encrypt it first
+                if (e.Value.TryResolveBy(path, out Value subValue))
                 {
                     ProtectString(subValue);
                 }

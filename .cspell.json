@@ -4,7 +4,6 @@
     "words": [
         "beckhoff",
         "browsable",
-        "DPAPI",
         "endianness",
         "fileaccess",
         "inspectcode",
@@ -51,7 +50,8 @@
         "usergroupusers",
         "virtualdirectories",
         "winsta",
-        "wtsapi"
+        "wtsapi",
+        "dpapi"
     ],
     "ignorePaths": [
         "**/DynamicSymbols/TcHmiProjectDynamicSymbols/**",

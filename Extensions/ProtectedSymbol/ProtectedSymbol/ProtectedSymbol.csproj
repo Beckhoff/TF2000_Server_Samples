@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<AssemblyName>ProtectedSymbol</AssemblyName>
 	</PropertyGroup>
@@ -9,7 +9,7 @@
 	<PropertyGroup>
 		<Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
 		<Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
-		<Description>Implementation of a server extension to encrypt symbols with the DPAPI</Description>
+		<Description>Implementation of a server extension that can encrypt and decrypt a symbol using the "Data Protection API" (DPAPI).</Description>
 		<Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2023</Copyright>
 	</PropertyGroup>
 
@@ -44,7 +44,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Reference Include="System.Security" />
+	  <PackageReference Include="Integrative.CrossProtect" Version="0.1.3" />
 	</ItemGroup>
 
 </Project>

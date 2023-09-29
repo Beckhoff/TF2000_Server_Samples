@@ -101,7 +101,7 @@ automatically generate symbols based on .NET types at compile time.
 provide a fixed list of symbols that clients can use to interact with the
 extension. This sample demonstrates how an extension can provide a dynamic list
 of symbols that changes at runtime.
-- [StartProcessFromService](Extensions/StartProcessFromService/README.md):
+- [StartProcessFromService](Extensions/StartProcessFromService/):
 Starts a process from a server extension running as a service.
 - [LetsEncrypt](Extensions/LetsEncrypt/): This server extension generates
 an ssl certificate with [Let's Encrypt](https://letsencrypt.org/).
