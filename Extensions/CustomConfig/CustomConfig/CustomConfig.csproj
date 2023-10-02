@@ -1,57 +1,66 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <AssemblyName>CustomConfig</AssemblyName>
-    </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
-        <Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
-        <Description>Implementation of a server extension that contains a custom server configuration page.</Description>
-        <Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2023</Copyright>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<AssemblyName>CustomConfig</AssemblyName>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    </PropertyGroup>
+	<PropertyGroup>
+		<Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
+		<Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
+		<Description>Implementation of a server extension that contains a custom server configuration page.</Description>
+		<Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2023</Copyright>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <TcHmiExtensionTypes>{165402F8-2FAD-480A-BCE3-D718A6135931}</TcHmiExtensionTypes>
-    </PropertyGroup>
+	<PropertyGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <TcHmiServerApiVersionNumberMajor>1</TcHmiServerApiVersionNumberMajor>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TcHmiExtensionTypes>{165402F8-2FAD-480A-BCE3-D718A6135931}</TcHmiExtensionTypes>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <TcHmiInstallDir>$(registry:HKEY_CURRENT_USER\Software\Beckhoff\TwinCAT3\3.1@InstallDir)</TcHmiInstallDir>
-        <TcHmiInstallDir Condition="'$(TcHmiInstallDir)'==''">$(registry:HKEY_LOCAL_MACHINE\Software\Beckhoff\TwinCAT3\3.1@InstallDir)</TcHmiInstallDir>
-        <TcHmiInstallDir Condition="'$(TcHmiInstallDir)'==''">$(registry:HKEY_LOCAL_MACHINE\Software\Wow6432Node\Beckhoff\TwinCAT3\3.1@InstallDir)</TcHmiInstallDir>
-        <TcHmiEngineeringDir>$(TcHmiInstallDir)..\Functions\TE2000-HMI-Engineering</TcHmiEngineeringDir>
-        <TcHmiMsBuildPath Condition="'$(TcHmiMsBuildPath)' == ''">$(TcHmiEngineeringDir)\MSBuild\</TcHmiMsBuildPath>
-    </PropertyGroup>
+	<ItemGroup>
+		<!--Exclude runtime assets to not copy files from dependent NuGet packages to the output directory.-->
+		<!--Declare all assets private to not make a created NuGet package dependent on them.-->
+		<PackageReference Include="Beckhoff.TwinCAT.HMI.TcHmiSrvExtNet.Core.SDK" Version="1.*">
+			<ExcludeAssets>runtime</ExcludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
 
-    <Import Project="$(TWINCAT3DIR)..\Functions\TE2000-HMI-Engineering\Infrastructure\TcHmiServer\imports\TcHmiServerExtensionCSharp.proj" />
+	<PropertyGroup>
+		<ProjectGuid>a495b564-265c-4a1d-98ba-13dabe8f3fee</ProjectGuid>
+	</PropertyGroup>
 
-    <PropertyGroup>
-        <DefaultItemExcludes>$(DefaultItemExcludes);___initialBuild_of_this_extension.tmp</DefaultItemExcludes>
-    </PropertyGroup>
+	<ItemGroup>
+		<None Update="ConfigResources\CustomConfig.css">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="ConfigResources\CustomConfig.html">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="ConfigResources\CustomConfig.js">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
-    <PropertyGroup>
-        <ProjectGuid>a495b564-265c-4a1d-98ba-13dabe8f3fee</ProjectGuid>
-    </PropertyGroup>
+	<!--
+		The following property group is used by TwinCAT HMI Engineering to determine the current project version.
+		PLEASE DON'T CHANGE IT!
+	-->
+	<PropertyGroup>
+		<TcHmiProjectFileVersion>1.0.0.0</TcHmiProjectFileVersion>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <None Update="ConfigResources\CustomConfig.css">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ConfigResources\CustomConfig.html">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ConfigResources\CustomConfig.js">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
+	<!--
+		Set GeneratePackageOnBuild to true in the following property group to generate a NuGet package on build.
+		For more information about creating a NuGet package using MSBuild, see the following article:
+		https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild
+	-->
+	<PropertyGroup>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
 
 </Project>
