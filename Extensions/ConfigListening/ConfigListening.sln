@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34009.444
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigListening", "ConfigListening\ConfigListening.csproj", "{DA599B5A-F4C8-4F3B-ABF9-BEE37FC4DE52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigListening", "ConfigListening\ConfigListening.csproj", "{DA599B5A-F4C8-4F3B-ABF9-BEE37FC4DE52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigListeningUnitTests", "ConfigListeningUnitTests\ConfigListeningUnitTests.csproj", "{F5FF33CD-0DAE-45DF-A7C0-7A77BF781FCF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigListeningUnitTests", "ConfigListeningUnitTests\ConfigListeningUnitTests.csproj", "{F5FF33CD-0DAE-45DF-A7C0-7A77BF781FCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
