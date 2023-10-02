@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Beckhoff Automation GmbH &amp; Co. KG</Authors>
+    <Company>Beckhoff Automation GmbH &amp; Co. KG</Company>
+    <Description>Implementation of a server extension that uses static symbols.</Description>
+    <Copyright>Copyright © Beckhoff Automation GmbH &amp; Co. KG 2023</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <!--
+    The following property group is used by TwinCAT HMI Engineering to determine the current project version.
+    PLEASE DON'T CHANGE IT!
+  -->
+  <PropertyGroup>
+    <TcHmiProjectFileVersion>1.0.0.0</TcHmiProjectFileVersion>
+  </PropertyGroup>
+
+  <!--
+    Set GeneratePackageOnBuild to true in the following property group to generate a NuGet package on build.
+    For more information about creating a NuGet package using MSBuild, see the following article:
+    https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild
+  -->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TcHmiExtensionTypes>{5DF3DCF0-60A1-4102-985E-1810812D0E69}</TcHmiExtensionTypes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Beckhoff.TwinCAT.HMI.TcHmiSrvExtNet.Core.SDK" Version="3.0.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ProjectGuid>c6da1e4d-1ffd-4dc2-8c45-652185a6cee4</ProjectGuid>
+  </PropertyGroup>
+
+</Project>

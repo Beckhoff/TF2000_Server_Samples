@@ -24,6 +24,7 @@ Here is a list of all sample extensions:
 - [ConfigListening](Extensions/ConfigListening/)
 - [ComplexConfig](Extensions/ComplexConfig/)
 - [CustomConfig](Extensions/CustomConfig/)
+- [StaticSymbols](Extensions/StaticSymbols/)
 - [DynamicSymbols](Extensions/DynamicSymbols/)
 - [StartProcessFromService](Extensions/StartProcessFromService/README.md)
 - [ErrorHandling](Extensions/ErrorHandling/)
@@ -93,6 +94,8 @@ extension configuration.
 - [CustomConfig](Extensions/CustomConfig/): The HMI server generates a
 configuration page for every extension. This sample showcases how this default
 page can be replaced with a custom HTML page.
+- [StaticSymbols](Extensions/StaticSymbols/): This sample demonstrates how to
+automatically generate symbols based on .NET types at compile time.
 - [DynamicSymbols](Extensions/DynamicSymbols/): All other samples
 provide a fixed list of symbols that clients can use to interact with the
 extension. This sample demonstrates how an extension can provide a dynamic list

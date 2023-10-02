@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "MESSAGE_INIT": "Initializing extension StaticSymbols succeeded.",
+    "ERROR_INIT": "Initializing extension StaticSymbols failed. Additional information: {0}",
+
+    "MESSAGE_SHUTDOWN": "Shutdown extension StaticSymbols succeeded.",
+    "ERROR_SHUTDOWN": "Shutdown extension StaticSymbols failed. Additional information: {0}",
+
+    "ERROR_REQUEST": "Request failed! Additional information: {0}",
+    "ERROR_CALL_COMMAND": "Calling command '{0}' failed! Additional information: {1}"
+  }
+}
