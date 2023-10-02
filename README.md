@@ -1,5 +1,11 @@
 # Server Extension Samples
 
+> Welcome to the TwinCAT HMI version 1.14 sample repository!
+> If you're still using version 1.12, you can find the relevant samples
+> in the [1.12 branch](https://github.com/Beckhoff/TF2000_Server_Samples/tree/1.12).
+> Make sure to check it out if you haven't upgraded yet.
+> Your feedback and contributions are highly appreciated. Happy coding!
+
 This repository contains server extensions that showcase many features
 of the server extension API, as well as various aspects of the
 interaction between extensions and the server.
@@ -107,12 +113,9 @@ facilitate the development of a server extensions.
 
 The following components must be installed to build the samples:
 
-- [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet) or higher
+- [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher
 
-- [Visual Studio 2019](https://visualstudio.microsoft.com/vs/older-downloads/#visual-studio-2019-and-other-products)
-version 16.4 or higher (see
-[Install .NET on Windows](https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=net50#install-with-visual-studio)
-for details)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 
   Please also make sure that the required workloads for .NET development are
   installed.
@@ -121,7 +124,7 @@ for details)
 version 3.1.4024.0 or higher
 
 - [TE2000 TwinCAT 3 HMI Engineering](https://www.beckhoff.com/en-en/products/automation/twincat/texxxx-twincat-3-engineering/te2000.html)
-version 1.12.760.42 or higher
+version 1.14 or higher
 
 - [TF2200 TwinCAT 3 HMI Extension SDK](https://www.beckhoff.com/en-en/products/automation/twincat/tfxxxx-twincat-3-functions/tf2xxx-tc3-hmi/tf2200.html)
 ([standard](https://infosys.beckhoff.com/english.php?content=../content/1033/tc3_licensing/3510308491.html) or
