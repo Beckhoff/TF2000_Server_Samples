@@ -19,7 +19,7 @@ namespace DynamicSymbols.Machines
         {
             get
             {
-                return "Furnace to heating or melting something";
+                return "Furnace for heating or melting materials";
             }
         }
 

@@ -14,7 +14,7 @@ namespace DynamicSymbols.Machines
         {
             get
             {
-                return "Saws a workpiece into two or more parts";
+                return "Saws a workpiece into two or more pieces";
             }
         }
 

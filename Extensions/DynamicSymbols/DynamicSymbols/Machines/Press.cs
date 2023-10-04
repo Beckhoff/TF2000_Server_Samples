@@ -17,7 +17,7 @@ namespace DynamicSymbols.Machines
         {
             get
             {
-                return "Presses different materials into one";
+                return "Squeezes different materials into one";
             }
         }
 
