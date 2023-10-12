@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "users": {
-      "hidden": true,
+      "visibility": "HideInEngineering",
       "type": "object",
       "additionalProperties": {
         "type": "object",

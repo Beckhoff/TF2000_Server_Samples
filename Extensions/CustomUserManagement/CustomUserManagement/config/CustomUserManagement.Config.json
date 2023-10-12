@@ -136,7 +136,6 @@
       "userGroups": [
         "__SystemUsers"
       ],
-      "hidden": false,
       "readValue": {
         "function": true
       },

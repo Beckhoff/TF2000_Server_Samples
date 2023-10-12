@@ -9,7 +9,6 @@
   ],
   "symbols": {
     "ListUsers": {
-      "hidden": false,
       "readValue": {
         "function": true,
         "type": "array",

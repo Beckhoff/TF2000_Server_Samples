@@ -30,8 +30,7 @@
           }
         },
         "additionalProperties": false
-      },
-      "hidden": false
+      }
     }
   }
 }

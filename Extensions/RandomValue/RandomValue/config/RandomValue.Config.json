@@ -21,8 +21,7 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ],
-      "hidden": false
+      ]
     },
     "MaxRandom": {
       "readValue": {
@@ -30,8 +29,7 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ],
-      "hidden": false
+      ]
     },
     "MaxRandomFromConfig": {
       "readValue": {
@@ -39,8 +37,7 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ],
-      "hidden": false
+      ]
     }
   }
 }

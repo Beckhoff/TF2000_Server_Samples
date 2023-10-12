@@ -9,7 +9,6 @@
   ],
   "symbols": {
     "ConfigureOperator": {
-      "hidden": false,
       "userGroups": [
         "__SystemUsers"
       ],
@@ -18,7 +17,6 @@
       }
     },
     "ToggleOperatorAccess": {
-      "hidden": false,
       "userGroups": [
         "__SystemUsers"
       ],

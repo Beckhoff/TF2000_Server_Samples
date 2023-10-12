@@ -42,8 +42,7 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ],
-      "hidden": false
+      ]
     },
     "RemoveMachine": {
       "readValue": {
@@ -55,8 +54,7 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ],
-      "hidden": false
+      ]
     }
   }
 }
