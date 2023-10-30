@@ -1,0 +1,7 @@
+{
+  "$schema": "../TcHmiSrv/Language.Schema.json",
+  "locale": "en",
+  "localizedText": {
+    "customConfig": "Random value"
+  }
+}

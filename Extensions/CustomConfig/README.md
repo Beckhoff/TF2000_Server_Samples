@@ -6,7 +6,8 @@ copied to the output directory (Visual Studio: _Right click_ &#8594; _Properties
 to Output Directory_).
 
 If you open an HMI project with this extension, there will be a `Custom config`
-tab on the server configuration page which includes a button and a textarea. If you click on the
+tab on the server configuration page which includes a button and a textarea. The title of this tab
+can be changed in the `.Config.json` file of the extension. If you click on the
 button, `CustomConfig.GetRandom` will be executed which returns a random integer
 between `min` and `max` of the extension configuration. The default configuration
 will be still available with the `General` tab.
@@ -17,6 +18,34 @@ The default configuration looks like this:
 {
     "max": 0,
     "min": 0
+}
+````
+
+## Example: Change custom config title
+
+To change the title of the custom config tab, add an entry with `__CUSTOM_CONFIG__` as name
+and your localization key to the `symbolCategories` property of your `.Config.json` file.
+
+````json
+{
+    "symbolCategories": [
+        {
+            "name": "__CUSTOM_CONFIG__",
+            "localization": "customConfig"
+        }
+    ]
+}
+````
+
+Add an entry for `customConfig` to your language files.
+
+````json
+{
+    "$schema": "../TcHmiSrv/Language.Schema.json",
+    "locale": "en",
+    "localizedText": {
+        "customConfig": "Random value"
+    }
 }
 ````
 

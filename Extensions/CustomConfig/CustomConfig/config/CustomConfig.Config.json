@@ -6,6 +6,12 @@
   "policies": [
     "StrictPropertyValidation"
   ],
+  "symbolCategories": [
+    {
+      "name": "__CUSTOM_CONFIG__",
+      "localization": "customConfig"
+    }
+  ],
   "symbols": {
     "GetRandom": {
       "readValue": {
