@@ -60,7 +60,7 @@ if [ -z "${installed_tools}" ] ; then
     else
         "${dotnet_path}" tool install "JetBrains.ReSharper.GlobalTools" --global --version "${tools_version}"
     fi
-elif [ \( -n "${tools_version}" \) -a \( "${tools_version}" > "${installed_tools_version}" \) ] ; then
+elif [ -n "${tools_version}" ] && [ "${tools_version}" > "${installed_tools_version}" ] ; then
     "${dotnet_path}" tool update "JetBrains.ReSharper.GlobalTools" --global --version "${tools_version}"
 else
     echo "ReSharper command line tools version ${installed_tools_version} are already installed."

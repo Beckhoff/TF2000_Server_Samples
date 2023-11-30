@@ -47,7 +47,7 @@ while [ $# -gt 0 ] ; do
 done
 
 ### Validation ###
-if [ \( -n "${extension_name}" \) -a \( ! -d "${script_path}/${extension_name}" \) ] ; then
+if [ -n "${extension_name}" ] && [ ! -d "${script_path}/${extension_name}" ] ; then
     echo "Extension directory does not exist: ${script_path}/${extension_name}"
     exit 1
 fi
@@ -78,14 +78,14 @@ esac
 ### Execution ###
 for extension in "${script_path}"/* ; do
     if [ -d "${extension}" ] ; then
-        if [ \( -z "${extension_name}" \) -o \( "$(basename ${extension})" == "${extension_name}" \) ] ; then
+        if [ -z "${extension_name}" ] || [ "$(basename "${extension}")" = "${extension_name}" ] ; then
             for solution in "${extension}"/*.sln ; do
                 output_path="${extension}/inspectcode.${output_file_extension}"
 
                 echo "Inspecting code in solution '${solution}'..."
                 "${jb_path}" inspectcode "${solution}" --output="${output_path}" --format="${output_format}" --no-build --swea
 
-                if [ $(wc -l "${output_path}" | awk '{print $1}') -gt ${max_output_length} ] ; then
+                if [ "$(wc -l "${output_path}" | awk '{print $1}')" -gt "${max_output_length}" ] ; then
                     echo -e "\e[0;31mCode inspection detected issues and wrote them to the following file: ${output_path}\e[0;37m"
                 fi
             done

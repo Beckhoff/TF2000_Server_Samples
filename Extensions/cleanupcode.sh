@@ -43,7 +43,7 @@ while [ $# -gt 0 ] ; do
 done
 
 ### Validation ###
-if [ \( -n "${extension_name}" \) -a \( ! -d "${script_path}/${extension_name}" \) ] ; then
+if [ -n "${extension_name}" ] && [ ! -d "${script_path}/${extension_name}" ] ; then
     echo "Extension directory does not exist: ${script_path}/${extension_name}"
     exit 1
 fi
@@ -51,7 +51,7 @@ fi
 ### Execution ###
 for extension in "${script_path}"/* ; do
     if [ -d "${extension}" ] ; then
-        if [ \( -z "${extension_name}" \) -o \( "$(basename ${extension})" == "${extension_name}" \) ] ; then
+        if [ -z "${extension_name}" ] || [ "$(basename "${extension}")" = "${extension_name}" ] ; then
             for solution in "${extension}"/*.sln ; do
                 echo "Cleaning up code in solution '${solution}'..."
                 "${jb_path}" cleanupcode "${solution}" --profile="${cleanup_profile}"
