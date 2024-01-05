@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -133,45 +134,44 @@ namespace LetsEncrypt
                 return;
             }
 
-            var request = WebRequest.CreateHttp(serverUrl);
-
             string serverId = null;
-            HttpWebResponse response = null;
-            var error = "";
-
-            try
+            using (var client = new HttpClient())
             {
-                response = (HttpWebResponse)request.GetResponse();
-            }
-            catch (WebException ex)
-            {
-                error = ex.Message;
-                response = (HttpWebResponse)ex.Response;
-            }
-            catch (Exception ex)
-            {
-                error = ex.Message;
-            }
+                var error = "";
+                HttpResponseMessage response = null;
 
-            if (response == null)
-            {
-                _ = TcHmiAsyncLogger.Send(Severity.Warning, "ERROR_GET_CERTIFICATE", serverUrl, error);
-                return;
-            }
-
-            var setCookieArg = response.Headers["Set-Cookie"];
-
-            if (!string.IsNullOrEmpty(setCookieArg))
-            {
-                var cookies = setCookieArg.Replace(" ", "").Split(";");
-
-                // structure of the server's session cookie: sessionId-{serverId}={sessionId}
-                foreach (var cookie in cookies)
+                try
                 {
-                    if (cookie.StartsWith("sessionId-"))
+                    response = client.Send(new HttpRequestMessage(HttpMethod.Get, serverUrl));
+                }
+                catch (Exception ex)
+                {
+                    error = ex.Message;
+                }
+
+                if (response == null)
+                {
+                    _ = TcHmiAsyncLogger.Send(Severity.Warning, "ERROR_GET_CERTIFICATE", serverUrl, error);
+                    return;
+                }
+
+                var setCookieArgs = response.Headers.SingleOrDefault(h => h.Key == "Set-Cookie").Value;
+
+                foreach (var setCookieArg in setCookieArgs)
+                {
+                    if (!string.IsNullOrEmpty(setCookieArg))
                     {
-                        serverId = cookie.Replace("sessionId-", "");
-                        break;
+                        var cookies = setCookieArg.Replace(" ", "").Split(";");
+
+                        // structure of the server's session cookie: sessionId-{serverId}={sessionId}
+                        foreach (var cookie in cookies)
+                        {
+                            if (cookie.StartsWith("sessionId-"))
+                            {
+                                serverId = cookie.Replace("sessionId-", "");
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -182,37 +182,35 @@ namespace LetsEncrypt
                 return;
             }
 
-            request = WebRequest.CreateHttp(serverUrl + "/ExportCertificate");
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-
             var container = new CookieContainer();
             container.Add(new Uri(serverUrl), new Cookie("sessionId", TcHmiApplication.Context.Session.Id));
 
-            request.CookieContainer = container;
-
-            try
+            var handler = new HttpClientHandler()
             {
-                response = request.GetResponse() as HttpWebResponse;
-
-                if (response is null)
-                {
-                    throw new InvalidOperationException("HTTP response cannot be null.");
-                }
-
-                string content;
-
-                // ReSharper disable once AssignNullToNotNullAttribute
-                using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-                {
-                    content = reader.ReadToEnd();
-                }
-
-                _currentCertificate = new X509Certificate2(Encoding.ASCII.GetBytes(content));
-            }
-            catch (Exception ex)
+                AutomaticDecompression = DecompressionMethods.GZip,
+                CookieContainer = container
+            };
+            using (var client = new HttpClient(handler))
             {
-                _ = TcHmiAsyncLogger.Send(Severity.Error, "ERROR_READ_CERTIFICATE", serverUrl + "/ExportCertificate",
-                    ex.Message);
+                HttpResponseMessage response = null;
+
+                try
+                {
+                    response = client.Send(new HttpRequestMessage(HttpMethod.Get, serverUrl + "/ExportCertificate"));
+
+                    if (response is null)
+                    {
+                        throw new InvalidOperationException("HTTP response cannot be null.");
+                    }
+
+                    using var contentReader = new StreamReader(response.Content.ReadAsStream());
+                    _currentCertificate = new X509Certificate2(Encoding.ASCII.GetBytes(contentReader.ReadToEnd()));
+                }
+                catch (Exception ex)
+                {
+                    _ = TcHmiAsyncLogger.Send(Severity.Error, "ERROR_READ_CERTIFICATE", serverUrl + "/ExportCertificate",
+                        ex.Message);
+                }
             }
         }
 
