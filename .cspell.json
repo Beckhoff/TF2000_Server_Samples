@@ -6,8 +6,12 @@
         "browsable",
         "endianness",
         "fileaccess",
+        "inspectcode",
+        "localizable",
         "newtonsoft",
         "runtimes",
+        "subsymbol",
+        "subsymbols",
         "symbolaccess",
         "textblock",
         "timespan",
@@ -56,7 +60,8 @@
         "**/obj/**",
         "**/bin/**",
         "**/*.de.*",
-        "**/*.sh"
+        "**/*.sh",
+        "**/inspectcode.xml"
     ],
     "ignoreRegExpList": [
         "\"symbol\": \".+\"",

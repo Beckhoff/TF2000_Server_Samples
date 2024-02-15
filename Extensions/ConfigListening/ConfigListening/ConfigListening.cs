@@ -144,7 +144,7 @@ namespace ConfigListening
             }
         }
 
-        private void UpdateConfigurationHint()
+        private static void UpdateConfigurationHint()
         {
             // this extension raises a configuration hint if at least one of the configured palindromes
             // consists of more than one word. the hint is, for example, displayed on the extension's configuration page.

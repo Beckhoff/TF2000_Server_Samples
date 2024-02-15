@@ -48,7 +48,7 @@ namespace MinimalAuthentication
 
             var users = new Value { { "admin", admin } };
 
-            return TcHmiApplication.AsyncHost.SetConfigValue(
+            return TcHmiApplication.AsyncHost.ReplaceConfigValue(
                 serverContext,
                 TcHmiApplication.JoinPath("USERGROUPUSERS", TcHmiApplication.Context.Domain),
                 users

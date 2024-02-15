@@ -15,12 +15,12 @@ namespace CustomConfig
     // Represents the default type of the TwinCAT HMI server extension.
     public class CustomConfig : IServerExtension
     {
-        private readonly RequestListener requestListener = new RequestListener();
+        private readonly RequestListener _requestListener = new RequestListener();
 
         // Called after the TwinCAT HMI server loaded the server extension.
         public ErrorValue Init()
         {
-            this.requestListener.OnRequest += this.OnRequest;
+            _requestListener.OnRequest += OnRequest;
             return ErrorValue.HMI_SUCCESS;
         }
 
@@ -31,7 +31,7 @@ namespace CustomConfig
             {
                 e.Commands.Result = CustomConfigErrorValue.CustomConfigSuccess;
 
-                foreach (Command command in e.Commands)
+                foreach (var command in e.Commands)
                 {
                     try
                     {
@@ -43,8 +43,8 @@ namespace CustomConfig
                             //     break;
 
                             case "GetRandom":
-                                Int32 max = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "max");
-                                Int32 min = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "min");
+                                int max = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "max");
+                                int min = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "min");
                                 var r = new Random();
                                 command.ReadValue = r.Next(min, max);
                                 break;

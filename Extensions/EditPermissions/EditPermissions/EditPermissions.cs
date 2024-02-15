@@ -52,7 +52,7 @@ namespace EditPermissions
             }
         }
 
-        private ExtensionSpecificError ConfigureOperatorsGroup()
+        private static ExtensionSpecificError ConfigureOperatorsGroup()
         {
             // this function adds a new user group called "operators" that,
             // by default, has full access to all symbols of all domains/extensions.
@@ -78,7 +78,7 @@ namespace EditPermissions
                 : ExtensionSpecificError.ConfigurationChangeFailed;
         }
 
-        private ExtensionSpecificError ConfigureOperatorUser()
+        private static ExtensionSpecificError ConfigureOperatorUser()
         {
             // this function adds a new user called "operator" that is
             // a member of the "operators" user group.
@@ -109,7 +109,7 @@ namespace EditPermissions
                 : result;
         }
 
-        private ExtensionSpecificError ToggleOperatorAccess(string symbolName)
+        private static ExtensionSpecificError ToggleOperatorAccess(string symbolName)
         {
             // this function checks what the default "SYMBOLACCESS" of the "operators" user group is
             // and toggles access to a specific symbol by changing the "SYMBOLS" object.
@@ -141,7 +141,7 @@ namespace EditPermissions
                 : ExtensionSpecificError.ConfigurationChangeFailed;
         }
 
-        private Access ToggleAccessLevel(Access access)
+        private static Access ToggleAccessLevel(Access access)
         {
             if (access == Access.None)
             {
@@ -156,7 +156,7 @@ namespace EditPermissions
             return access;
         }
 
-        private Context ServerContextWithAdminPermissions()
+        private static Context ServerContextWithAdminPermissions()
         {
             var serverContext = TcHmiApplication.Context;
             serverContext.Domain = "TcHmiSrv";

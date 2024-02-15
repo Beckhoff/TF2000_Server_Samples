@@ -680,7 +680,7 @@ namespace LetsEncrypt
         {
             _nextCertGeneration = null;
             _certGenerationTimer.Stop();
-            _ = TcHmiApplication.AsyncHost.SetConfigValue(TcHmiApplication.Context, CfgGenerateCertificate,
+            _ = TcHmiApplication.AsyncHost.ReplaceConfigValue(TcHmiApplication.Context, CfgGenerateCertificate,
                 new Value(false));
         }
     }

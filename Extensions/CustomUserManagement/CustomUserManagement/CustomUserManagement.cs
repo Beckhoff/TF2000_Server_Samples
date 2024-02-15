@@ -51,7 +51,7 @@ namespace CustomUserManagement
                 {
                     var map = new Value { Type = ValueType.Map };
                     var tmp = new Value { { TcHmiApplication.Context.Domain, map } };
-                    _ = TcHmiApplication.AsyncHost.SetConfigValue(serverContext, StringConstants.UserGroupUsers, tmp);
+                    _ = TcHmiApplication.AsyncHost.ReplaceConfigValue(serverContext, StringConstants.UserGroupUsers, tmp);
                 }
 
                 _ = TcHmiAsyncLogger.Send(Severity.Info, StringConstants.MsgInit);

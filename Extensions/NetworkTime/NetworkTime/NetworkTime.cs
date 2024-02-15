@@ -28,7 +28,7 @@ namespace NetworkTime
             return ErrorValue.HMI_SUCCESS;
         }
 
-        private void Now(Command command)
+        private static void Now(Command command)
         {
             // read configured time server from the extension's configuration.
             // we don't use the client context because the extension configuration

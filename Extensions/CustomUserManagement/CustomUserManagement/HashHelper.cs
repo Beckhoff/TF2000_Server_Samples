@@ -11,9 +11,7 @@ namespace CustomUserManagement
         public static byte[] GenerateSalt()
         {
             var buffer = new byte[SaltSize];
-            using var provider = new RNGCryptoServiceProvider();
-            provider.GetBytes(buffer, 0, buffer.Length);
-
+            RandomNumberGenerator.Fill(buffer);
             return buffer;
         }
 

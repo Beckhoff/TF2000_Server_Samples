@@ -37,7 +37,7 @@ namespace CustomUserManagement
             internalContext.Session.EndpointInfo = EndpointInfo.Internal;
 
             var path = TcHmiApplication.JoinPath(StringConstants.CfgUsers, username);
-            var serverError = TcHmiApplication.AsyncHost.SetConfigValue(internalContext, path, user.ConfigValue);
+            var serverError = TcHmiApplication.AsyncHost.ReplaceConfigValue(internalContext, path, user.ConfigValue);
 
             if (serverError == ErrorValue.HMI_SUCCESS)
             {
@@ -53,7 +53,7 @@ namespace CustomUserManagement
                     var groups = new Value { StringConstants.DefaultGroup };
                     var userGroupUser = new Value { { StringConstants.UserGroupUsersGroups, groups } };
 
-                    serverError = TcHmiApplication.AsyncHost.SetConfigValue(serverContext, path, userGroupUser);
+                    serverError = TcHmiApplication.AsyncHost.ReplaceConfigValue(serverContext, path, userGroupUser);
                 }
             }
 
@@ -77,7 +77,7 @@ namespace CustomUserManagement
 
             if (TcHmiApplication.AsyncHost.GetConfigValue(context, path).Type != ValueType.Null)
             {
-                var err = TcHmiApplication.AsyncHost.SetConfigValue(context,
+                var err = TcHmiApplication.AsyncHost.ReplaceConfigValue(context,
                     TcHmiApplication.JoinPath(path, StringConstants.CfgUserEnabled),
                     string.Equals(command.Mapping, StringConstants.EnableUserCommand));
 
@@ -167,7 +167,7 @@ namespace CustomUserManagement
 
             command.ExtensionResult =
                 Convert.ToUInt32(
-                    TcHmiApplication.AsyncHost.SetConfigValue(adminContext, userPath, updatedUser.ConfigValue));
+                    TcHmiApplication.AsyncHost.ReplaceConfigValue(adminContext, userPath, updatedUser.ConfigValue));
         }
 
         public static void RenameUser(Command command)
