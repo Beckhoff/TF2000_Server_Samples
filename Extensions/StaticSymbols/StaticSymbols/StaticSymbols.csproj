@@ -38,7 +38,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Beckhoff.TwinCAT.HMI.TcHmiSrvExtNet.Core.SDK" Version="3.0.0">
+    <PackageReference Include="Beckhoff.TwinCAT.HMI.TcHmiSrvExtNet.Core.SDK" Version="3.*">
       <ExcludeAssets>runtime</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
