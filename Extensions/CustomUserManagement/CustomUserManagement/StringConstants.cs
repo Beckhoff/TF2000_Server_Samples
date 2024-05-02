@@ -7,6 +7,8 @@
         // server domain: names of config variables
         public const string UserGroupUsers = "USERGROUPUSERS";
         public const string UserGroupUsersGroups = "USERGROUPUSERS_GROUPS";
+        public const string UserGroupUsersLocale = "USERGROUPUSERS_LOCALE";
+        public const string UserGroupUsersAutoLogoff = "USERGROUPUSERS_AUTO_LOGOFF";
 
         // server domain: names of function symbols
         public const string GetCurrentUser = "GetCurrentUser";

@@ -51,7 +51,12 @@ namespace CustomUserManagement
                 {
                     // new user, add to the default group
                     var groups = new Value { StringConstants.DefaultGroup };
-                    var userGroupUser = new Value { { StringConstants.UserGroupUsersGroups, groups } };
+                    var userGroupUser = new Value
+                    {
+                        { StringConstants.UserGroupUsersGroups, new Value { StringConstants.DefaultGroup } },
+                        { StringConstants.UserGroupUsersLocale, "project" },
+                        { StringConstants.UserGroupUsersAutoLogoff, "PT0S" }
+                    };
 
                     serverError = TcHmiApplication.AsyncHost.ReplaceConfigValue(serverContext, path, userGroupUser);
                 }

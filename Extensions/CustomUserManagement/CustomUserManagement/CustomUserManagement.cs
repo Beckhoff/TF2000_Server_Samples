@@ -49,9 +49,11 @@ namespace CustomUserManagement
                             TcHmiApplication.JoinPath(StringConstants.UserGroupUsers, TcHmiApplication.Context.Domain))
                         .Type == ValueType.Null)
                 {
-                    var map = new Value { Type = ValueType.Map };
-                    var tmp = new Value { { TcHmiApplication.Context.Domain, map } };
-                    _ = TcHmiApplication.AsyncHost.ReplaceConfigValue(serverContext, StringConstants.UserGroupUsers, tmp);
+                    _ = TcHmiApplication.AsyncHost.ReplaceConfigValue(
+                        serverContext,
+                        TcHmiApplication.JoinPath(StringConstants.UserGroupUsers, TcHmiApplication.Context.Domain),
+                        new Value { Type = ValueType.Map }
+                    );
                 }
 
                 _ = TcHmiAsyncLogger.Send(Severity.Info, StringConstants.MsgInit);
