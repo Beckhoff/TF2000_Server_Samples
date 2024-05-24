@@ -24,7 +24,7 @@ namespace ProtectedSymbol
         private readonly ExportListener exportListener = new ExportListener();
         private readonly ConfigListener configListener = new ConfigListener();
 
-        // A random entropy to pass to the the protection function. This is used so only this application can unprotect the data.
+        // A random entropy to pass to the the protection function. This is used so only this application can decrypt the data.
         private static readonly byte[] s_entropy = {
             40, 149, 96, 43, 138, 32, 77, 69, 9, 174, 237, 132, 96, 180, 54, 96
         };
@@ -56,7 +56,7 @@ namespace ProtectedSymbol
             value.SetValue(s);
         }
 
-        // Unprotect a string using the Windows Data Protection API
+        // Decrypt a string using the Windows Data Protection API
         private void UnprotectString(Value value)
         {
             string s = value.GetString();
