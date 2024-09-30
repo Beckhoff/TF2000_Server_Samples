@@ -113,6 +113,7 @@ Descriptions of small blocks of reusable code that showcase concepts or
 facilitate the development of a server extensions.
 
 - [Debugging the `Init` method of a server extension](Snippets/DebuggingInit.md)
+- [Inter-extension subscriptions](Snippets/InterExtensionSubscription.md)
 
 ## Requirements
 
