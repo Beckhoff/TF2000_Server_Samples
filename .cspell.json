@@ -37,6 +37,7 @@
         "hkey",
         "hmiproj",
         "memoryusage",
+        "nameof",
         "netcoreapp",
         "netstandard",
         "paramref",
