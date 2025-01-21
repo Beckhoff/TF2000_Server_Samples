@@ -6,30 +6,30 @@
 > Make sure to check it out if you haven't upgraded yet.
 > Your feedback and contributions are highly appreciated. Happy coding!
 
-This repository contains server extensions that showcase many features
-of the server extension API, as well as various aspects of the
-interaction between extensions and the server.
+This repository contains server extensions that showcase many features of the
+server extension APIs for different programming languages, as well as various
+aspects of the interaction between extensions and the server.
 
 Here is a list of all sample extensions:
 
-- [NetworkTime](Extensions/NetworkTime/)
-- [RandomValue](Extensions/RandomValue/)
-- [Diagnostics](Extensions/Diagnostics/)
-- [InterExtensionCommunication](Extensions/InterExtensionCommunication/)
-- [MinimalAuthentication](Extensions/MinimalAuthentication/)
-- [CustomUserManagement](Extensions/CustomUserManagement/)
-- [EditPermissions](Extensions/EditPermissions/)
-- [EventSystem](Extensions/EventSystem/)
-- [EventListening](Extensions/EventListening/)
-- [ConfigListening](Extensions/ConfigListening/)
-- [ComplexConfig](Extensions/ComplexConfig/)
-- [CustomConfig](Extensions/CustomConfig/)
-- [StaticSymbols](Extensions/StaticSymbols/)
-- [DynamicSymbols](Extensions/DynamicSymbols/)
-- [StartProcessFromService](Extensions/StartProcessFromService/README.md)
-- [ErrorHandling](Extensions/ErrorHandling/)
-- [LetsEncrypt](Extensions/LetsEncrypt/)
-- [ProtectedSymbol](Extensions/ProtectedSymbol/)
+- [NetworkTime (C#)](Extensions/NetworkTime/)
+- [RandomValue (C#)](Extensions/RandomValue/)
+- [Diagnostics (C#)](Extensions/Diagnostics/)
+- [InterExtensionCommunication (C#)](Extensions/InterExtensionCommunication/)
+- [MinimalAuthentication (C#)](Extensions/MinimalAuthentication/)
+- [CustomUserManagement (C#)](Extensions/CustomUserManagement/)
+- [EditPermissions (C#)](Extensions/EditPermissions/)
+- [EventSystem (C#)](Extensions/EventSystem/)
+- [EventListening (C#)](Extensions/EventListening/)
+- [ConfigListening (C#)](Extensions/ConfigListening/)
+- [ComplexConfig (C#)](Extensions/ComplexConfig/)
+- [CustomConfig (C#)](Extensions/CustomConfig/)
+- [StaticSymbols (C#)](Extensions/StaticSymbols/)
+- [DynamicSymbols (C#)](Extensions/DynamicSymbols/)
+- [StartProcessFromService (C#)](Extensions/StartProcessFromService/README.md)
+- [ErrorHandling (C#)](Extensions/ErrorHandling/)
+- [LetsEncrypt (C#)](Extensions/LetsEncrypt/)
+- [ProtectedSymbol (C#)](Extensions/ProtectedSymbol/)
 
 For more TwinCAT HMI samples check out the related repositories:
 
@@ -43,12 +43,13 @@ The documentation for the API can be found in the
 
 ## Getting started
 
-Our suggestion is to start with the
-[NetworkTime](Extensions/NetworkTime/) or the
-[RandomValue](Extensions/RandomValue/) sample.
-Both are relatively short but contain many of the most commonly used features:
-Registering listeners, handling symbol requests, and storing settings in the
-extension configuration.
+Our suggestion is to start with the [NetworkTime](Extensions/NetworkTime/) or
+the [RandomValue](Extensions/RandomValue/) samples. Both are relatively short
+but contain many of the most commonly used features:
+
+- Registering listeners
+- Handling symbol requests
+- Storing settings in the extension configuration
 
 Every extension can define its own set of error codes. The
 [ErrorHandling](Extensions/ErrorHandling/) showcases how this should be
@@ -56,39 +57,37 @@ implemented.
 
 The HMI server generates a configuration page for every server extension. If
 you want to display additional status information on your extension's
-configuration page, have a look at the
-[Diagnostics](Extensions/Diagnostics/) sample.
+configuration page, have a look at the [Diagnostics](Extensions/Diagnostics/)
+sample.
 
 ## Advanced samples
 
 ### **Authentication**
 
-- [MinimalAuthentication](Extensions/MinimalAuthentication/): If you
-want to extend the authentication system of the HMI server, this sample
-extension is the best starting point.
-- [CustomUserManagement](Extensions/CustomUserManagement/): A more
-realistic implementation of a user management extension that supports adding,
-removing, renaming, as well as enabling and disabling users.
+- [MinimalAuthentication](Extensions/MinimalAuthentication/): If you want to
+extend the authentication system of the HMI server, this sample extension is
+the best starting point.
+- [CustomUserManagement](Extensions/CustomUserManagement/): A more realistic
+implementation of a user management extension that supports adding, removing,
+renaming, as well as enabling and disabling users.
 - [EditPermissions](Extensions/EditPermissions/): An extension that edits
 symbol permissions and user groups at runtime.
 
 ### **Event system**
 
-- [EventSystem](Extensions/EventSystem/): Use this sample as a
-starting point if you want to write an extension that sends messages or raises
-alarms.
-- [EventListening](Extensions/EventListening/): If your server
-extension is going to listen for messages and alarms from other extensions or
-the HMI server, take a look at this sample.
+- [EventSystem](Extensions/EventSystem/): Use this sample as a starting point
+if you want to write an extension that sends messages or raises alarms.
+- [EventListening](Extensions/EventListening/): If your server extension is
+going to listen for messages and alarms from other extensions or the HMI
+server, take a look at this sample.
 
 ### **Miscellaneous**
 
-- [InterExtensionCommunication](Extensions/InterExtensionCommunication/):
-This sample will give you an understanding of how multiple extensions can
-interact with each other, and with the HMI server.
-- [ConfigListening](Extensions/ConfigListening/): If your server
-extension wants to listen for changes to its configuration, take a look at this
-sample.
+- [InterExtensionCommunication](Extensions/InterExtensionCommunication/): This
+sample will give you an understanding of how multiple extensions can interact
+with each other, and with the HMI server.
+- [ConfigListening](Extensions/ConfigListening/): If your server extension
+wants to listen for changes to its configuration, take a look at this sample.
 - [ComplexConfig](Extensions/ComplexConfig/): A server extension with a complex
 configuration schema that showcases how an extension can read and edit its own
 extension configuration.
@@ -97,15 +96,17 @@ configuration page for every extension. This sample showcases how this default
 page can be replaced with a custom HTML page.
 - [StaticSymbols](Extensions/StaticSymbols/): This sample demonstrates how to
 automatically generate symbols based on .NET types at compile time.
-- [DynamicSymbols](Extensions/DynamicSymbols/): All other samples
-provide a fixed list of symbols that clients can use to interact with the
-extension. This sample demonstrates how an extension can provide a dynamic list
-of symbols that changes at runtime.
-- [StartProcessFromService](Extensions/StartProcessFromService/):
-Starts a process from a server extension running as a service.
-- [LetsEncrypt](Extensions/LetsEncrypt/): This server extension generates
-an ssl certificate with [Let's Encrypt](https://letsencrypt.org/).
-- [ProtectedSymbol](Extensions/ProtectedSymbol/): Protect and encrypt symbols with the windows [DPAPI](https://learn.microsoft.com/de-de/dotnet/standard/security/how-to-use-data-protection).
+- [DynamicSymbols](Extensions/DynamicSymbols/): All other samples provide a
+fixed list of symbols that clients can use to interact with the extension. This
+sample demonstrates how an extension can provide a dynamic list of symbols that
+changes at runtime.
+- [StartProcessFromService](Extensions/StartProcessFromService/): Starts a
+process from a server extension running as a service.
+- [LetsEncrypt](Extensions/LetsEncrypt/): This server extension generates an
+SSL certificate with [Let's Encrypt](https://letsencrypt.org/).
+- [ProtectedSymbol](Extensions/ProtectedSymbol/): Protect and encrypt symbols
+with the windows
+[DPAPI](https://learn.microsoft.com/de-de/dotnet/standard/security/how-to-use-data-protection).
 
 ## Code Snippets
 
@@ -117,7 +118,7 @@ facilitate the development of a server extensions.
 
 ## Requirements
 
-The following components must be installed to build the samples:
+The following components must be installed to build the C# samples:
 
 - [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher
 
