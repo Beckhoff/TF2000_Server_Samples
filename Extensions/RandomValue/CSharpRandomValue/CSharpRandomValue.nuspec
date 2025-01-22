@@ -3,13 +3,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <!-- Required elements -->
-    <id>RandomValue</id>
+    <id>CSharpRandomValue</id>
     <version>1.0.0.1</version>
     <description>Implementation of a server extension that generates random values.</description>
     <authors>Beckhoff Automation GmbH &amp; Co. KG</authors>
 
     <!-- Optional elements -->
-    <title>RandomValue</title>
+    <title>CSharpRandomValue</title>
     <owners>Beckhoff Automation GmbH &amp; Co. KG</owners>
     <projectUrl>https://www.beckhoff.com/TwinCAT-HMI/</projectUrl>
     <licenseUrl>https://www.beckhoff.com/</licenseUrl>
@@ -25,7 +25,7 @@
   </metadata>
 
   <files>
-    <file src="bin\Debug\**\RandomValue.dll" target="runtimes\win-x64\native\engineering\" />
-    <file src="bin\Debug\**\RandomValue.*.json" target="runtimes\win-x64\native\engineering\" />
+    <file src="bin\Debug\**\CSharpRandomValue.dll" target="runtimes\win-x64\native\engineering\" />
+    <file src="bin\Debug\**\CSharpRandomValue.*.json" target="runtimes\win-x64\native\engineering\" />
   </files>
 </package>
