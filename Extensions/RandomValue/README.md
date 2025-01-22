@@ -1,16 +1,19 @@
 # About the "RandomValue" sample
 
-The "RandomValue" sample extension is a server extension that provides random numbers
-between zero and a configurable maximum.
+The "RandomValue" sample extension is a server extension that provides random
+numbers between zero and a configurable maximum.
 
 The current maximum can be read/set using the `RandomValue.MaxRandom` symbol.
-The initial maximum is 1000. New random numbers are returned by the `RandomValue.RandomValue`
-symbol and are always smaller or equal to `RandomValue.MaxRandom`.
+The initial maximum is 1000. New random numbers are returned by the
+`RandomValue.RandomValue` symbol and are always smaller or equal to
+`RandomValue.MaxRandom`.
 
-The extension configuration includes a single integer value (`RandomValue.Config::maxRandom`) that
-can be read directly from the extension configuration or using the `RandomValue.MaxRandomFromConfig` symbol.
-`RandomValue.MaxRandom` and `RandomValue.Config::maxRandom` are never synced automatically.
-The value in the extension configuration is only used as a persistent storage.
+The extension configuration includes a single integer value
+(`RandomValue.Config::maxRandom`) that can be read directly from the extension
+configuration or using the `RandomValue.MaxRandomFromConfig` symbol.
+`RandomValue.MaxRandom` and `RandomValue.Config::maxRandom` are never synced
+automatically. The value in the extension configuration is only used as a
+persistent storage.
 
 **First steps:**
 
@@ -48,7 +51,8 @@ The value in the extension configuration is only used as a persistent storage.
     }
     ```
 
-1. Get the currently configured maximum using the `RandomValue.MaxRandom` symbol
+1. Get the currently configured maximum using the `RandomValue.MaxRandom`
+symbol
 
     **Request:**
 
@@ -107,7 +111,8 @@ The value in the extension configuration is only used as a persistent storage.
     }
     ```
 
-1. Get the value that is currently stored in the extension configuration using the `RandomValue.MaxRandomFromConfig` symbol
+1. Get the value that is currently stored in the extension configuration using
+the `RandomValue.MaxRandomFromConfig` symbol
 
     **Request:**
 
@@ -136,7 +141,8 @@ The value in the extension configuration is only used as a persistent storage.
     }
     ```
 
-1. Read the value that is currently stored in the extension configuration directly
+1. Read the value that is currently stored in the extension configuration
+directly
 
     **Request:**
 
