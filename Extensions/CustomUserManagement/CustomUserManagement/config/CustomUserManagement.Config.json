@@ -5,7 +5,8 @@
   "configVersion": "1.0.0.2",
   "configSchemaHash": "",
   "policies": [
-    "StrictPropertyValidation"
+    "StrictPropertyValidation",
+    "StrictConfigListenerFilter"
   ],
   "symbols": {
     "ListUsers": {
