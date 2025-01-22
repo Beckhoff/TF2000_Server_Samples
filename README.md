@@ -12,24 +12,24 @@ aspects of the interaction between extensions and the server.
 
 Here is a list of all sample extensions:
 
-- [NetworkTime (C#)](Extensions/NetworkTime/)
-- [RandomValue (C# and Python)](Extensions/RandomValue/)
-- [Diagnostics (C#)](Extensions/Diagnostics/)
-- [InterExtensionCommunication (C#)](Extensions/InterExtensionCommunication/)
-- [MinimalAuthentication (C#)](Extensions/MinimalAuthentication/)
-- [CustomUserManagement (C#)](Extensions/CustomUserManagement/)
-- [EditPermissions (C#)](Extensions/EditPermissions/)
-- [EventSystem (C#)](Extensions/EventSystem/)
-- [EventListening (C#)](Extensions/EventListening/)
-- [ConfigListening (C#)](Extensions/ConfigListening/)
 - [ComplexConfig (C#)](Extensions/ComplexConfig/)
+- [ConfigListening (C#)](Extensions/ConfigListening/)
 - [CustomConfig (C#)](Extensions/CustomConfig/)
-- [StaticSymbols (C#)](Extensions/StaticSymbols/)
+- [CustomUserManagement (C#)](Extensions/CustomUserManagement/)
+- [Diagnostics (C#)](Extensions/Diagnostics/)
 - [DynamicSymbols (C#)](Extensions/DynamicSymbols/)
-- [StartProcessFromService (C#)](Extensions/StartProcessFromService/README.md)
+- [EditPermissions (C#)](Extensions/EditPermissions/)
 - [ErrorHandling (C#)](Extensions/ErrorHandling/)
+- [EventListening (C#)](Extensions/EventListening/)
+- [EventSystem (C#)](Extensions/EventSystem/)
+- [InterExtensionCommunication (C#)](Extensions/InterExtensionCommunication/)
 - [LetsEncrypt (C#)](Extensions/LetsEncrypt/)
+- [MinimalAuthentication (C#)](Extensions/MinimalAuthentication/)
+- [NetworkTime (C#)](Extensions/NetworkTime/)
 - [ProtectedSymbol (C#)](Extensions/ProtectedSymbol/)
+- [RandomValue (C# and Python)](Extensions/RandomValue/)
+- [StartProcessFromService (C#)](Extensions/StartProcessFromService/README.md)
+- [StaticSymbols (C#)](Extensions/StaticSymbols/)
 
 For more TwinCAT HMI samples check out the related repositories:
 
