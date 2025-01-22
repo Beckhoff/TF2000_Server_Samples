@@ -30,6 +30,7 @@ Here is a list of all sample extensions:
 - [RandomValue (C# and Python)](Extensions/RandomValue/)
 - [StartProcessFromService (C#)](Extensions/StartProcessFromService/README.md)
 - [StaticSymbols (C#)](Extensions/StaticSymbols/)
+- [WeatherData (C#)](Extensions/WeatherData/)
 
 For more TwinCAT HMI samples check out the related repositories:
 
@@ -107,6 +108,8 @@ SSL certificate with [Let's Encrypt](https://letsencrypt.org/).
 - [ProtectedSymbol](Extensions/ProtectedSymbol/): Protect and encrypt symbols
 with the windows
 [DPAPI](https://learn.microsoft.com/de-de/dotnet/standard/security/how-to-use-data-protection).
+- [WeatherData](Extensions/WeatherData/): Retrieve current weather data for a
+specific location using a REST API to query an online weather service.
 
 ## Code Snippets
 

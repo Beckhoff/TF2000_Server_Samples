@@ -1,0 +1,40 @@
+{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "67a9d486-5379-4056-9ce1-0e08e8d85512",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.0",
+  "policies": [
+    "StrictPropertyValidation",
+    "StrictConfigListenerFilter"
+  ],
+  "visibility": "AlwaysShow",
+  "symbols": {
+    "DailyTemperatureForecast": {
+      "readValue": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "visibility": "AlwaysShow"
+    },
+    "CurrentWindSpeed": {
+      "readValue": {
+        "type": "number"
+      },
+      "visibility": "AlwaysShow"
+    },
+    "CurrentTemperature": {
+      "readValue": {
+        "type": "number"
+      },
+      "visibility": "AlwaysShow"
+    },
+    "CurrentRainfall": {
+      "readValue": {
+        "type": "number"
+      },
+      "visibility": "AlwaysShow"
+    }
+  }
+}

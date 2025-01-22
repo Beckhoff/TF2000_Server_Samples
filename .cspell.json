@@ -2,6 +2,7 @@
     "version": "0.2",
     "language": "en",
     "words": [
+        "aiohttp",
         "beckhoff",
         "browsable",
         "debugpy",
@@ -9,6 +10,7 @@
         "fileaccess",
         "inspectcode",
         "localizable",
+        "meteo",
         "newtonsoft",
         "pyproj",
         "pythonenv",
@@ -26,7 +28,9 @@
         "unprotect",
         "unregister",
         "usergroups",
-        "venv"
+        "venv",
+        "verl",
+        "windspeed"
     ],
     "ignoreWords": [
         "aabc",

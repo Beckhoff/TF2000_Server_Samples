@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "extensionHostCustomPythonEnvPath": {
+      "type": "string",
+      "default": ""
+    },
+    "extensionHostDebugPort": {
+      "type": "integer",
+      "default": 0
+    },
+    "extensionHostStartupArguments": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}
