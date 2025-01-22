@@ -13,7 +13,7 @@ aspects of the interaction between extensions and the server.
 Here is a list of all sample extensions:
 
 - [NetworkTime (C#)](Extensions/NetworkTime/)
-- [RandomValue (C#)](Extensions/RandomValue/)
+- [RandomValue (C# and Python)](Extensions/RandomValue/)
 - [Diagnostics (C#)](Extensions/Diagnostics/)
 - [InterExtensionCommunication (C#)](Extensions/InterExtensionCommunication/)
 - [MinimalAuthentication (C#)](Extensions/MinimalAuthentication/)

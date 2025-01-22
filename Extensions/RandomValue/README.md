@@ -1,7 +1,7 @@
-# About the "RandomValue" sample
+# About the "RandomValue" samples
 
-The "RandomValue" sample extension is a server extension that provides random
-numbers between zero and a configurable maximum.
+The "RandomValue" sample extensions for C# and Python are server extensions
+that provide random numbers between zero and a configurable maximum.
 
 The initial maximum is 1000. New random numbers are returned by the
 `RandomValue.RandomValue` symbol and are always smaller or equal to

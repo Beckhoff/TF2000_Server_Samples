@@ -1,0 +1,28 @@
+{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "42d26d6d-c91c-4909-adc6-d0b59d43e22e",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.0",
+  "policies": [
+    "StrictPropertyValidation",
+    "StrictConfigListenerFilter"
+  ],
+  "visibility": "AlwaysShow",
+  "symbols": {
+    "RandomValue": {
+      "readValue": {
+        "allOf": [
+          {
+            "$ref": "tchmi:general#/definitions/Integer"
+          },
+          {
+            "readOnly": true
+          }
+        ]
+      },
+      "userGroups": [
+        "__SystemUsers"
+      ]
+    }
+  }
+}

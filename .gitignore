@@ -3,6 +3,8 @@
 **/Packages
 **/obj
 **/bin
+**/pythonenv
+**/*.log
 **/inspectcode.*
 **/ExtensionSettings.Schema.json
 **/Language.Schema.json

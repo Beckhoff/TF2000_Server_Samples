@@ -1,0 +1,68 @@
+<Project InitialTargets="SetupPythonEnv;CopyJsonSchemaFiles" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>42d26d6d-c91c-4909-adc6-d0b59d43e22e</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>PythonRandomValue</Name>
+    <RootNamespace>PythonRandomValue</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TcHmiExtensionTypes>{CF2FCDC8-DFA7-4DCC-A325-741CC1E73309}</TcHmiExtensionTypes>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PythonRandomValue.Config.json" />
+    <None Include="PythonRandomValue.Language.en.json" />
+    <None Include="PythonRandomValue.Schema.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="pythonenv\">
+    <Id>pythonenv</Id>
+    <Version>3.9</Version>
+    <Description>pythonenv (Python 3.9 (64-bit))</Description>
+    <InterpreterPath>Scripts\python.exe</InterpreterPath>
+    <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+    <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+    <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <Target Name="CoreCompile" />
+  <Target Name="SetupPythonEnv" Condition="!Exists('pythonenv')">
+    <Exec Command="python -m venv pythonenv" />
+  </Target>
+  <Target Name="CopyJsonSchemaFiles">
+    <PropertyGroup>
+    <TcHmiServerDir Condition="'$(TcHmiServerDir)'==''">$(MSBuildProgramFiles32)\Beckhoff\TwinCAT\Functions\TF2000-HMI-Server</TcHmiServerDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+    <TcHmiJsonSchemaPaths Include="$(TcHmiServerDir)\ExtensionSettings.Schema.json" Condition="Exists('$(TcHmiServerDir)\ExtensionSettings.Schema.json')" />
+    <TcHmiJsonSchemaPaths Include="$(TcHmiServerDir)\Language.Schema.json" Condition="Exists('$(TcHmiServerDir)\Language.Schema.json')" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(TcHmiJsonSchemaPaths)" DestinationFolder="$(ProjectDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="InstallRequirements" BeforeTargets="PrepareForBuild" Inputs="requirements.txt" Outputs="$(IntermediateOutputPath)requirements.txt">
+    <Exec Command="pythonenv\Scripts\pip install -r requirements.txt" />
+    <Copy SourceFiles="requirements.txt" DestinationFolder="$(IntermediateOutputPath)" />
+  </Target>
+</Project>
