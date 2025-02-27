@@ -23,22 +23,6 @@
       "userGroups": [
         "__SystemUsers"
       ]
-    },
-    "MaxRandom": {
-      "readValue": {
-        "$ref": "tchmi:general#/definitions/Integer"
-      },
-      "userGroups": [
-        "__SystemUsers"
-      ]
-    },
-    "MaxRandomFromConfig": {
-      "readValue": {
-        "$ref": "tchmi:general#/definitions/Integer"
-      },
-      "userGroups": [
-        "__SystemUsers"
-      ]
     }
   }
 }
