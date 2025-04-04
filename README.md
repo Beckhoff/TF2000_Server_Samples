@@ -12,25 +12,25 @@ aspects of the interaction between extensions and the server.
 
 Here is a list of all sample extensions:
 
-- [ComplexConfig (C#)](Extensions/ComplexConfig/)
-- [ConfigListening (C#)](Extensions/ConfigListening/)
-- [CustomConfig (C#)](Extensions/CustomConfig/)
-- [CustomUserManagement (C#)](Extensions/CustomUserManagement/)
-- [Diagnostics (C#)](Extensions/Diagnostics/)
-- [DynamicSymbols (C#)](Extensions/DynamicSymbols/)
-- [EditPermissions (C#)](Extensions/EditPermissions/)
-- [ErrorHandling (C#)](Extensions/ErrorHandling/)
-- [EventListening (C#)](Extensions/EventListening/)
-- [EventSystem (C#)](Extensions/EventSystem/)
-- [InterExtensionCommunication (C#)](Extensions/InterExtensionCommunication/)
-- [LetsEncrypt (C#)](Extensions/LetsEncrypt/)
-- [MinimalAuthentication (C#)](Extensions/MinimalAuthentication/)
-- [NetworkTime (C#)](Extensions/NetworkTime/)
-- [ProtectedSymbol (C#)](Extensions/ProtectedSymbol/)
-- [RandomValue (C# and Python)](Extensions/RandomValue/)
-- [StartProcessFromService (C#)](Extensions/StartProcessFromService/README.md)
-- [StaticSymbols (C#)](Extensions/StaticSymbols/)
-- [WeatherData (Python)](Extensions/WeatherData/)
+- *ComplexConfig* ([.NET](Extensions/dotnet/ComplexConfig/README.md))
+- *ConfigListening* ([.NET](Extensions/dotnet/ConfigListening/README.md))
+- *CustomConfig* ([.NET](Extensions/dotnet/CustomConfig/README.md))
+- *CustomUserManagement* ([.NET](Extensions/dotnet/CustomUserManagement/README.md))
+- *Diagnostics* ([.NET](Extensions/dotnet/Diagnostics/README.md))
+- *DynamicSymbols* ([.NET](Extensions/dotnet/DynamicSymbols/README.md))
+- *EditPermissions* ([.NET](Extensions/dotnet/EditPermissions/README.md))
+- *ErrorHandling* ([.NET](Extensions/dotnet/ErrorHandling/README.md))
+- *EventListening* ([.NET](Extensions/dotnet/EventListening/README.md))
+- *EventSystem* ([.NET](Extensions/dotnet/EventSystem/README.md))
+- *InterExtensionCommunication* ([.NET](Extensions/dotnet/InterExtensionCommunication/README.md))
+- *LetsEncrypt* ([.NET](Extensions/dotnet/LetsEncrypt/README.md))
+- *MinimalAuthentication* ([.NET](Extensions/dotnet/MinimalAuthentication/README.md))
+- *NetworkTime* ([.NET](Extensions/dotnet/NetworkTime/README.md))
+- *ProtectedSymbol* ([.NET](Extensions/dotnet/ProtectedSymbol/README.md))
+- *RandomValue* ([.NET](Extensions/dotnet/RandomValue/README.md) and [Python](Extensions/python/RandomValue/README.md))
+- *StartProcessFromService* ([.NET](Extensions/dotnet/StartProcessFromService/README.md))
+- *StaticSymbols* ([.NET](Extensions/dotnet/StaticSymbols/README.md))
+- *WeatherData* ([Python](Extensions/python/WeatherData/README.md))
 
 For more TwinCAT HMI samples check out the related repositories:
 
@@ -43,84 +43,93 @@ The documentation for the API can be found in the
 
 ## Getting started
 
-Our suggestion is to start with the [NetworkTime](Extensions/NetworkTime/) or
-the [RandomValue](Extensions/RandomValue/) samples. Both are relatively short
-but contain many of the most commonly used features:
+Our suggestion is to start with the *NetworkTime*
+([.NET](Extensions/dotnet/NetworkTime/README.md)) or the
+*RandomValue* ([.NET](Extensions/dotnet/RandomValue/README.md) or
+[Python](Extensions/python/RandomValue/README.md)) samples. Both are relatively
+short but contain many of the most commonly used features:
 
 - Registering listeners
 - Handling symbol requests
 - Storing settings in the extension configuration
 
-Every extension can define its own set of error codes. The
-[ErrorHandling](Extensions/ErrorHandling/) showcases how this should be
-implemented.
+Every extension can define its own set of error codes. The *ErrorHandling*
+([.NET](Extensions/dotnet/ErrorHandling/README.md)) showcases how this should
+be implemented.
 
 The HMI server generates a configuration page for every server extension. If
 you want to display additional status information on your extension's
-configuration page, have a look at the [Diagnostics](Extensions/Diagnostics/)
-sample.
+configuration page, have a look at the *Diagnostics*
+([.NET](Extensions/dotnet/Diagnostics/README.md)) sample.
 
 ## Advanced samples
 
 ### **Authentication**
 
-- [MinimalAuthentication](Extensions/MinimalAuthentication/): If you want to
-extend the authentication system of the HMI server, this sample extension is
-the best starting point.
-- [CustomUserManagement](Extensions/CustomUserManagement/): A more realistic
-implementation of a user management extension that supports adding, removing,
-renaming, as well as enabling and disabling users.
-- [EditPermissions](Extensions/EditPermissions/): An extension that edits
-symbol permissions and user groups at runtime.
+- *MinimalAuthentication* ([.NET](Extensions/dotnet/MinimalAuthentication/README.md)):
+If you want to extend the authentication system of the HMI server, this sample
+extension is the best starting point.
+- *CustomUserManagement* ([.NET](Extensions/dotnet/CustomUserManagement/README.md)):
+A more realistic implementation of a user management extension that supports
+adding, removing, renaming, as well as enabling and disabling users.
+- *EditPermissions* ([.NET](Extensions/dotnet/EditPermissions/README.md)): An
+extension that edits symbol permissions and user groups at runtime.
 
 ### **Event system**
 
-- [EventSystem](Extensions/EventSystem/): Use this sample as a starting point
-if you want to write an extension that sends messages or raises alarms.
-- [EventListening](Extensions/EventListening/): If your server extension is
-going to listen for messages and alarms from other extensions or the HMI
-server, take a look at this sample.
+- *EventSystem* ([.NET](Extensions/dotnet/EventSystem/README.md)): Use this
+sample as a starting point if you want to write an extension that sends
+messages or raises alarms.
+- *EventListening* ([.NET](Extensions/dotnet/EventListening/README.md)): If
+your server extension is going to listen for messages and alarms from other
+extensions or the HMI server, take a look at this sample.
 
 ### **Miscellaneous**
 
-- [InterExtensionCommunication](Extensions/InterExtensionCommunication/): This
-sample will give you an understanding of how multiple extensions can interact
-with each other, and with the HMI server.
-- [ConfigListening](Extensions/ConfigListening/): If your server extension
-wants to listen for changes to its configuration, take a look at this sample.
-- [ComplexConfig](Extensions/ComplexConfig/): A server extension with a complex
-configuration schema that showcases how an extension can read and edit its own
-extension configuration.
-- [CustomConfig](Extensions/CustomConfig/): The HMI server generates a
-configuration page for every extension. This sample showcases how this default
-page can be replaced with a custom HTML page.
-- [StaticSymbols](Extensions/StaticSymbols/): This sample demonstrates how to
-automatically generate symbols based on .NET types at compile time.
-- [DynamicSymbols](Extensions/DynamicSymbols/): All other samples provide a
-fixed list of symbols that clients can use to interact with the extension. This
-sample demonstrates how an extension can provide a dynamic list of symbols that
-changes at runtime.
-- [StartProcessFromService](Extensions/StartProcessFromService/): Starts a
-process from a server extension running as a service.
-- [LetsEncrypt](Extensions/LetsEncrypt/): This server extension generates an
-SSL certificate with [Let's Encrypt](https://letsencrypt.org/).
-- [ProtectedSymbol](Extensions/ProtectedSymbol/): Protect and encrypt symbols
-with the windows
+- *InterExtensionCommunication* ([.NET](Extensions/dotnet/InterExtensionCommunication/README.md)):
+This sample will give you an understanding of how multiple extensions can
+interact with each other, and with the HMI server.
+- *ConfigListening* ([.NET](Extensions/dotnet/ConfigListening/README.md)): If
+your server extension wants to listen for changes to its configuration, take a
+look at this sample.
+- *ComplexConfig* ([.NET](Extensions/dotnet/ComplexConfig/README.md)): A server
+extension with a complex configuration schema that showcases how an extension
+can read and edit its own extension configuration.
+- *CustomConfig* ([.NET](Extensions/dotnet/CustomConfig/README.md)): The HMI
+server generates a configuration page for every extension. This sample
+showcases how this default page can be replaced with a custom HTML page.
+- *StaticSymbols* ([.NET](Extensions/dotnet/StaticSymbols/README.md)): This
+sample demonstrates how to automatically generate symbols based on .NET types
+at compile time.
+- *DynamicSymbols* ([.NET](Extensions/dotnet/DynamicSymbols/README.md)): All
+other samples provide a fixed list of symbols that clients can use to interact
+with the extension. This sample demonstrates how an extension can provide a
+dynamic list of symbols that changes at runtime.
+- *StartProcessFromService* ([.NET](Extensions/dotnet/StartProcessFromService/README.md)):
+Starts a process from a server extension running as a service.
+- *LetsEncrypt* ([.NET](Extensions/dotnet/LetsEncrypt/README.md)): This server
+extension generates an SSL certificate with
+[Let's Encrypt](https://letsencrypt.org/).
+- *ProtectedSymbol* ([.NET](Extensions/dotnet/ProtectedSymbol/README.md)):
+Protect and encrypt symbols with the windows
 [DPAPI](https://learn.microsoft.com/de-de/dotnet/standard/security/how-to-use-data-protection).
-- [WeatherData](Extensions/WeatherData/): Retrieve current weather data for a
-specific location using a REST API to query an online weather service.
+- *WeatherData* ([.NET](Extensions/dotnet/WeatherData/README.md)): Retrieve
+current weather data for a specific location using a REST API to query an
+online weather service.
 
 ## Code Snippets
 
 Descriptions of small blocks of reusable code that showcase concepts or
 facilitate the development of a server extensions.
 
-- [Debugging the `Init` method of a server extension](Snippets/DebuggingInit.md)
-- [Inter-extension subscriptions](Snippets/InterExtensionSubscription.md)
+- Debugging the `Init` method of a server extension in
+[.NET](Snippets/dotnet/DebuggingInit.md)
+- Inter-extension subscriptions in
+[.NET](Snippets/dotnet/InterExtensionSubscription.md)
 
 ## Requirements
 
-The following components must be installed to build the C# samples:
+The following components must be installed to build the .NET samples:
 
 - [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher
 

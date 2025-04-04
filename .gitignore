@@ -8,3 +8,4 @@
 **/inspectcode.*
 **/ExtensionSettings.Schema.json
 **/Language.Schema.json
+!**/inspectcode.sh
