@@ -30,7 +30,7 @@ Here is a list of all sample extensions:
 - [RandomValue (C# and Python)](Extensions/RandomValue/)
 - [StartProcessFromService (C#)](Extensions/StartProcessFromService/README.md)
 - [StaticSymbols (C#)](Extensions/StaticSymbols/)
-- [WeatherData (C#)](Extensions/WeatherData/)
+- [WeatherData (Python)](Extensions/WeatherData/)
 
 For more TwinCAT HMI samples check out the related repositories:
 
