@@ -2,4 +2,4 @@ aiohttp==3.10.10
 # debugpy
 
 --find-links file:///C:/ProgramData/Beckhoff/PythonPackages
-beckhoff-tchmi-extensionapi  # must be installed via TcPkg by the Python.Beckhoff.tchmi.extensionapi package.
+beckhoff-tchmi-extensionapi>=0.2  # must be installed via TcPkg by the Python.Beckhoff.tchmi.extensionapi package.
