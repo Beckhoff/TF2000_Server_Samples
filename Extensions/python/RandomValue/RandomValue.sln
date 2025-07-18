@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RandomValue", "RandomValue\RandomValue.pyproj", "{42D26D6D-C91C-4909-ADC6-D0B59D43E22E}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonRandomValue", "RandomValue\PythonRandomValue.pyproj", "{42D26D6D-C91C-4909-ADC6-D0B59D43E22E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

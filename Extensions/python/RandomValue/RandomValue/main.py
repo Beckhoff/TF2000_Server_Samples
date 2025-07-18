@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 from beckhoff.tchmi.extensionapi import Command, Context, ExtensionHost
 
 
-class RandomValue(ExtensionHost):
+class PythonRandomValue(ExtensionHost):
     def __init__(self) -> None:
         self.domain = ''
         super().__init__()
@@ -26,5 +26,5 @@ class RandomValue(ExtensionHost):
 
 
 if __name__ == '__main__':
-    main = RandomValue()
+    main = PythonRandomValue()
     asyncio.run(main.run())
