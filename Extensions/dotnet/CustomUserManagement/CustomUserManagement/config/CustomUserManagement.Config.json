@@ -16,7 +16,8 @@
         "items": {
           "type": "string"
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "ListDisabledUsers": {
       "readValue": {
@@ -25,7 +26,8 @@
         "items": {
           "type": "string"
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "RenameUser": {
       "readValue": {
@@ -55,7 +57,8 @@
           "currentUserName": "test",
           "newUserName": "tester"
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "DisableUser": {
       "readValue": {
@@ -69,7 +72,8 @@
       "sample": {
         "description": "Disable user `test`.",
         "value": "test"
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "EnableUser": {
       "readValue": {
@@ -83,7 +87,8 @@
       "sample": {
         "description": "Enable user `test`.",
         "value": "test"
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "RemoveUser": {
       "readValue": {
@@ -97,7 +102,8 @@
       "sample": {
         "description": "Remove user `test`.",
         "value": "test"
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "AddUser": {
       "readValue": {
@@ -131,7 +137,8 @@
           "userName": "test",
           "password": "YwboLB~[65H"
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "ChangePassword": {
       "userGroups": [
@@ -150,7 +157,8 @@
             "type": "string"
           }
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

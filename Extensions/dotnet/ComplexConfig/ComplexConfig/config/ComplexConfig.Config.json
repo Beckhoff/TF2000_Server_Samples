@@ -27,7 +27,8 @@
             "minimum": 0
           }
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "CreateReport": {
       "userGroups": [
@@ -44,7 +45,8 @@
             "minLength": 1
           }
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

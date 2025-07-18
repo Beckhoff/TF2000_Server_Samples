@@ -15,7 +15,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

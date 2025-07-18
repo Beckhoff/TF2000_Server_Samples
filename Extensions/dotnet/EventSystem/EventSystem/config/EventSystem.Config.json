@@ -15,7 +15,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "SendDynamicallyLocalizedMessage": {
       "userGroups": [
@@ -23,7 +24,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "RaiseAdditionalAlarm": {
       "userGroups": [
@@ -31,7 +33,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

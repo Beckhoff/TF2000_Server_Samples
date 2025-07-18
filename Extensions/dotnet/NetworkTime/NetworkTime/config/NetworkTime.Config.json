@@ -22,7 +22,8 @@
             "$ref": "tchmi:general#/definitions/DateTime"
           }
         ]
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

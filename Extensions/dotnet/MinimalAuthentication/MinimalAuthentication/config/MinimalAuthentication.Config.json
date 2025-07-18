@@ -16,7 +16,8 @@
         "items": {
           "type": "string"
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

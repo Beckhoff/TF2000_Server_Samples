@@ -48,7 +48,8 @@
         "required": [
           "validCertificate"
         ]
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

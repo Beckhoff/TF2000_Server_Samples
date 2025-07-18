@@ -19,7 +19,8 @@
         "items": {
           "type": "object"
         }
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "CheckClientLicenseAndListLocalRoutes": {
       "userGroups": [
@@ -43,12 +44,14 @@
           "clientLicense",
           "localRoutes"
         ]
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "DoubleAdsTimeout": {
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "AddSymbolForAdsTimeout": {
       "userGroups": [
@@ -56,7 +59,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

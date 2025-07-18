@@ -42,7 +42,8 @@
           "cpuUsage",
           "sinceStartup"
         ]
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

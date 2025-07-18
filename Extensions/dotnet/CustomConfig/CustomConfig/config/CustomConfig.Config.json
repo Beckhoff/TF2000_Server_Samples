@@ -18,7 +18,8 @@
       "readValue": {
         "function": true,
         "type": "integer"
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

@@ -15,7 +15,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "ToggleOperatorAccess": {
       "userGroups": [
@@ -26,7 +27,8 @@
       },
       "writeValue": {
         "type": "string"
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }

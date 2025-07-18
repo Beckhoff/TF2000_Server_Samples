@@ -22,7 +22,8 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ]
+      ],
+      "visibility": "AlwaysShow"
     }
   }
 }

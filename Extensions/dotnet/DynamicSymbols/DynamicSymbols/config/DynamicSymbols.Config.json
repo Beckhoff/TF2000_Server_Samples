@@ -11,7 +11,8 @@
     "ListSymbols": {
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "GetSchema": {
       "readValue": {
@@ -19,7 +20,8 @@
       },
       "writeValue": {
         "type": "string"
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "AddMachine": {
       "readValue": {
@@ -43,7 +45,8 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ]
+      ],
+      "visibility": "AlwaysShow"
     },
     "RemoveMachine": {
       "readValue": {
@@ -55,7 +58,8 @@
       },
       "userGroups": [
         "__SystemUsers"
-      ]
+      ],
+      "visibility": "AlwaysShow"
     }
   }
 }

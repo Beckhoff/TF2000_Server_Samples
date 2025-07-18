@@ -15,7 +15,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     },
     "NotImplementedFunction": {
       "userGroups": [
@@ -23,7 +24,8 @@
       ],
       "readValue": {
         "function": true
-      }
+      },
+      "visibility": "AlwaysShow"
     }
   }
 }
