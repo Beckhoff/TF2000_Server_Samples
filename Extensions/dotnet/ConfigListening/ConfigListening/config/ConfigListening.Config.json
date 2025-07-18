@@ -7,6 +7,5 @@
   "policies": [
     "StrictPropertyValidation",
     "StrictConfigListenerFilter"
-  ],
-  "symbols": {}
+  ]
 }
