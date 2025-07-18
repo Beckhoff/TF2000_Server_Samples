@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="RandomValue.cs" company="Beckhoff Automation GmbH & Co. KG">
+// <copyright file="CSharpRandomValue.cs" company="Beckhoff Automation GmbH & Co. KG">
 //     Copyright (c) Beckhoff Automation GmbH & Co. KG. All Rights Reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -11,11 +11,11 @@ using TcHmiSrv.Core.Listeners;
 using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
 
-namespace RandomValue
+namespace CSharpRandomValue
 {
     // represents the default type of the TwinCAT HMI server extension
     // ReSharper disable once UnusedType.Global
-    public class RandomValue : IServerExtension
+    public class CSharpRandomValue : IServerExtension
     {
         private readonly Random _rand = new Random();
         private readonly RequestListener _requestListener = new RequestListener();

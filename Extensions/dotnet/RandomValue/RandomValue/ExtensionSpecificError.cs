@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace RandomValue
+namespace CSharpRandomValue
 {
     public enum ExtensionSpecificError
     {

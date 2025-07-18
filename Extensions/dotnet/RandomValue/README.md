@@ -1,15 +1,15 @@
-# About the "RandomValue" sample
+# About the "CSharpRandomValue" sample
 
-The "RandomValue" sample extension provides random numbers between zero and a
-configurable maximum.
+The "CSharpRandomValue" sample extension provides random numbers between zero
+and a configurable maximum.
 
 The initial maximum is 1000. New random numbers are returned by the
-`RandomValue.RandomValue` symbol and are always smaller or equal to
-`RandomValue.Config::maxRandom`.
+`CSharpRandomValue.RandomValue` symbol and are always smaller or equal to
+`CSharpRandomValue.Config::maxRandom`.
 
 The extension configuration includes a single integer value
-(`RandomValue.Config::maxRandom`) that can be read directly from the extension
-configuration.
+(`CSharpRandomValue.Config::maxRandom`) that can be read directly from the
+extension configuration.
 
 **First steps:**
 
@@ -27,7 +27,7 @@ configuration.
         "requestType": "ReadWrite",
         "commands": [
             {
-                "symbol": "RandomValue.RandomValue",
+                "symbol": "CSharpRandomValue.RandomValue",
                 "commandOptions": [ "SendErrorMessage" ]
             }
         ]
@@ -40,7 +40,7 @@ configuration.
     {
         "commands": [
             {
-                "symbol": "RandomValue.RandomValue",
+                "symbol": "CSharpRandomValue.RandomValue",
                 "readValue": 32
             }
         ]
@@ -57,7 +57,7 @@ directly
         "requestType": "ReadWrite",
         "commands": [
             {
-                "symbol": "RandomValue.Config::maxRandom",
+                "symbol": "CSharpRandomValue.Config::maxRandom",
                 "commandOptions": [ "SendErrorMessage" ]
             }
         ]
@@ -70,7 +70,7 @@ directly
     {
         "commands": [
             {
-                "symbol": "RandomValue.Config::maxRandom",
+                "symbol": "CSharpRandomValue.Config::maxRandom",
                 "readValue": 10
             }
         ]
@@ -86,7 +86,7 @@ directly
         "requestType": "ReadWrite",
         "commands": [
             {
-                "symbol": "RandomValue.Config::maxRandom",
+                "symbol": "CSharpRandomValue.Config::maxRandom",
                 "writeValue": 2048,
                 "commandOptions": [ "SendErrorMessage" ]
             }
@@ -100,7 +100,7 @@ directly
     {
         "commands": [
             {
-                "symbol": "RandomValue.Config::maxRandom",
+                "symbol": "CSharpRandomValue.Config::maxRandom",
                 "readValue": 2048
             }
         ]
