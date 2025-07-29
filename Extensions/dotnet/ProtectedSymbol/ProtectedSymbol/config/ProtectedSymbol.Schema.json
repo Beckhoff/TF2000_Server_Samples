@@ -4,21 +4,21 @@
   "properties": {
     "protectedSymbol": {
       "type": "string",
-      "description": "protectedSymbolDescription"
+      "configDescription": "protectedSymbolDescription"
     },
     "nestedSymbol": {
       "type": "object",
-      "description": "nestedSymbolDescription",
+      "configDescription": "nestedSymbolDescription",
       "properties": {
         "unprotectedChild": {
           "type": "string",
           "default": "",
-          "description": "unprotectedChildDescription"
+          "configDescription": "unprotectedChildDescription"
         },
         "protectedChild": {
           "type": "string",
           "default": "",
-          "description": "protectedChildDescription"
+          "configDescription": "protectedChildDescription"
         }
       },
       "required": [
