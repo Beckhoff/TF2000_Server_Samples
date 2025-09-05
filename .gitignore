@@ -9,3 +9,9 @@
 **/ExtensionSettings.Schema.json
 **/Language.Schema.json
 !**/inspectcode.sh
+node_modules
+**/dist/
+**/package-lock.json
+coverage/
+*.log
+.DS_Store

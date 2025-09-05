@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "maxRandom": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 1000,
+      "description": "Maximum value for random number generation"
+    }
+  },
+  "required": [
+    "maxRandom"
+  ],
+  "additionalProperties": false
+}

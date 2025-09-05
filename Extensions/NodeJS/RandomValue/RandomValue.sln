@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeJSRandomValue", "RandomValue\NodeJSRandomValue.njsproj", "{A8F4C2E9-5B1D-4A73-9C86-F2E3D7B4A891}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeJSRandomValueUnitTests", "RandomValueUnitTests\NodeJSRandomValueUnitTests.njsproj", "{B20F6A01-508F-41F6-AB78-992A17448C14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8F4C2E9-5B1D-4A73-9C86-F2E3D7B4A891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F4C2E9-5B1D-4A73-9C86-F2E3D7B4A891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F4C2E9-5B1D-4A73-9C86-F2E3D7B4A891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F4C2E9-5B1D-4A73-9C86-F2E3D7B4A891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B20F6A01-508F-41F6-AB78-992A17448C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20F6A01-508F-41F6-AB78-992A17448C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20F6A01-508F-41F6-AB78-992A17448C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20F6A01-508F-41F6-AB78-992A17448C14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA8402FE-7DC6-4E2A-8DA5-755ED72A6041}
+	EndGlobalSection
+EndGlobal

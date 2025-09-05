@@ -1,0 +1,29 @@
+{
+  "$schema": "ExtensionSettings.Schema.json",
+  "guid": "a8f4c2e9-5b1d-4a73-9c86-f2e3d7b4a891",
+  "version": "1.0.0.0",
+  "configVersion": "1.0.0.0",
+  "policies": [
+    "StrictPropertyValidation",
+    "StrictConfigListenerFilter"
+  ],
+  "symbols": {
+    "RandomValue": {
+      "readValue": {
+        "allOf": [
+          {
+            "$ref": "tchmi:general#/definitions/Integer"
+          },
+          {
+            "readOnly": true
+          }
+        ]
+      },
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "visibility": "AlwaysShow",
+      "description": "Generates a random number between 0 and maxRandom"
+    }
+  }
+}

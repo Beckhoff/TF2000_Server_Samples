@@ -1,0 +1,32 @@
+{
+  "name": "node-random-value",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Node.js extension for TwinCAT HMI Server - Random Value Generator",
+  "main": "dist/main.js",
+  "types": "dist/types/main.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "test": "jest",
+    "lint": "eslint --ext .ts",
+    "docs": "typedoc --out docs"
+  },
+  "keywords": [
+    "tchmi",
+    "extension",
+    "node",
+    "random"
+  ],
+  "author": "Beckhoff",
+  "license": "0BSD",
+  "dependencies": {
+    "@beckhoff/tchmiclient": "1.0.0",
+    "@beckhoff/tchmiextensionapi": "1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.9",
+    "@types/ws": "8.18.1",
+    "typescript": "5.8.3"
+  }
+}
