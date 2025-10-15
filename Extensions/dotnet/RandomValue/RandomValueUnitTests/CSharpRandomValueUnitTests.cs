@@ -1,4 +1,5 @@
 ﻿using TcHmiSrv.Core;
+using TcHmiSrv.Core.General;
 
 [assembly: DoNotParallelize]
 
@@ -8,6 +9,7 @@ namespace CSharpRandomValueUnitTests
     public class CSharpRandomValueUnitTests
     {
         private const string DefaultDomain = "CSharpRandomValue";
+        private const string CfgMaxRandom = "maxRandom";
 
         private static MockedCSharpRandomValue s_serverExtension;
 
@@ -67,6 +69,29 @@ namespace CSharpRandomValueUnitTests
             Assert.Contains(
                 "Calling command \"RandomValue\" failed! Additional information: System.ArgumentOutOfRangeException",
                 responseCommand.ResultString);
+        }
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        [DataRow(10)]
+        [DataRow(100)]
+        public void BeforeChangeValidTest(int maxRandom)
+        {
+            var context = new Context { Domain = DefaultDomain };
+            s_serverExtension.BeforeChange(context, CfgMaxRandom, maxRandom, null);
+        }
+
+        [TestMethod]
+        [DataRow(-1)]
+        [DataRow(-42)]
+        public void BeforeChangeInvalidTest(int maxRandom)
+        {
+            var context = new Context { Domain = DefaultDomain };
+            var ex = Assert.Throws<TcHmiException>(() =>
+                s_serverExtension.BeforeChange(context, CfgMaxRandom, maxRandom, null));
+            Assert.Contains("Max random value must not be less than zero.", ex.Message);
+            Assert.AreEqual(ErrorValue.HMI_E_INVALID_PARAMETER, ex.Result);
         }
     }
 }
