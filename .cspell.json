@@ -5,6 +5,8 @@
         "aiohttp",
         "beckhoff",
         "browsable",
+        "buildtransitive",
+        "contentfiles",
         "debugpy",
         "endianness",
         "extensionapi",
