@@ -4,7 +4,7 @@ The "CSharpRandomValue" sample extension provides random numbers between zero
 and a configurable maximum.
 
 The initial maximum is 1000. New random numbers are returned by the
-`CSharpRandomValue.RandomValue` symbol and are always smaller or equal to
+`CSharpRandomValue.RandomValue` symbol and are always less than
 `CSharpRandomValue.Config::maxRandom`.
 
 The extension configuration includes a single integer value
