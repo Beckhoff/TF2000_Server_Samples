@@ -66,7 +66,7 @@ namespace CSharpRandomValue
         // generates a random value and writes it to the read value of the specified command
         private void NextRandomValue(Command command)
         {
-            command.ReadValue = _rand.Next(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "maxRandom")) + 1;
+            command.ReadValue = _rand.Next(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "maxRandom"));
             command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
         }
     }
