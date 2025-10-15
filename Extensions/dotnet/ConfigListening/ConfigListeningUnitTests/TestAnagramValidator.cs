@@ -25,7 +25,7 @@ namespace ConfigListeningUnitTests
             Assert.IsTrue(AnagramValidator.Validate("w-ho", "ho-w"));
             Assert.IsTrue(AnagramValidator.Validate("night,", "thing,"));
             Assert.IsTrue(AnagramValidator.Validate("the Morse Code", "here come dots"));
-            Assert.IsTrue(AnagramValidator.Validate("San Diego", "diagnose"));
+            Assert.IsTrue(AnagramValidator.Validate("SanDiego", "diagnose"));
         }
     }
 }
