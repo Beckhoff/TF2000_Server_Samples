@@ -25,23 +25,41 @@ namespace CSharpRandomValue
         {
             try
             {
-                // add event handlers
-                _requestListener.OnRequest += OnRequest;
-
+                RegisterListeners();
                 return ErrorValue.HMI_SUCCESS;
             }
             catch (Exception ex)
             {
-                _ = TcHmiAsyncLogger.Send(Severity.Error, "errorInit", ex.ToString());
+                _ = Send(Severity.Error, "errorInit", ex.ToString());
                 return ErrorValue.HMI_E_EXTENSION_LOAD;
             }
         }
 
-        // called when a client requests a symbol from the domain of the TwinCAT HMI server extension
-        private void OnRequest(object sender, OnRequestEventArgs e)
+        protected virtual void RegisterListeners()
+        {
+            // add event handlers
+            _requestListener.OnRequest += OnRequest;
+        }
+
+        protected virtual Value GetConfigValue(string path)
+        {
+            return TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, path);
+        }
+
+        protected virtual string Localize(Context context, string name, params string[] parameters)
+        {
+            return TcHmiAsyncLogger.Localize(context, name, parameters);
+        }
+
+        protected virtual ErrorValue Send(Severity severity, string name, params string[] parameters)
+        {
+            return TcHmiAsyncLogger.Send(severity, name, parameters);
+        }
+
+        public void OnRequest(Context context, CommandGroup commands)
         {
             // handle all commands one by one
-            foreach (var command in e.Commands)
+            foreach (var command in commands)
             {
                 try
                 {
@@ -57,16 +75,21 @@ namespace CSharpRandomValue
                 {
                     // ignore exceptions and continue processing the other commands in the group
                     command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.InternalError);
-                    command.ResultString =
-                        TcHmiAsyncLogger.Localize(e.Context, "errorCallCommand", command.Mapping, ex.ToString());
+                    command.ResultString = Localize(context, "errorCallCommand", command.Mapping, ex.ToString());
                 }
             }
+        }
+
+        // called when a client requests a symbol from the domain of the TwinCAT HMI server extension
+        private void OnRequest(object sender, OnRequestEventArgs e)
+        {
+            OnRequest(e.Context, e.Commands);
         }
 
         // generates a random value and writes it to the read value of the specified command
         private void NextRandomValue(Command command)
         {
-            command.ReadValue = _rand.Next(TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context, "maxRandom"));
+            command.ReadValue = _rand.Next(GetConfigValue("maxRandom"));
             command.ExtensionResult = Convert.ToUInt32(ExtensionSpecificError.Success);
         }
     }
