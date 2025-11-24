@@ -4,7 +4,7 @@ The "PythonRandomValue" sample extension provides random numbers between zero
 and a configurable maximum.
 
 The initial maximum is 1000. New random numbers are returned by the
-`PythonRandomValue.RandomValue` symbol and are always smaller or equal to
+`PythonRandomValue.RandomValue` symbol and are always less than or equal to
 `PythonRandomValue.Config::maxRandom`.
 
 The extension configuration includes a single integer value
