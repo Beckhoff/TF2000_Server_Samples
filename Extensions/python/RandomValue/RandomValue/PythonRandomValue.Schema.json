@@ -20,7 +20,7 @@
           "$ref": "tchmi:general#/definitions/Integer"
         },
         {
-          "default": 10
+          "default": 1000
         }
       ]
     }
