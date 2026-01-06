@@ -1,4 +1,4 @@
-aiohttp==3.10.10
+aiohttp==3.13.3
 # debugpy
 
 --find-links file:///C:/ProgramData/Beckhoff/PythonPackages
