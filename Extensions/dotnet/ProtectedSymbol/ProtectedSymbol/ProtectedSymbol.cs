@@ -5,9 +5,9 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Collections.Generic;
 using Integrative.Encryption;
 using TcHmiSrv.Core;
 using TcHmiSrv.Core.Extensions;
@@ -30,7 +30,7 @@ namespace ProtectedSymbol
         };
 
         // A list of symbols that should be protected
-        private static readonly string[] protectedSymbols = { "protectedSymbol", "nestedSymbol::protectedChild" };
+        private static readonly string[] s_protectedSymbols = { "protectedSymbol", "nestedSymbol::protectedChild" };
 
         // Called after the TwinCAT HMI server loaded the server extension. Here, the listeners are registered.
         public ErrorValue Init()
@@ -110,7 +110,7 @@ namespace ProtectedSymbol
         // Called before the config is exported
         private void BeforeExport(object sender, TcHmiSrv.Core.Listeners.ExportListenerEventArgs.BeforeExportEventArgs e)
         {
-            foreach (string protectedSymbol in protectedSymbols)
+            foreach (string protectedSymbol in s_protectedSymbols)
             {
                 // Split the symbol path into its parts
                 Queue<string> path = new Queue<string>(protectedSymbol.Split("::"));
@@ -125,7 +125,7 @@ namespace ProtectedSymbol
 
         private void BeforeImport(object sender, TcHmiSrv.Core.Listeners.ExportListenerEventArgs.BeforeImportEventArgs e)
         {
-            foreach (string protectedSymbol in protectedSymbols)
+            foreach (string protectedSymbol in s_protectedSymbols)
             {
                 // Split the symbol path into its parts
                 Queue<string> path = new Queue<string>(protectedSymbol.Split("::"));
@@ -141,7 +141,7 @@ namespace ProtectedSymbol
         private void BeforeChange(object sender, TcHmiSrv.Core.Listeners.ConfigListenerEventArgs.BeforeChangeEventArgs e)
         {
             // When a new value gets written to a protected symbol, encrypt it first
-            if (protectedSymbols.Contains(e.Path))
+            if (s_protectedSymbols.Contains(e.Path))
             {
                 ProtectString(e.Value);
             }
@@ -150,7 +150,7 @@ namespace ProtectedSymbol
         private void GetProtectedSymbol(Context ctx, Command cmd)
         {
             // Check if the symbol is protected
-            if (protectedSymbols.Contains(cmd.WriteValue.ToString()))
+            if (s_protectedSymbols.Contains(cmd.WriteValue.ToString()))
             {
                 // Decrypt the symbol value and return it
                 Value val = TcHmiApplication.AsyncHost.GetConfigValue(ctx, cmd.WriteValue);
