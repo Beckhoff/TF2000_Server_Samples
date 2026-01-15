@@ -54,12 +54,12 @@ namespace EventSystem
 
             // create our first alarm. sending it here is not necessary,
             // because 'OnInitialListEvents' will be called immediately after 'Init'.
-            RaiseAlarm(false);
+            RaiseAlarm("ALARM_RAISED_DURING_EXTENSION_INITIALIZATION", false);
 
             return ErrorValue.HMI_SUCCESS;
         }
 
-        private void RaiseAlarm(bool send = true)
+        private void RaiseAlarm(string name, bool send = true)
         {
             var alarmId = Interlocked.Increment(ref _nextAlarmId);
             var adminContext = TcHmiApplication.Context;
@@ -69,12 +69,12 @@ namespace EventSystem
             var now = DateTime.Now;
             var e = new Event
             {
-                Name = "ALARM_TO_CONFIRM",
+                Name = name,
                 Domain = TcHmiApplication.Context.Domain,
                 TimeReceived = now,
                 Payload = new Alarm
                 {
-                    Name = "ALARM_TO_CONFIRM",
+                    Name = name,
                     Domain = TcHmiApplication.Context.Domain,
                     Severity = Severity.Info,
                     Id = alarmId,
@@ -180,7 +180,7 @@ namespace EventSystem
                             break;
                         }
                         case "RaiseAdditionalAlarm":
-                            RaiseAlarm();
+                            RaiseAlarm("ALARM_RAISED_AT_RUNTIME");
                             break;
                     }
                 }

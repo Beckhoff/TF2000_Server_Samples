@@ -109,10 +109,10 @@ of the sample extension.
                 "readValue": [
                     {
                         "domain": "EventSystem",
-                        "localizedString": "An alarm. If not already confirmed, it can be confirmed by calling the 'ConfirmAlarm' function symbol.",
-                        "name": "ALARM_TO_CONFIRM",
+                        "localizedString": "An alarm raised during extension initialization. If not already confirmed, it can be confirmed by calling the 'ConfirmAlarm' function symbol.",
+                        "name": "ALARM_RAISED_DURING_EXTENSION_INITIALIZATION",
                         "payload": {
-                            "name": "ALARM_TO_CONFIRM",
+                            "name": "ALARM_RAISED_DURING_EXTENSION_INITIALIZATION",
                             "domain": "EventSystem",
                             "params": {},
                             "severity": 1,
@@ -162,22 +162,6 @@ of the sample extension.
     }
     ```
 
-1. Send an additional alarm with a new alarm ID.
-
-    **Request:**
-
-    ```json
-    {
-        "requestType": "ReadWrite",
-        "commands": [
-            {
-                "symbol": "EventSystem.RaiseAdditionalAlarm",
-                "commandOptions": [ "SendErrorMessage" ]
-            }
-        ]
-    }
-    ```
-
 1. Send a message with name "DYNAMICALLY_LOCALIZED_MESSAGE".
 
     **Request:**
@@ -194,7 +178,7 @@ of the sample extension.
     }
     ```
 
-1. Raise a new alarm with a new unique alarm id and name "ALARM_TO_CONFIRM".
+1. Raise a new alarm with a new unique alarm id and name "ALARM_RAISED_AT_RUNTIME".
 
     **Request:**
 
@@ -203,7 +187,7 @@ of the sample extension.
         "requestType": "ReadWrite",
         "commands": [
             {
-                "symbol": "EventSystem.SendDynamicallyLocalizedMessage",
+                "symbol": "EventSystem.RaiseAdditionalAlarm",
                 "commandOptions": [ "SendErrorMessage" ]
             }
         ]
@@ -221,7 +205,7 @@ of the sample extension.
             {
                 "symbol": "ConfirmAlarm",
                 "writeValue": {
-                    "name": "ALARM_TO_CONFIRM",
+                    "name": "ALARM_RAISED_DURING_EXTENSION_INITIALIZATION",
                     "domain": "EventSystem",
                     "params": {},
                     "severity": 1,
