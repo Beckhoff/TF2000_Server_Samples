@@ -3,7 +3,7 @@
 
 import { expect } from 'chai';
 import { Context } from '@beckhoff/tchmiextensionapi';
-import { Command } from '@beckhoff/tchmiclient';
+import { Command, ErrorValue } from '@beckhoff/tchmiclient';
 import { MockedNodeJSRandomValue } from './MockedNodeJSRandomValue.js';
 
 const DEFAULT_DOMAIN = 'NodeJSRandomValue';
@@ -73,8 +73,9 @@ describe('NodeJSRandomValue Unit Tests', () => {
 
                 await serverExtension.onRequest(context, [requestCommand]);
 
-                expect((requestCommand as any).extensionResult).to.equal(1);
-                expect((requestCommand as any).resultString).to.include('Calling command "RandomValue" failed!');
+                expect(requestCommand.error).to.exist;
+                expect(requestCommand.error!.code).to.equal(ErrorValue.HMI_E_UNEXPECTED);
+                expect(requestCommand.error!.message).to.include('Calling command "RandomValue" failed!');
             });
         });
     });

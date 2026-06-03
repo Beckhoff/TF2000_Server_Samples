@@ -1,5 +1,5 @@
 import { ExtensionHost, Context } from '@beckhoff/tchmiextensionapi';
-import { Command } from '@beckhoff/tchmiclient';
+import { Command, ErrorObject, ErrorValue } from '@beckhoff/tchmiclient';
 
 const CFG_MAX_RANDOM = 'maxRandom';
 
@@ -68,8 +68,10 @@ export class NodeJSRandomValue extends ExtensionHost {
                     this.nextRandomValue(command);
                 }
             } catch (error) {
-                (command as any).extensionResult = 1; // InternalError
-                (command as any).resultString = this.localize(context, 'errorCallCommand', command.symbol, String(error));
+                command.error = new ErrorObject({
+                    code: ErrorValue.HMI_E_UNEXPECTED,
+                    message: this.localize(context, 'errorCallCommand', command.symbol, String(error))
+                });
             }
         }
     }
@@ -108,7 +110,6 @@ export class NodeJSRandomValue extends ExtensionHost {
         
         const randomValue = Math.floor(Math.random() * (maxRandom + 1));
         command.readValue = randomValue;
-        (command as any).extensionResult = 0; // Success
         this.logger.debug(`Random value generated: ${randomValue}`);
     }
 

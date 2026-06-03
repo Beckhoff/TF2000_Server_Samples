@@ -21,8 +21,8 @@
   "author": "Beckhoff",
   "license": "0BSD",
   "dependencies": {
-    "@beckhoff/tchmiclient": "1.0.0",
-    "@beckhoff/tchmiextensionapi": "1.0.0"
+    "@beckhoff/tchmiclient": "1.0.6",
+    "@beckhoff/tchmiextensionapi": "1.0.6"
   },
   "devDependencies": {
     "@types/node": "20.19.9",

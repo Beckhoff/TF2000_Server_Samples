@@ -27,7 +27,7 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@beckhoff/tchmiclient": "1.0.0",
-    "@beckhoff/tchmiextensionapi": "1.0.0"
+    "@beckhoff/tchmiclient": "1.0.6",
+    "@beckhoff/tchmiextensionapi": "1.0.6"
   }
 }
