@@ -106,7 +106,7 @@ namespace DynamicSymbols
                     }
 
                     // Create a new 'DynamicSymbolsProvider' from the existing machine configurations
-                    _provider = new DynamicSymbolsProvider(machines);
+                    _provider = new DynamicSymbolsProvider(machines, false, true);
 
                     // Remove machine configurations (updated machine configurations will be saved when shutting down the server extension)
                     Directory.Delete(_machineHall, true);
@@ -114,7 +114,7 @@ namespace DynamicSymbols
                 else
                     // Create a new empty 'DynamicSymbolsProvider'
                 {
-                    _provider = new DynamicSymbolsProvider();
+                    _provider = new DynamicSymbolsProvider(false, true);
                 }
 
                 _ = TcHmiAsyncLogger.Send(Severity.Info, "MESSAGE_INIT");

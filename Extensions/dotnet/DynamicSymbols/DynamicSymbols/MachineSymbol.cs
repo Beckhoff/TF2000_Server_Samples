@@ -37,6 +37,7 @@ namespace DynamicSymbols
             // The default JSON schema generator does not contain a 'JSchemaGenerationProvider' for enumerations by default
             // You can implement a custom 'JSchemaGenerationProvider' for enumerations, create a 'JSchemaGenerationProvider' for a specific type by calling 'TcHmiSchemaGenerator.CreateEnumGenerationProvider' or use the 'TcHmiJSchemaGenerator.DefaultEnumGenerationProvider' for all enum types
             var generator = TcHmiJSchemaGenerator.DefaultGenerator;
+            generator.EscapeUris = true;
             generator.GenerationProviders.Add(TcHmiJSchemaGenerator.DefaultEnumGenerationProvider);
             return generator;
         }
