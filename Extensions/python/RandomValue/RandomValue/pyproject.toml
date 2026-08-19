@@ -1,0 +1,11 @@
+[project]
+name = "randomvalue"
+version = "0.0.0"
+requires-python = ">=3.14"
+dependencies = [
+    "beckhoff-tchmi-extensionapi==0.3.4",
+]
+
+# The beckhoff-tchmi-* packages are delivered by TcPkg, not PyPI.
+[tool.uv]
+find-links = ["file:///C:/ProgramData/Beckhoff/PythonPackages"]
