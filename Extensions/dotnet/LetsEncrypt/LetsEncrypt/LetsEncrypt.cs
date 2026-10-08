@@ -24,7 +24,6 @@ using TcHmiSrv.Core.Listeners;
 using TcHmiSrv.Core.Listeners.ConfigListenerEventArgs;
 using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
-using TcHmiSrv.Core.Tools.Settings;
 using Directory = System.IO.Directory;
 
 namespace LetsEncrypt
@@ -87,14 +86,10 @@ namespace LetsEncrypt
 
             try
             {
-                // add event handlers
+                // add event handlers, adding the first handler registers a listener with its default settings
                 _requestListener.OnRequest += OnRequest;
                 _configListener.OnChange += OnChange;
                 _configListener.BeforeChange += BeforeChange;
-
-                // register listeners
-                TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener,
-                    ConfigListenerSettings.Default);
 
                 int api = TcHmiApplication.AsyncHost.GetConfigValue(TcHmiApplication.Context,
                     CfgData + TcHmiApplication.PathElementSeparator + CfgApi);

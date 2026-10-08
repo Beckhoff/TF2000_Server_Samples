@@ -22,31 +22,48 @@ namespace ConfigListening
 
         public ErrorValue Init()
         {
-            // add event handlers
-            _configListener.OnChange += OnChange;
-            _configListener.BeforeChange += BeforeChange;
-            _configListener.BeforeRename += BeforeRename;
-            _configListener.OnDelete += OnDelete;
+            // adding the first event handler would register the config listener without the filters below
+            TcHmiApplication.AutoRegisterListeners = false;
 
-            // set up the config listener:
-            //   1. we need to specify which handlers we're using
-            //   2. we need to specify which parts of the configuration we're interested in. "*" enables the handlers for the whole configuration.
-            // config listeners can affect performance and should be limited to the variables that are actually used in the handlers.
-            var settings = new ConfigListenerSettings();
-            var filterPalindromes = new ConfigListenerSettingsFilter(
-                ConfigChangeType.OnChange |
-                ConfigChangeType.BeforeChange |
-                ConfigChangeType.OnDelete,
-                new[] { "palindromes[*" }
-            );
-            var filterAnagrams = new ConfigListenerSettingsFilter(
-                ConfigChangeType.BeforeChange |
-                ConfigChangeType.BeforeRename,
-                new[] { TcHmiApplication.JoinPath("anagrams", "*") }
-            );
-            settings.Filters.Add(filterPalindromes);
-            settings.Filters.Add(filterAnagrams);
-            TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener, settings);
+            try
+            {
+                // set up the config listener:
+                //   1. we need to specify which handlers we're using
+                //   2. we need to specify which parts of the configuration we're interested in. "*" enables the handlers for the whole configuration.
+                // config listeners can affect performance and should be limited to the variables that are actually used in the handlers.
+                var settings = new ConfigListenerSettings();
+                var filterPalindromes = new ConfigListenerSettingsFilter(
+                    ConfigChangeType.OnChange |
+                    ConfigChangeType.BeforeChange |
+                    ConfigChangeType.OnDelete,
+                    new[] { "palindromes[*" }
+                );
+                var filterAnagrams = new ConfigListenerSettingsFilter(
+                    ConfigChangeType.BeforeChange |
+                    ConfigChangeType.BeforeRename,
+                    new[] { TcHmiApplication.JoinPath("anagrams", "*") }
+                );
+                settings.Filters.Add(filterPalindromes);
+                settings.Filters.Add(filterAnagrams);
+                var error = TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener,
+                    settings);
+
+                if (error != ErrorValue.HMI_SUCCESS)
+                {
+                    return error;
+                }
+
+                // add event handlers
+                _configListener.OnChange += OnChange;
+                _configListener.BeforeChange += BeforeChange;
+                _configListener.BeforeRename += BeforeRename;
+                _configListener.OnDelete += OnDelete;
+            }
+            finally
+            {
+                // the flag is global, so other listeners added later register automatically again
+                TcHmiApplication.AutoRegisterListeners = true;
+            }
 
             return ErrorValue.HMI_SUCCESS;
         }

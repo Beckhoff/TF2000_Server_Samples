@@ -42,14 +42,32 @@ namespace CSharpRandomValue
 
         protected virtual void RegisterListeners()
         {
-            // add event handlers
+            // adding the first event handler registers the listener automatically
             _requestListener.OnRequest += OnRequest;
-            _configListener.BeforeChange += BeforeChange;
 
-            var filter = new ConfigListenerSettingsFilter(ConfigChangeType.BeforeChange, new string[] { CfgMaxRandom });
-            var settings = new ConfigListenerSettings();
-            settings.Filters.Add(filter);
-            TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener, settings);
+            // the config listener needs the filter below, so it must not be registered automatically
+            TcHmiApplication.AutoRegisterListeners = false;
+
+            try
+            {
+                var filter = new ConfigListenerSettingsFilter(ConfigChangeType.BeforeChange, new string[] { CfgMaxRandom });
+                var settings = new ConfigListenerSettings();
+                settings.Filters.Add(filter);
+                var error = TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener,
+                    settings);
+
+                if (error != ErrorValue.HMI_SUCCESS)
+                {
+                    throw new TcHmiException("Registering the config listener failed.", error);
+                }
+
+                _configListener.BeforeChange += BeforeChange;
+            }
+            finally
+            {
+                // the flag is global, so other listeners added later register automatically again
+                TcHmiApplication.AutoRegisterListeners = true;
+            }
         }
 
         protected virtual Value GetConfigValue(string path)

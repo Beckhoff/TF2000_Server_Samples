@@ -43,7 +43,7 @@ namespace DynamicSymbols
         }
 
         // Read a value from the current machine
-        protected override Value Read(Queue<string> elements)
+        protected override Value Read(Queue<string> elements, Context context)
         {
             // Convert the entire machine to JSON because no sub-element is requested
             if (elements.Count == 0)
@@ -80,7 +80,7 @@ namespace DynamicSymbols
         }
 
         // Write a value to the current machine
-        protected override Value Write(Queue<string> elements, Value value)
+        protected override Value Write(Queue<string> elements, Value value, Context context)
         {
             if (elements.Count == 0)
             {

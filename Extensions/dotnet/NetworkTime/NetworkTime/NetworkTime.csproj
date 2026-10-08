@@ -23,7 +23,7 @@
 	<ItemGroup>
 		<!--Exclude runtime assets to not copy files from dependent NuGet packages to the output directory.-->
 		<!--Declare all assets private to not make a created NuGet package dependent on them.-->
-		<PackageReference Include="Beckhoff.TwinCAT.HMI.TcHmiSrvExtNet.Core.SDK" Version="1.*">
+		<PackageReference Include="Beckhoff.TwinCAT.HMI.TcHmiSrvExtNet.Core.SDK" Version="3.*">
 			<ExcludeAssets>runtime</ExcludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>

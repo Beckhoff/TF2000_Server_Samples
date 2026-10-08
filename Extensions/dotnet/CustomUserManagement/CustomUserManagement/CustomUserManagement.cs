@@ -15,7 +15,6 @@ using TcHmiSrv.Core.Listeners.AuthListenerEventArgs;
 using TcHmiSrv.Core.Listeners.ConfigListenerEventArgs;
 using TcHmiSrv.Core.Listeners.RequestListenerEventArgs;
 using TcHmiSrv.Core.Tools.Management;
-using TcHmiSrv.Core.Tools.Settings;
 using ValueType = TcHmiSrv.Core.ValueType;
 
 namespace CustomUserManagement
@@ -35,14 +34,10 @@ namespace CustomUserManagement
                 var serverContext = TcHmiApplication.Context;
                 serverContext.Domain = StringConstants.ServerDomain;
 
-                // add event handlers
+                // add event handlers, adding the first handler registers a listener with its default settings
                 _authListener.OnLogin += OnLogin;
                 _requestListener.OnRequest += OnRequest;
                 _configListener.OnDelete += OnDelete;
-
-                // tell the config listener that we're interested in everything
-                TcHmiApplication.AsyncHost.RegisterListener(TcHmiApplication.Context, _configListener,
-                    ConfigListenerSettings.Default);
 
                 // make sure that the USERGROUPUSERS entry for this extension exists in TcHmiSrv.Config
                 if (TcHmiApplication.AsyncHost.GetConfigValue(serverContext,
