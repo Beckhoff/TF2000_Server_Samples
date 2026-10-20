@@ -66,7 +66,7 @@ namespace DynamicSymbols
                 "Description" => Machine.Description,
                 "State" => Machine.State.ToString(),
                 "IsWorking" => Machine.IsWorking,
-                "HasError" => Machine.IsWorking,
+                "HasError" => Machine.HasError,
                 "CurrentTemperature" => ((Furnace)Machine).CurrentTemperature,
                 "MaxTemperature" => ((Furnace)Machine).MaxTemperature,
                 "CurrentPressure" => ((Press)Machine).CurrentPressure,

@@ -143,7 +143,7 @@ namespace StaticSymbols
                 "Description" => machine.Description,
                 "State" => machine.State.ToString(),
                 "IsWorking" => machine.IsWorking,
-                "HasError" => machine.IsWorking,
+                "HasError" => machine.HasError,
                 "CurrentTemperature" => ((Furnace)machine).CurrentTemperature,
                 "MaxTemperature" => ((Furnace)machine).MaxTemperature,
                 "CurrentPressure" => ((Press)machine).CurrentPressure,
