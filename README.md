@@ -120,7 +120,8 @@ online weather service.
 ## Testing extensions
 
 The *WeatherData* ([Python](Extensions/python/WeatherData/Tests/README.md))
-sample ships automated tests that start a TwinCAT HMI server, load the
+and *RandomValue* ([.NET](Extensions/dotnet/RandomValue/Tests/README.md))
+samples ship automated tests that start a TwinCAT HMI server, load the
 extension and check its symbols. Use them as a starting point for testing your
 own extensions.
 

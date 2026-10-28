@@ -58,7 +58,9 @@ The following environment variables are optional:
 1. Copy this folder next to your extension.
 2. Change `EXTENSION_NAME` in [conftest.py](conftest.py) to the name of your
    extension and make `EXTENSION_PATH` point to the folder of the built
-   extension. The fixture works with Python, .NET and C++ extensions.
+   extension. The fixture works with Python, .NET and C++ extensions; the
+   [RandomValue tests](../../../dotnet/RandomValue/Tests/README.md) show a
+   .NET extension.
 3. Replace the tests in [test_weatherdata.py](test_weatherdata.py) with tests
    for your symbols. `hmi_server.read_symbol()` and
    `hmi_server.write_symbol()` cover simple symbol access; for anything else,

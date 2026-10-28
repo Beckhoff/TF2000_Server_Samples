@@ -16,6 +16,13 @@ extension configuration.
 - [Working with server extensions](../../../resources/WorkingWithServerExtensions.md)
 - [Interacting with a server extension](../../../resources/InteractingWithServerExtensions.md)
 
+**Tests:**
+
+- [RandomValueUnitTests](RandomValueUnitTests) test the extension class with a
+  mocked server.
+- [Tests](Tests/README.md) start a TwinCAT HMI server, load the built extension
+  and check its symbols and configuration.
+
 ## Example requests
 
 1. Generate a new random number
