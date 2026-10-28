@@ -16,3 +16,4 @@ coverage/
 *.log
 .DS_Store
 *.lscache
+__pycache__/

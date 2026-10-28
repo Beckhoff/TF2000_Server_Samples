@@ -117,6 +117,13 @@ Protect and encrypt symbols with the windows
 current weather data for a specific location using a REST API to query an
 online weather service.
 
+## Testing extensions
+
+The *WeatherData* ([Python](Extensions/python/WeatherData/Tests/README.md))
+sample ships automated tests that start a TwinCAT HMI server, load the
+extension and check its symbols. Use them as a starting point for testing your
+own extensions.
+
 ## Code Snippets
 
 Descriptions of small blocks of reusable code that showcase concepts or

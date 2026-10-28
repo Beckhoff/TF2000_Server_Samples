@@ -1,0 +1,14 @@
+[project]
+name = "weatherdata-tests"
+version = "0.0.0"
+requires-python = ">=3.14"
+dependencies = [
+    "beckhoff-tchmi-client==0.3.4",
+    "beckhoff-tchmi-tests-serverfixture==0.1.0",
+    "pytest==9.1.1",
+    "pytest-asyncio==1.4.0",
+]
+
+# The beckhoff-tchmi-* packages are delivered by TcPkg, not PyPI.
+[tool.uv]
+find-links = ["file:///C:/ProgramData/Beckhoff/PythonPackages"]

@@ -144,3 +144,9 @@ Beckhoff Headquarters Germany in Verl.
     ```
 
     It's always sunny in Verl. 🌞
+
+## Tests
+
+The [Tests](Tests/README.md) folder contains automated tests that start a
+TwinCAT HMI server, load this extension and check its symbols. They also serve
+as a template for testing your own extension.
