@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2752196" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>b20f6a01-508f-41f6-ab78-992a17448c14</ProjectGuid>
+    <Name>NodeJSRandomValueUnitTests</Name>
+    <RootNamespace>NodeJSRandomValueUnitTests</RootNamespace>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>false</StartWebBrowser>
+    <!-- The tests run with mocha and tsx (.mocharc.json); there is nothing to build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+    <JavaScriptTestRoot>.\</JavaScriptTestRoot>
+    <JavaScriptTestFramework>Mocha</JavaScriptTestFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="NodeJSRandomValue.test.ts" />
+    <TypeScriptCompile Include="MockedNodeJSRandomValue.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".mocharc.json" />
+    <None Include="package.json" />
+    <None Include="tsconfig.json" />
+    <None Include="README.md" />
+  </ItemGroup>
+
+  <!-- Install npm packages on first build -->
+  <Target Name="NpmInstallLocalPackages" BeforeTargets="Build" Condition="!Exists('$(ProjectDir)node_modules')">
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+</Project>

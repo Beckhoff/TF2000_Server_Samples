@@ -6,6 +6,7 @@ const CFG_MAX_RANDOM = 'maxRandom';
 /**
  * NodeJSRandomValue Extension
  * Simple random value generator with proper error handling and logging
+ * @internal Exported for the unit tests only, so the declaration output stays empty like in the project template
  */
 export class NodeJSRandomValue extends ExtensionHost {
     private configValues: Record<string, any> = { maxRandom: 1000 };

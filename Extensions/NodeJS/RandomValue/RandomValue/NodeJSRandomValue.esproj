@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2752196" InitialTargets="CopyJsonSchemaFiles" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>a8f4c2e9-5b1d-4a73-9c86-f2e3d7b4a891</ProjectGuid>
+    <Name>NodeJSRandomValue</Name>
+    <RootNamespace>NodeJSRandomValue</RootNamespace>
+    <TcHmiExtensionTypes>{C56C8843-692E-4495-8684-A5711BD3E48C}</TcHmiExtensionTypes>
+    <OutputPath>dist</OutputPath>
+    <!-- Node.js Debugging Support -->
+    <StartupFile>dist\main.js</StartupFile>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>false</StartWebBrowser>
+    <!-- Exclude build-generated and internal files from SDK auto-globbing -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);package-lock.md5;ExtensionSettings.Schema.json;Language.Schema.json</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="main.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="RandomValue.Config.json" />
+    <None Include="RandomValue.Language.en.json" />
+    <None Include="RandomValue.Language.de.json" />
+    <None Include="RandomValue.Schema.json" />
+    <None Include="package.json" />
+    <None Include="tsconfig.json" />
+  </ItemGroup>
+
+  <!-- Install npm packages on first build -->
+  <Target Name="NpmInstallLocalPackages" BeforeTargets="Build" Condition="!Exists('$(ProjectDir)node_modules')">
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+
+  <Target Name="CopyJsonSchemaFiles">
+    <PropertyGroup>
+      <TcHmiServerDir Condition="'$(TcHmiServerDir)'==''">$(MSBuildProgramFiles32)\Beckhoff\TwinCAT\Functions\TF2000-HMI-Server</TcHmiServerDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <TcHmiJsonSchemaPaths Include="$(TcHmiServerDir)\ExtensionSettings.Schema.json" Condition="Exists('$(TcHmiServerDir)\ExtensionSettings.Schema.json')" />
+      <TcHmiJsonSchemaPaths Include="$(TcHmiServerDir)\Language.Schema.json" Condition="Exists('$(TcHmiServerDir)\Language.Schema.json')" />
+    </ItemGroup>
+    <Copy SourceFiles="@(TcHmiJsonSchemaPaths)" DestinationFolder="$(ProjectDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

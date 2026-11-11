@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeJSRandomValue", "RandomValue\NodeJSRandomValue.njsproj", "{A8F4C2E9-5B1D-4A73-9C86-F2E3D7B4A891}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "NodeJSRandomValue", "RandomValue\NodeJSRandomValue.esproj", "{A8F4C2E9-5B1D-4A73-9C86-F2E3D7B4A891}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeJSRandomValueUnitTests", "RandomValueUnitTests\NodeJSRandomValueUnitTests.njsproj", "{B20F6A01-508F-41F6-AB78-992A17448C14}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "NodeJSRandomValueUnitTests", "RandomValueUnitTests\NodeJSRandomValueUnitTests.esproj", "{B20F6A01-508F-41F6-AB78-992A17448C14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
